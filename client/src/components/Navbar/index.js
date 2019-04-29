@@ -1,13 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 function Navbar() {
   return (
 
-<nav className="navbar navbar-expand-md navbar-light bg-light">
-      <Link className="navbar-brand" to="/">
-      <img src="./src/Images/CommUnity copy 2.png" alt="logo" />
+<nav className="navbar navbar-expand navbar-light bg-light">
+      {/* <ul className="navbar-brand">
+      <Link  
+      to="/">
+      <img src="./logo.png" alt="" style={{width: '40px'}} />
       </Link>
+      </ul> */}
       <div>
         <ul className="navbar-nav">
           <li className="nav-item">

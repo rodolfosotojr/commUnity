@@ -13,7 +13,9 @@ function Home() {
             <Container>
                 <Row>
                     <Col size="md-12">
+                    <img src= "./logo.png" />
                     <h1>Welcome to CommUnity!</h1>
+                     
                     </Col>
                 </Row>
             </Container>
