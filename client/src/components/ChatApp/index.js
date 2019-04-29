@@ -63,13 +63,13 @@ export class ChatApp extends Component {
         }
       }
     })
-    .then(room => {
-      this.setState({
-        roomId: room.id
+      .then(room => {
+        this.setState({
+          roomId: room.id
+        })
+        this.getRooms();
       })
-      this.getRooms();
-    })
-    .catch(err => console.log('Error subscribing to room! ', err))
+      .catch(err => console.log('Error subscribing to room! ', err))
   }
 
   // inverse data flow by sending function down to child
@@ -84,6 +84,7 @@ export class ChatApp extends Component {
     return (
       <div className="chat-app">
         <RoomList
+          roomId={this.state.roomId}
           subscribeToRoom={this.subscribeToRoom}
           rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
         <MessageList messages={this.state.messages} />
