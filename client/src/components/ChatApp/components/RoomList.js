@@ -7,7 +7,7 @@ function RoomList(props) {
             <ul>
                 <h3>Your Rooms</h3>
                 {roomOrder.map(room => {
-                    const active = props.roomId === room.id ? " active" : "";
+                    const active = room.id === props.roomId ? " active" : "";
                     return (
                         <li key={room.id} className={"room" + active}>
                             <a onClick={() => props.subscribeToRoom(room.id)} href="#"># {room.name}</a>

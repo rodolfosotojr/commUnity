@@ -27,6 +27,7 @@ class SendMessageForm extends Component {
         return (
             <form onSubmit={this.msgSubmit} className="send-message-form" >
                 <input
+                disabled={this.props.disabled}
                     onChange={this.msgChange}
                     value={this.state.msgInput}
                     placeholder="Type your message then hit ENTER"

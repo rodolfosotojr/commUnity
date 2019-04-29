@@ -48,12 +48,11 @@ export class ChatApp extends Component {
       .catch(err => console.log('Error on joinableRooms: ', err))
   }
 
-  subscribeToRoom = (roomId) => {
-    // clear chats in room before showing selected room
-    this.setState({ messages: [] })
+  subscribeToRoom = roomId => {
+    this.setState({ messages: [] }) // clear chats in room before showing selected room
     this.currentUser.subscribeToRoom({
       // .subscribeToRoomMultipart() has .parts[] array instead of .text property
-      roomId,
+      roomId: roomId,
       hooks: {
         onMessage: message => {
           this.setState({
@@ -63,17 +62,12 @@ export class ChatApp extends Component {
         }
       }
     })
-      .then(room => {
-        this.setState({
-          roomId: room.id
-        })
-        this.getRooms();
-      })
+      .then(room => { this.setState({ roomId: room.id }); this.getRooms();})
       .catch(err => console.log('Error subscribing to room! ', err))
   }
 
   // inverse data flow by sending function down to child
-  sendMessage = (text) => {
+  sendMessage = text => {
     this.currentUser.sendMessage({
       text,
       roomId: this.state.roomId
@@ -85,21 +79,24 @@ export class ChatApp extends Component {
     this.currentUser.createRoom({
       name
     })
-    .then(room => this.subscribeToRoom(room.id))
-    .catch(err => ("Error creating room: ", err))
+      .then(room => this.subscribeToRoom(room.id))
+      .catch(err => ("Error creating room: ", err))
   }
 
   render() {
     return (
       <div className="chat-app">
         <RoomList
-          roomId={this.state.roomId}
           subscribeToRoom={this.subscribeToRoom}
-          rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
-        <MessageList 
-        roomId={this.state.roomId}
-        messages={this.state.messages} />
-        <SendMessageForm sendMessage={this.sendMessage} />
+          rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
+          roomId={this.state.roomId}
+        />
+        <MessageList
+          roomId={this.state.roomId}
+          messages={this.state.messages} />
+        <SendMessageForm 
+        disabled={!this.state.roomId}
+        sendMessage={this.sendMessage} />
         <NewRoomForm createRoom={this.createRoom} />
       </div>
     )
