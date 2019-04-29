@@ -80,6 +80,15 @@ export class ChatApp extends Component {
     })
   }
 
+  // pass function to NewRoomForm
+  createRoom = (name) => {
+    this.currentUser.createRoom({
+      name
+    })
+    .then(room => this.subscribeToRoom(room.id))
+    .catch(err => ("Error creating room: ", err))
+  }
+
   render() {
     return (
       <div className="chat-app">
@@ -87,9 +96,11 @@ export class ChatApp extends Component {
           roomId={this.state.roomId}
           subscribeToRoom={this.subscribeToRoom}
           rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
-        <MessageList messages={this.state.messages} />
+        <MessageList 
+        roomId={this.state.roomId}
+        messages={this.state.messages} />
         <SendMessageForm sendMessage={this.sendMessage} />
-        <NewRoomForm />
+        <NewRoomForm createRoom={this.createRoom} />
       </div>
     )
   }
