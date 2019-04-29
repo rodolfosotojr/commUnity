@@ -9,6 +9,7 @@ import "./styles.css";
 
 export class ChatApp extends Component {
   state = {
+    roomId: null,
     messages: [],
     joinableRooms: [],
     joinedRooms: [],
@@ -30,50 +31,73 @@ export class ChatApp extends Component {
     chatManager.connect()
       .then(currentUser => {
         this.currentUser = currentUser; // hook itself
-
-        this.currentUser.getJoinableRooms()
-          .then(joinableRooms => {
-            this.setState({
-              joinableRooms,
-              joinedRooms: this.currentUser.rooms,
-            })
-          }).catch(err => console.log('Error on joinableRooms: ', err))
-
-        this.currentUser.subscribeToRoom({
-          // .subscribeToRoomMultipart() has .parts[] array instead of .text property
-          roomId: currentUser.rooms[0].id,
-          hooks: {
-            onMessage: message => {
-              this.setState({
-                messages: [...this.state.messages, message]
-                // Multipart version: parts[0].payload.content
-              })
-            }
-          },
-          // messageLimit: 20,
-
-        })
-
+        this.getRooms();
       })
       .catch(err => console.log("ChatManager Connection Error: ", err));
 
   } // end componentDidMount()
 
+  getRooms = () => {
+    this.currentUser.getJoinableRooms()
+      .then(joinableRooms => {
+        this.setState({
+          joinableRooms,
+          joinedRooms: this.currentUser.rooms,
+        })
+      })
+      .catch(err => console.log('Error on joinableRooms: ', err))
+  }
+
+  subscribeToRoom = roomId => {
+    this.setState({ messages: [] }) // clear chats in room before showing selected room
+    this.currentUser.subscribeToRoom({
+      // .subscribeToRoomMultipart() has .parts[] array instead of .text property
+      roomId: roomId,
+      hooks: {
+        onMessage: message => {
+          this.setState({
+            messages: [...this.state.messages, message]
+            // Multipart version: parts[0].payload.content
+          })
+        }
+      }
+    })
+      .then(room => { this.setState({ roomId: room.id }); this.getRooms();})
+      .catch(err => console.log('Error subscribing to room! ', err))
+  }
+
   // inverse data flow by sending function down to child
-  sendMessage = (text) => {
+  sendMessage = text => {
     this.currentUser.sendMessage({
       text,
-      roomId: this.currentUser.rooms[0].id
+      roomId: this.state.roomId
     })
+  }
+
+  // pass function to NewRoomForm
+  createRoom = (name) => {
+    this.currentUser.createRoom({
+      name
+    })
+      .then(room => this.subscribeToRoom(room.id))
+      .catch(err => ("Error creating room: ", err))
   }
 
   render() {
     return (
       <div className="chat-app">
-        <RoomList rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
-        <MessageList messages={this.state.messages} />
-        <SendMessageForm sendMessage={this.sendMessage} />
-        <NewRoomForm />
+        <RoomList
+          subscribeToRoom={this.subscribeToRoom}
+          rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
+          roomId={this.state.roomId}
+        />
+        <MessageList
+          roomId={this.state.roomId}
+          messages={this.state.messages} />
+        <SendMessageForm 
+        disabled={!this.state.roomId}
+        sendMessage={this.sendMessage} />
+        <NewRoomForm createRoom={this.createRoom} />
       </div>
     )
   }
