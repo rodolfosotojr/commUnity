@@ -9,7 +9,10 @@ import "./styles.css";
 
 export class ChatApp extends Component {
   state = {
-    messages: []
+    messages: [],
+    joinableRooms: [],
+    joinedRooms: [],
+
   }
 
   componentDidMount() {
@@ -23,18 +26,27 @@ export class ChatApp extends Component {
       })
     }) // end chatManager
 
+    // handles all the connections
     chatManager.connect()
       .then(currentUser => {
-        // console.log("Successful connection with ", currentUser)
+        this.currentUser = currentUser; // hook itself
 
-        // WAS .subscribeToRoom()
-        currentUser.subscribeToRoomMultipart({
+        this.currentUser.getJoinableRooms()
+          .then(joinableRooms => {
+            this.setState({
+              joinableRooms,
+              joinedRooms: this.currentUser.rooms,
+            })
+          }).catch(err => console.log('Error on joinableRooms: ', err))
+
+        this.currentUser.subscribeToRoom({
+          // .subscribeToRoomMultipart() has .parts[] array instead of .text property
           roomId: currentUser.rooms[0].id,
           hooks: {
             onMessage: message => {
-              console.log("Message text: ", message.parts[0].payload.content);
               this.setState({
                 messages: [...this.state.messages, message]
+                // Multipart version: parts[0].payload.content
               })
             }
           },
@@ -42,17 +54,25 @@ export class ChatApp extends Component {
 
         })
 
-      });
+      })
+      .catch(err => console.log("ChatManager Connection Error: ", err));
 
-    // end componentDidMount()
+  } // end componentDidMount()
+
+  // inverse data flow by sending function down to child
+  sendMessage = (text) => {
+    this.currentUser.sendMessage({
+      text,
+      roomId: this.currentUser.rooms[0].id
+    })
   }
 
   render() {
     return (
       <div className="chat-app">
-        <RoomList />
+        <RoomList rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
         <MessageList messages={this.state.messages} />
-        <SendMessageForm />
+        <SendMessageForm sendMessage={this.sendMessage} />
         <NewRoomForm />
       </div>
     )
