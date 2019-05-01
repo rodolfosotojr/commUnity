@@ -1,7 +1,8 @@
 .navbar{
     display: flex;
     justify-content: center;
-    background-image: linear-gradient(to right, white, rgb(139, 217, 243), white);
+    background-color:rgba(209, 206, 206, 0.658);
     color: rgb(43, 43, 43);
+    z-index: 3;
 }
 

@@ -4,7 +4,7 @@ import ChatPage from "./pages/ChatPage";
 // import HomePage from "./pages/HomePage";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import Connect from "./pages/Connect";
@@ -16,7 +16,6 @@ class App extends Component {
       <Router>
       <div>
       <Navbar />
-        {/* <Navbar /> */}
         <Switch>
           <Route exact path="/Chat" component={ChatPage} />
           <Route exact path="/" component={Home} />
@@ -24,7 +23,7 @@ class App extends Component {
           <Route exact path="/Connect" component={Connect} />
           <Route exact path="/Services" component={Services} />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
     );

@@ -4,12 +4,13 @@ import React from "react";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import './Home.css';
 
 
 function Home() {
     return (
-        <div>
-
+        <div className="homeComponent">
+            <div className="overlay">
             <Container>
                 <Row>
                     <Col size="md-12">
@@ -19,7 +20,7 @@ function Home() {
                     </Col>
                 </Row>
             </Container>
-            
+            </div>
         </div>
 
     )}
