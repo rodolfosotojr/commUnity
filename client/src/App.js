@@ -6,9 +6,9 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 // import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
-import Home from "./pages/Home";
-import Connect from "./pages/Connect";
-import Services from "./pages/Services";
+import Home from "./pages/Home/Home";
+import Connect from "./pages/Connect/Connect";
+import Services from "./pages/Services/Services";
 
 class App extends Component {
   render() {

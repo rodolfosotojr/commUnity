@@ -1,9 +1,9 @@
 //this will be the page that lists all the services
 
 import React from "react";
-import Container from "../components/Container";
-import Row from "../components/Row";
-import Col from "../components/Col";
+import Container from "../../components/Container";
+import Row from "../../components/Row";
+import Col from "../../components/Col";
 // import banner from './banner.jpg'
 import './Services.css';
 
