@@ -5,13 +5,7 @@ import "./style.css";
 function Navbar() {
   return (
 
-<nav className="navbar navbar-expand navbar-light bg-light">
-      {/* <ul className="navbar-brand">
-      <Link  
-      to="/">
-      <img src="./logo.png" alt="" style={{width: '40px'}} />
-      </Link>
-      </ul> */}
+<nav className="navbar navbar-expand fixed-bottom navbar-light">
       <div>
         <ul className="navbar-nav">
           <li className="nav-item">

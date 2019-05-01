@@ -1,14 +1,16 @@
 //this will be the Community Connect page where all the volunteers will be displayed
 
 import React from "react";
-import Container from "../components/Container";
-import Row from "../components/Row";
-import Col from "../components/Col";
+import Container from "../../components/Container";
+import Row from "../../components/Row";
+import Col from "../../components/Col";
+import './Connect.css';
 
 
 function Connect() {
     return (
-        <div>
+        <div className="connectComponent">
+        <div className="overlay">
 
             <Container>
                 <Row>
@@ -17,7 +19,7 @@ function Connect() {
                     </Col>
                 </Row>
             </Container>
-            
+            </div>
         </div>
 
     )}
