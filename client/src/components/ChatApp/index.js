@@ -62,7 +62,7 @@ export class ChatApp extends Component {
         }
       }
     })
-      .then(room => { this.setState({ roomId: room.id }); this.getRooms();})
+      .then(room => { this.setState({ roomId: room.id }); this.getRooms(); })
       .catch(err => console.log('Error subscribing to room! ', err))
   }
 
@@ -85,20 +85,32 @@ export class ChatApp extends Component {
 
   render() {
     return (
-      <div className="chat-app">
-        <RoomList
-          subscribeToRoom={this.subscribeToRoom}
-          rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
-          roomId={this.state.roomId}
-        />
-        <MessageList
-          roomId={this.state.roomId}
-          messages={this.state.messages} />
-        <SendMessageForm 
-        disabled={!this.state.roomId}
-        sendMessage={this.sendMessage} />
-        <NewRoomForm createRoom={this.createRoom} />
-      </div>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-4 bg-primary rounded py-2">
+            <NewRoomForm createRoom={this.createRoom} />
+
+            <RoomList
+              subscribeToRoom={this.subscribeToRoom}
+              rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
+              roomId={this.state.roomId}
+            />
+          </div>
+
+          <div className="col-md-7 message-window">
+
+            <MessageList
+              roomId={this.state.roomId}
+              messages={this.state.messages} />
+
+            <SendMessageForm
+              disabled={!this.state.roomId}
+              sendMessage={this.sendMessage} />
+
+          </div>
+
+        </div>
+      </div >
     )
   }
 }
