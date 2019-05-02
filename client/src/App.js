@@ -4,20 +4,23 @@ import ChatPage from "./pages/ChatPage";
 // import HomePage from "./pages/HomePage";
 import "./App.css";
 import Navbar from "./components/Navbar";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
-import Home from "./pages/Home/Home";
-import Connect from "./pages/Connect/Connect";
-import Services from "./pages/Services/Services";
+import Home from "./pages/Home";
+import Connect from "./pages/Connect";
+import Services from "./pages/Services";
+import LoginPage from "./pages/LoginPage";
 
 class App extends Component {
   render() {
     return (
       <Router>
       <div>
-      <Navbar />
+      {/* <Navbar />
+        <Navbar /> */}
         <Switch>
           <Route exact path="/Chat" component={ChatPage} />
+          <Route exact path="/Login" component={LoginPage} />
           <Route exact path="/" component={Home} />
           <Route exact path="/SignUp" component={SignUp} />
           <Route exact path="/Connect" component={Connect} />
