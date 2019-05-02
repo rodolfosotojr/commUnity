@@ -4,7 +4,7 @@ module.exports = passport => {
     passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3001/auth/facebook/callback"
+    callbackURL: "/auth/facebook/callback"
     },
     function(accessToken, refreshToken, profile, cb){
         console.log(profile);
@@ -12,8 +12,9 @@ module.exports = passport => {
     }))
       
     passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    done(null, user);
     });
-    passport.deserializeUser(function(id, done) {
+    passport.deserializeUser(function(user, done) {
+        done(null, user);
     })
 }

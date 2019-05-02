@@ -26,7 +26,7 @@ class App extends Component {
           <Route exact path="/Connect" component={Connect} />
           <Route exact path="/Services" component={Services} />
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </Router>
     );
