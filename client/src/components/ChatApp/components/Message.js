@@ -2,7 +2,8 @@ import React from "react";
 
 function Message(props) {
 
-    if (props.username === 'orlando') {
+    if (props.currentUser.id === props.username) {
+        console.log(props.currentUser);
         // return message float right
         return (
             <React.Fragment>

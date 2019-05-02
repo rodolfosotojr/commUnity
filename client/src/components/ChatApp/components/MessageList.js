@@ -34,7 +34,7 @@ class MessageList extends Component {
 
                 {this.props.messages.map((message, index) => {
                     return (
-                        <Message key={index} username={message.senderId} text={message.text} />
+                        <Message currentUser={this.props.currentUser} key={index} username={message.senderId} text={message.text} />
                     )
                 })}
             </div>
