@@ -8,7 +8,7 @@ module.exports = passport => {
     },
     function(accessToken, refreshToken, profile, cb){
         console.log(profile);
-        cb(null,profile);   
+        cb(null, profile);   
     }))
       
     passport.serializeUser(function(user, done) {

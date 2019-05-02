@@ -7,6 +7,7 @@ router.route('/callback').get(passport.authenticate('facebook',
     successRedirect: process.env.NODE_ENV === 'production'
     ? 'https://community-chicago.herokuapp.com/signup'
     : 'http://localhost:3000/signup',
+    
     failureRedirect: '/login' 
 }));
 
