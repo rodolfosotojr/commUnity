@@ -1,29 +1,18 @@
-# Create React Express App
+# [comm**Unity** Web App](http://community-chicago.herokuapp.com)
+A community building app targeting refugee communities within Chicago and connecting them with local families to help facilitate a smoother transition. 
 
-## About This Boilerplate
+## Overview
+Human interaction is vital to thriving communities. Our App helps refugee communities that have left their homes, to resettle in Chicago by rebuilding their communities and connecting them with local families. Personal interaction is key to their success in adopting Chicago as a home, and our APP helps make that happen.
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+![Wireframe](./wireframe.png)
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+## Target audience:
+Refugee communities that have resettled in Chicago, as well as local families willing to volunteer their time and resources. 
 
-## Starting the app locally
-
-Start by installing front and backend dependencies. While in this directory, run the following command:
-
-```
-yarn install
-```
-
-This should install node modules within the server and the client folder.
-
-After both installations complete, run the following command in your terminal:
-
-```
-yarn start
-```
-
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+## Technologies/Frameworks used:
+Here are the technologies that you need to install 
+* [ReactJS](https://reactjs.org/) A JavaScript library for building user interfaces
+* [Bootstrap](https://getbootstrap.com/) An open source toolkit for developing with HTML, CSS, and JS. 
+* [Node.js](https://nodejs.org/en/) A JavaScript runtime built on Chrome's V8 JavaScript engine.
+* Node Modules:
+    * [Express](https://www.npmjs.com/package/express) Fast, unopinionated, minimalist web framework for node.
