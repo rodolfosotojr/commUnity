@@ -16,7 +16,7 @@ class MessageList extends Component {
             )
         }
         return (
-            <div className="card-body msg_card_body">
+            <div className="card-body msg_card_body message-list">
 
                 {this.props.messages.map((message, index) => {
                     return (

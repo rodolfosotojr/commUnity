@@ -85,10 +85,10 @@ export class ChatApp extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-        
-          <div className="col-md-4 bg-primary rounded py-2">
+      <div className="row justify-content-center">
+        <div className="col-lg-6">
+
+          <div className="col-md-12 bg-primary rounded py-2">
             <NewRoomForm createRoom={this.createRoom} />
 
             <RoomList
@@ -98,7 +98,7 @@ export class ChatApp extends Component {
             />
           </div>
 
-          <div className="col-md-7 message-window">
+          <div className="col-md-12 message-window">
 
             <MessageList
               roomId={this.state.roomId}
