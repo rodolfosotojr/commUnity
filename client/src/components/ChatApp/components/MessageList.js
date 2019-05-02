@@ -1,9 +1,23 @@
 import React, { Component } from "react";
-// import ReactDOM from "react-dom";
+import ReactDOM from "react-dom";
 import Message from "./Message";
 import "./MessageList.css";
 
 class MessageList extends Component {
+
+    componentWillUpdate() {
+        const node = ReactDOM.findDOMNode(this)
+        this.shouldScrollToBottom = node.scrollTop + node.clientHeight + 100 >= node.scrollHeight
+        // node.scrollTop = node.scrollHeight   
+
+    }
+    
+    componentDidUpdate() {
+        if (this.shouldScrollToBottom) {
+            const node = ReactDOM.findDOMNode(this)
+            node.scrollTop = node.scrollHeight   
+        }
+    }
 
     render() {
         if (!this.props.roomId) {
@@ -16,7 +30,7 @@ class MessageList extends Component {
             )
         }
         return (
-            <div className="card-body msg_card_body message-list">
+            <div ref={msgList => { this.msgList = msgList; }} className="card-body msg_card_body message-list">
 
                 {this.props.messages.map((message, index) => {
                     return (
