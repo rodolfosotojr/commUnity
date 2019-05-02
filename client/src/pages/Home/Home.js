@@ -23,7 +23,7 @@ function Home() {
                     <br></br>
                     <p>We're so happy to have you!<br></br>
                         Let's Get Started <br>
-                    </br>Click on services to navigate to nearby service centers. Or, click on community connect to meet local families!</p>
+                    </br>Click on services to navigate to nearby service centers. Or, click on connect to meet local families!</p>
                     </Col>
                 </Row>
 
