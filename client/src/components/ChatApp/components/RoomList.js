@@ -17,7 +17,7 @@ class RoomList extends Component {
     render() {
         return (
             <div className="rooms-list bg-primary text-light">
-                <button className="btn btn-secondary dropdown-toggle" onClick={this.toggleCollapse} data-toggle="collapse">{this.state.currentRoom}</button>
+                <button className="btn btn-secondary" onClick={this.toggleCollapse} data-toggle="collapse">{this.state.currentRoom}</button>
                 <div id="rooms" className={'collapse' + (this.state.open ? ' show' : '')}>
                     {[...this.props.rooms].sort((a, b) => a.id - b.id).map(room => {
                         const active = room.id === this.props.roomId ? " active" : "";
