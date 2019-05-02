@@ -8,7 +8,7 @@ class MessageList extends Component {
     render() {
         if (!this.props.roomId) {
             return (
-                <div className="bg-light border rounded message-list px-2">
+                <div className="card-body msg_card_body">
                     <div className="join-room text-center">
                         <h3><i className="fas fa-door-open"></i> Join a room!</h3>
                     </div>
@@ -16,7 +16,7 @@ class MessageList extends Component {
             )
         }
         return (
-            <div className="bg-light w-100 border rounded message-list px-2">
+            <div className="card-body msg_card_body">
 
                 {this.props.messages.map((message, index) => {
                     return (

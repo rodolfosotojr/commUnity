@@ -87,6 +87,7 @@ export class ChatApp extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
+        
           <div className="col-md-4 bg-primary rounded py-2">
             <NewRoomForm createRoom={this.createRoom} />
 
