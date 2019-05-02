@@ -6,9 +6,9 @@ class ChatPage extends Component {
   render() {
     return (
 
-      <div>
+      <React.Fragment>
           <ChatApp />
-      </div>
+      </React.Fragment>
 
       
     );
