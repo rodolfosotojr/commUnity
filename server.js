@@ -8,6 +8,8 @@ const cookieParser = require('cookie-parser');
 const passport = require("passport");
 const routes = require("./routes");
 
+const db = require("./client/src/models");
+
 require("./config/passport")(passport);
 
 // Define middleware here
@@ -32,6 +34,8 @@ app.use(routes)
 // Send every other request to the React app
 // Define any API routes before this runs
 
-app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
+db.sequelize.sync(syncOptions).then(function() {
+  app.listen(PORT, () => {
+    console.log(`🌎 ==> API server now on port ${PORT}!`);
+  });
 });
