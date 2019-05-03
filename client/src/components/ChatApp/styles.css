@@ -11,6 +11,11 @@
     overflow-y: auto;
 }
 
+/* ROOM LIST */
+.showrooms {
+    width: 100%
+}
+
 /* CHAT STYLES */
 
 .img_cont_msg {
