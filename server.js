@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const passport = require("passport");
 const routes = require("./routes");
 
-const db = require("./client/src/models");
+const db = require("./models");
 
 require("./config/passport")(passport);
 
@@ -22,6 +22,8 @@ if (process.env.NODE_ENV === "production") {
 app.use(cookieParser());
 app.use(bodyParser());
 
+// This will drop and create the db if set to true
+var syncOptions = { force: false };
 
 app.use(session({ secret: 'keyboard cat',  saveUninitialized: true,
 resave: true }));
