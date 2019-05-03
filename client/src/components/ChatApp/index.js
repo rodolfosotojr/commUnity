@@ -13,15 +13,17 @@ export class ChatApp extends Component {
     messages: [],
     joinableRooms: [],
     joinedRooms: [],
-
+    currentUser: ''
   }
+
+  loginId = 'orlando';
 
   componentDidMount() {
     const instanceLocator = process.env.REACT_APP_INSTANCE_LOCATOR;
     const tokenUrl = process.env.REACT_APP_TOKEN_PROVIDER_URL;
     const chatManager = new ChatManager({
       instanceLocator,
-      userId: 'orlando',
+      userId: this.loginId,
       tokenProvider: new TokenProvider({
         url: tokenUrl
       })
@@ -31,6 +33,7 @@ export class ChatApp extends Component {
     chatManager.connect()
       .then(currentUser => {
         this.currentUser = currentUser; // hook itself
+        this.setState({currentUser: this.currentUser});
         this.getRooms();
       })
       .catch(err => console.log("ChatManager Connection Error: ", err));
@@ -101,6 +104,7 @@ export class ChatApp extends Component {
           <div className="col-md-12 message-window">
 
             <MessageList
+              currentUser={this.state.currentUser}
               roomId={this.state.roomId}
               messages={this.state.messages} />
 

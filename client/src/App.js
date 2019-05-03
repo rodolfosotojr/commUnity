@@ -20,6 +20,7 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route exact path="/Chat" component={ChatPage} />
+          <Route exact path="/chat" component={ChatPage} />
           <Route exact path="/Login" component={LoginPage} />
           <Route exact path="/" component={Home} />
           <Route exact path="/SignUp" component={SignUp} />
