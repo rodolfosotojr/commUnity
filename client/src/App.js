@@ -9,7 +9,8 @@ import SignUp from "./pages/SignUp";
 import Home from "./pages/Home/Home";
 import Connect from "./pages/Connect/index";
 import Services from "./pages/Services/index";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/LoginPage/index"
+import Register from "./pages/Register";
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
           <Route exact path="/SignUp" component={SignUp} />
           <Route exact path="/Connect" component={Connect} />
           <Route exact path="/Services" component={Services} />
+          <Route exact path="/Register" component={Register} />
         </Switch>
         <Footer />
       </div>
