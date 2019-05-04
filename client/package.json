@@ -7,12 +7,10 @@
   "dependencies": {
     "@pusher/chatkit-client": "^1.5.0",
     "@pusher/chatkit-server": "^1.1.0",
-    "mysql": "^2.17.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "^2.1.1",
-    "sequelize": "^5.8.2"
+    "react-scripts": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
