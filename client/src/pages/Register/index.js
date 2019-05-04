@@ -26,6 +26,7 @@ class Register extends Component {
       [name]: value
     });
   };
+
   handleFormSubmit = (event) => {
     event.preventDefault();
     axios.post("/auth/register",        {
@@ -38,7 +39,7 @@ class Register extends Component {
         "password": this.state.password,
         "userType": this.state.value 
     }).then(
-        console.log()
+        console.log("post")
     )
   }
     render() {

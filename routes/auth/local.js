@@ -12,9 +12,8 @@ router.route("/").post((req, res) =>{
       console.log(err)
     }
     const token = jwt.sign({
-      id: user.username
-    }, 
-    process.env.jwtSecret);
+    id: user.username},process.env.secretOrKey, 
+    );
     res.status(200).send({
       auth: true,
       token: token,

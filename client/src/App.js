@@ -9,8 +9,10 @@ import SignUp from "./pages/SignUp";
 import Home from "./pages/Home/Home";
 import Connect from "./pages/Connect/index";
 import Services from "./pages/Services/index";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/LoginPage/index"
 import Register from "./pages/Register";
+
+
 
 
 class App extends Component {
