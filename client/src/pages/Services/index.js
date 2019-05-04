@@ -7,17 +7,14 @@ import Col from "../../components/Col";
 // import banner from './banner.jpg'
 import './Services.css';
 
-
-
-
 function Services() {
     return (
         <div className="servicesComponent">
             <div className="overlay">
-                <div className="container">
+                <div className="container pt-3">
                     <div className="row justify-content-center">
                         <Col size="md-6 text-center">
-                            <h1>Available Services</h1>
+                            <h1>Resources</h1>
                         </Col>
                     </div>
                     <div className="row justify-content-center">
