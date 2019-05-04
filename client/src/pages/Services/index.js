@@ -15,12 +15,12 @@ function Services() {
         <div className="servicesComponent">
             <div className="overlay">
                 <div className="container">
-                    <div className="row">
-                        <Col size="md-12">
-                            <h1>Availabe Services</h1>
+                    <div className="row justify-content-center">
+                        <Col size="md-6 text-center">
+                            <h1>Available Services</h1>
                         </Col>
                     </div>
-                    <div className="row">
+                    <div className="row justify-content-center">
                         <Col size="-6">
                             <div className="iconCard">
                                 <i class="fas fa-gavel fa-4x"></i> 
