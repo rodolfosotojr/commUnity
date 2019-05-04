@@ -14,44 +14,64 @@ function Services() {
     return (
         <div className="servicesComponent">
             <div className="overlay">
-                <Container>
-                    <Row>
+                <div className="container">
+                    <div className="row">
                         <Col size="md-12">
-                            <h1>List Services Here!</h1>
+                            <h1>Availabe Services</h1>
                         </Col>
-                    </Row>
-                    <Row>
-                        <Col size="sm-3">
-                           <div className="iconCard">
-                           <i class="fas fa-gavel fa-4x"></i>
-                           </div>
+                    </div>
+                    <div className="row">
+                        <Col size="-6">
+                            <div className="iconCard">
+                                <i class="fas fa-gavel fa-4x"></i> 
+                                <div>Legal</div>
+                            </div>
+                        </Col>
 
-                           <div className="iconCard">
-                           <i class="fas fa-heartbeat fa-4x"></i>
-                           </div>
+                        <Col size="-6">
+                            <div className="iconCard">
+                                <i class="fas fa-heartbeat fa-4x"></i>
+                                <div>Health</div>
+                            </div>
+                        </Col>
 
-                           <div className="iconCard">
-                           <i class="fas fa-graduation-cap fa-4x"></i>
-                           </div>
+                        <Col size="-6">
 
-                           <div className="iconCard">
-                           <i class="fas fa-building fa-4x"></i>
-                           </div>
+                            <div className="iconCard">
+                                <i class="fas fa-graduation-cap fa-4x"></i>
+                                <div>Education</div>
+                            </div>
+                        </Col>
 
-                           <div className="iconCard">
-                           <i class="fas fa-book-open fa-4x"></i>
-                           </div>
+                        <Col size="-6">
 
-                           <div className="iconCard">
-                           <i class="fas fa-hands-helping fa-4x"></i> 
-                           </div>
+                            <div className="iconCard">
+                                <i class="fas fa-building fa-4x"></i>
+                                <div>Legal</div>
+                            </div>
+                        </Col>
 
-                               </Col>
-                           </Row>
+                        <Col size="-6">
+
+                            <div className="iconCard">
+                                <i class="fas fa-book-open fa-4x"></i>
+                                <div>English Classes</div>
+                            </div>
+                        </Col>
+
+                        <Col size="-6">
+
+                            <div className="iconCard">
+                                <i class="fas fa-hands-helping fa-4x"></i>
+                                <div>Community</div>
+                            </div>
+
+                        </Col>
+                    </div>
 
 
-                       
-                </Container>
+
+                </div>
             </div>
         </div>
 
