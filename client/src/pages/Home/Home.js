@@ -8,7 +8,7 @@ import './Home.css';
 import logo from './logo1.png';
 
 
-class Home extends Component () {
+class Home extends Component {
     render() {
         return (
             <div className="homeComponent">
