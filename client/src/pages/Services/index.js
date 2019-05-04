@@ -7,9 +7,6 @@ import Col from "../../components/Col";
 // import banner from './banner.jpg'
 import './Services.css';
 
-
-
-
 function Services() {
     return (
         <div className="servicesComponent">
