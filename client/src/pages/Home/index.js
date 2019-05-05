@@ -9,6 +9,22 @@ import logo from './logo1.png';
 
 
 class Home extends Component {
+    state = {
+        username: '',
+        password: ''
+    }
+
+    handleUsername = event => {
+        this.setState({
+            username: event.target.value
+        })
+    }
+    handlePassword = event => {
+        this.setState({
+            password: event.target.value
+        })
+    }
+
     render() {
         return (
             <div className="homeComponent">
@@ -30,11 +46,19 @@ class Home extends Component {
                                 <form>
                                     <div className="form-group">
                                         <label>Enter Username</label>
-                                        <input type="text" className="form-control" id="enter-username" placeholder="Enter Username" />
+                                        <input 
+                                            type="text" 
+                                            className="form-control" 
+                                            onChange={this.handleUsername}
+                                            placeholder="Enter Username" />
                                     </div>
                                     <div className="form-group">
                                         <label>Password</label>
-                                        <input type="password" className="form-control" id="input-password" placeholder="Password" />
+                                        <input 
+                                            type="password" 
+                                            className="form-control" 
+                                            onChange={this.handlePassword}
+                                            placeholder="Password" />
                                     </div>
                                     <div className="form-group form-check">
                                         <input type="checkbox" className="form-check-input" id="rememberme" />
