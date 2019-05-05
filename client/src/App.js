@@ -6,10 +6,10 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
-import Home from "./pages/Home/Home";
-import Connect from "./pages/Connect/index";
-import Services from "./pages/Services/index";
-import LoginPage from "./pages/LoginPage/index"
+import Home from "./pages/Home";
+import Connect from "./pages/Connect";
+import Services from "./pages/Services";
+import LoginPage from "./pages/LoginPage"
 import Register from "./pages/Register";
 
 
