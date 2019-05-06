@@ -6,7 +6,7 @@ import SendMessageForm from './components/SendMessageForm';
 import RoomList from './components/RoomList';
 import NewRoomForm from './components/NewRoomForm';
 import "./styles.css";
-import { getJwt } from '../utils/jwt';
+import { getJwt } from '../../utils/jwt';
 import axios from 'axios';
 
 export class ChatApp extends Component {
@@ -16,9 +16,9 @@ export class ChatApp extends Component {
     joinableRooms: [],
     joinedRooms: [],
     currentUser: '',
-    userId,
-    user,
-    email
+    userId: '',
+    user: '',
+    email: ''
   }
 
 
