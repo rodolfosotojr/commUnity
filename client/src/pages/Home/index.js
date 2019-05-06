@@ -6,7 +6,7 @@ import Row from "../../components/Row";
 import Col from "../../components/Col";
 import './Home.css';
 import logo from './logo1.png';
-
+import axios from "axios";
 
 class Home extends Component {
     state = {
@@ -24,7 +24,17 @@ class Home extends Component {
             password: event.target.value
         })
     }
-
+    handleFormSubmit = event =>
+    {
+        event.preventDefault();
+        axios.post("/auth/local",{
+            username: this.state.username,
+            password: this.state.password
+        }).then((res) =>{
+            window.location.assign("/protected")
+        })
+    }
+    re
     render() {
         return (
             <div className="homeComponent">
@@ -63,7 +73,7 @@ class Home extends Component {
                                     <div className="form-group form-check">
                                         <input type="checkbox" className="form-check-input" id="rememberme" />
                                         <label className="form-check-label">Remember Me</label>
-                                        <button type="submit" className="btn btn-primary float-right">Login</button>
+                                        <button type="submit" className="btn btn-primary float-right" onClick={this.handleFormSubmit}>Login</button>
                                     </div>
                                 </form>
                                 <div className="text-center">Not a Member? <a href="/Register">Register Now! <i class="fas fa-user-plus"></i></a></div>

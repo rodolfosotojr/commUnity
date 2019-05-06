@@ -1,26 +1,19 @@
 const router = require("express").Router();
-const passport = require("passport");
-const jwt = require('jsonwebtoken')
+const passport = require("../../config/passport");
+var jwt = require('jsonwebtoken')
 
-router.route("/").post((req, res) =>{
-
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/register',
-  }, (err, user, info) =>{
-    if(err){
-      console.log(err)
-    }
-    const token = jwt.sign({
-    id: user.username},process.env.secretOrKey, 
+router.route("/").post(passport.authenticate('local',{session: false}), function(req, res){
+    console.log(req.user)   
+    let token = jwt.sign({
+    id: req.user.username},
+    process.env.secretOrKey,
+    {expiresIn: "1m"} 
     );
-    res.status(200).send({
-      auth: true,
-      token: token,
-      message: "user found" 
-    })
-    console.log(user)  
-  })
+    res.cookie('jwt', token, { httpOnly: true })
+    .sendStatus(200);
 });
+router.route("/protected").post(passport.authenticate("jwt", {session: false}), function(req, res){
+  res.send(req.user)
 
+})
 module.exports = router;

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const passport = require("passport");
+const passport = require("../../config/passport");
 
 router.route('/').get(passport.authenticate('facebook'));
 router.route('/callback').get(passport.authenticate('facebook', 
