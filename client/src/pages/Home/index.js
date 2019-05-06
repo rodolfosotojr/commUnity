@@ -6,7 +6,7 @@ import Row from "../../components/Row";
 import Col from "../../components/Col";
 import './Home.css';
 import logo from './logo1.png';
-
+import axios from "axios";
 
 class Home extends Component {
     state = {
@@ -26,7 +26,17 @@ class Home extends Component {
             rememberMe: event.target.checked
         })
     }
-
+    handleFormSubmit = event =>
+    {
+        event.preventDefault();
+        axios.post("/auth/local",{
+            username: this.state.username,
+            password: this.state.password
+        }).then((res) =>{
+            window.location.assign("/protected")
+        })
+    }
+    re
     render() {
         return (
             <div className="homeComponent">
@@ -66,19 +76,11 @@ class Home extends Component {
                                             value={this.state.password}
                                             placeholder="Password" />
                                     </div>
-                                    <div className="form-row">
-                                        <div className="col form-check-inline">
-                                            <input 
-                                                type="checkbox" 
-                                                className="form-check" 
-                                                name="rememberMe"
-                                                checked={this.state.handleCheck}
-                                                onChange={this.handleCheck} />
-                                            <label className="form-check-label"><small>Remember Me</small></label>
-                                        </div>
-                                        <div className="col">
-                                            <button type="submit" className="btn btn-primary float-right">Login</button>
-                                        </div>
+
+                                    <div className="form-group form-check">
+                                        <input type="checkbox" className="form-check-input" id="rememberme" />
+                                        <label className="form-check-label">Remember Me</label>
+                                        <button type="submit" className="btn btn-primary float-right" onClick={this.handleFormSubmit}>Login</button>
                                     </div>
                                 </form>
                                 <div className="text-center pt-3">Not a Member? <a href="/Register">Register Now! <i class="fas fa-user-plus"></i></a></div>

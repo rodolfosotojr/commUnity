@@ -9,11 +9,11 @@ class LoginPage extends Component {
         password: "",
       };
 
-    handleclick = () => {
-        fetch("/auth/facebook").then(() => {
-            console.log("fetched!")
-        })
-    }
+    // handleclick = () => {
+    //     fetch("/auth/facebook").then(() => {
+    //         console.log("fetched!")
+    //     })
+    // }
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -23,13 +23,13 @@ class LoginPage extends Component {
     handleFormSubmit = event =>
     {
         event.preventDefault();
-        console.log(this.state)
         axios.post("/auth/local",{
             username: this.state.username,
             password: this.state.password
         }).then((res) =>{
-            console.log("clicked...")
             console.log(res)
+            // localStorage.setItem('JWT', res.data.token);
+            window.location.assign("/")
         })
     }
     render(){
