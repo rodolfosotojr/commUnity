@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./style.css";
 
 function Navbar() {
@@ -9,36 +9,19 @@ function Navbar() {
       <div>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <Link
-              to="/"
-              className={
-                window.location.pathname === "/" || window.location.pathname === "/"
-                  ? "nav-link active"
-                  : "nav-link"
-              }
-            >
+            <NavLink exact to="/" className="nav-link">
               About
-            </Link>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <Link
-              to="/Connect"
-              className={window.location.pathname === "/Connect" 
-              ? "nav-link active" 
-              : "nav-link"}
-            >
+            <NavLink to="/Connect" className="nav-link" activeClassName="active">
               Connect
-            </Link>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <Link
-              to="/Services"
-              className={window.location.pathname === "/Services" 
-              ? "nav-link active" 
-              : "nav-link"}
-            >
+            <NavLink to="/Services" className="nav-link" activeClassName="active">
               Services
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>
