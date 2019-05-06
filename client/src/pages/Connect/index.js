@@ -5,8 +5,15 @@ import Container from "../../components/Container";
 import Row from "../../components/Row";
 import Col from "../../components/Col";
 import './Connect.css';
-import ProfileCard from '../../components/ProfileCard'
+import ProfileCard from '../../components/ProfileCard';
+import styled from "styled-components";
+import SlideView from "../../components/SlideView"
 
+
+const ProfileWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+`;
 
 const data = [
     {
@@ -52,6 +59,15 @@ function Connect() {
                
                 </Row>
             </Container>
+            <Container>
+            <SlideView
+                profile="HELLO"
+            />
+
+
+            </Container>
+                
+
             </div>
         </div>
 
