@@ -15,14 +15,10 @@ class Home extends Component {
         rememberMe: false,
     }
 
-    handleUsername = event => {
+    // Using [event.target.name] to handle onChange for multiple elements using a single function
+    handleInput = event => {
         this.setState({
-            username: event.target.value
-        })
-    }
-    handlePassword = event => {
-        this.setState({
-            password: event.target.value
+            [event.target.name]: event.target.value
         })
     }
     handleCheck = event => {
@@ -55,7 +51,9 @@ class Home extends Component {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            onChange={this.handleUsername}
+                                            name="username"
+                                            onChange={this.handleInput}
+                                            value={this.state.username}
                                             placeholder="Enter Username" />
                                     </div>
                                     <div className="form-group">
@@ -63,7 +61,9 @@ class Home extends Component {
                                         <input
                                             type="password"
                                             className="form-control"
-                                            onChange={this.handlePassword}
+                                            name="password"
+                                            onChange={this.handleInput}
+                                            value={this.state.password}
                                             placeholder="Password" />
                                     </div>
                                     <div className="form-row">
@@ -71,6 +71,8 @@ class Home extends Component {
                                             <input 
                                                 type="checkbox" 
                                                 className="form-check" 
+                                                name="rememberMe"
+                                                checked={this.state.handleCheck}
                                                 onChange={this.handleCheck} />
                                             <label className="form-check-label"><small>Remember Me</small></label>
                                         </div>

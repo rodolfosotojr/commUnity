@@ -6,6 +6,8 @@ import SendMessageForm from './components/SendMessageForm';
 import RoomList from './components/RoomList';
 import NewRoomForm from './components/NewRoomForm';
 import "./styles.css";
+import { getJwt } from '../utils/jwt';
+import axios from 'axios';
 
 export class ChatApp extends Component {
   state = {
@@ -13,8 +15,12 @@ export class ChatApp extends Component {
     messages: [],
     joinableRooms: [],
     joinedRooms: [],
-    currentUser: ''
+    currentUser: '',
+    userId,
+    user,
+    email
   }
+
 
   loginId = 'orlando';
 
@@ -29,11 +35,37 @@ export class ChatApp extends Component {
       })
     }) // end chatManager
 
+    // check JWT and get userID, username and set to state.
+    const jwt = getJwt();
+    if (!jwt) {
+      this.setState({
+        user: null
+      });
+      return
+    }
+
+    // set jwt token 'cool-jwt' to header
+    axios.get('/getUser', { headers: { Authorization: getJwt() } })
+      .then(res => {
+        this.setState({
+          user: res.data,
+          currentUser: res.data.user,
+          id: res.data.id,
+          email: res.data.email
+        });
+      }
+      )
+      .catch(err => {
+        // remove token from localStorage if the token is not valid before being sent to /Login
+        localStorage.removeItem('cool-jwt');
+        this.props.history.push('/Login');
+      })
+
     // handles all the connections
     chatManager.connect()
       .then(currentUser => {
         this.currentUser = currentUser; // hook itself
-        this.setState({currentUser: this.currentUser});
+        this.setState({ currentUser: this.currentUser });
         this.getRooms();
       })
       .catch(err => console.log("ChatManager Connection Error: ", err));
