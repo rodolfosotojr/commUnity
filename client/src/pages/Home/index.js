@@ -41,20 +41,20 @@ class Home extends Component {
     render() {
 
         return (
+            
             <div className="homeComponent">
-                <div className="overlay">
 
-                     <Container>
-                        <Row>
+<Container className="container">
+                        <Row className="row justify-content-center">
                             <Col size="md-12" align="center">
                                 <Carousel />
                             </Col>
                         </Row>
 
-                        <Row className="row justify-content-center pt-3">
+                        <Row className="row justify-content-center pt-3"> 
                             <Col size="md-6" align="center">
-                                <img src={logo} />
-                                <h1>Comm<span className="font-weight-bold">Unity</span></h1>
+                                <img className="homeLogo" src={logo} />
+                                <h1 className="homeHeader">Comm<span className="font-weight-bold">Unity</span></h1>
                                 <h2>Welcoming You Home, {this.state.username}!</h2>
                                 <p>We're so happy to have you!<br />
                                     Let's Get Started!<br />
@@ -69,10 +69,10 @@ class Home extends Component {
                             </Col>
                         </Row>
 
-                    </Container>
+                        </Container>
                     </div>
-                    </div>
-                
+                   
+                 
            
         )
 

@@ -23,8 +23,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Navbar />
-          <Navbar />
+         
           <Switch>
             <Route exact path="/" component={LoginPage} />
             <Route path="/Home" component={Home} />
@@ -39,6 +38,8 @@ class App extends Component {
             {/* <Route exact path= "/protected" component={TestProtected} /> */}
           </Switch>
           {/* <Footer /> */}
+          <Navbar />
+          <Navbar />
         </div>
       </Router>
     );
