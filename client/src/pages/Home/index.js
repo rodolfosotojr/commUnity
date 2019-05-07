@@ -51,7 +51,7 @@ class Home extends Component {
                             </Col>
                         </Row>
 
-                        <Row className="row justify-content-center pt-3"> 
+                        <Row className="row justify-content-center pt-2"> 
                             <Col size="md-6" align="center">
                                 <img className="homeLogo" src={logo} />
                                 <h1 className="homeHeader">Comm<span className="font-weight-bold">Unity</span></h1>
@@ -63,7 +63,7 @@ class Home extends Component {
 
                             </Col>
                         </Row>
-                        <Row className="row justify-content-center">
+                        <Row className="row justify-content-center mb-5">
                             <Col size='sm-4'>
                                 <div className="text-center pt-3">Not you? <a href="#" onClick={this.handleLogout}>Logout Now! <i class="fas fa-user-minus"></i></a></div>
                             </Col>
