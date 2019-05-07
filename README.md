@@ -16,3 +16,7 @@ Here are the technologies that you need to install
 * [Node.js](https://nodejs.org/en/) A JavaScript runtime built on Chrome's V8 JavaScript engine.
 * Node Modules:
     * [Express](https://www.npmjs.com/package/express) Fast, unopinionated, minimalist web framework for node.
+
+## ChatKit logic
+* Volunteers will be able to see a list of private rooms linked to users.
+* Users may be limited to a single volunteer or show volunteers that they have chatted with already.
