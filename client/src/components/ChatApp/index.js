@@ -49,7 +49,7 @@ export class ChatApp extends Component {
       .then(res => {
         this.setState({
           user: res.data,
-          currentUser: res.data.user,
+          username: undefined,
           id: res.data.id,
           email: res.data.email
         });
@@ -57,8 +57,8 @@ export class ChatApp extends Component {
       )
       .catch(err => {
         // remove token from localStorage if the token is not valid before being sent to /Login
-        localStorage.removeItem('cool-jwt');
-        this.props.history.push('/Login');
+        // localStorage.removeItem('cool-jwt');
+        window.location.assign('/');
       })
 
     // handles all the connections

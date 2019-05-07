@@ -11,7 +11,9 @@ import Connect from "./pages/Connect/index";
 import Services from "./pages/Services/index";
 import LoginPage from "./pages/LoginPage/index"
 import Register from "./pages/Register";
-import TestProtected from "./pages/TestProtected";
+// import TestProtected from "./pages/TestProtected";
+import Protected from "./pages/Protected";
+import Protected2 from "./components/Protected2";
 
 
 
@@ -20,23 +22,25 @@ class App extends Component {
   render() {
     return (
       <Router>
-      <div>
-      <Navbar />
-        <Navbar />
-        <Switch>
-          <Route exact path="/Chat" component={ChatPage} />
-          <Route exact path="/chat" component={ChatPage} />
-          <Route exact path="/Login" component={LoginPage} />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/SignUp" component={SignUp} />
-          <Route exact path="/Connect" component={Connect} />
-          <Route exact path="/Services" component={Services} />
-          <Route exact path="/Register" component={Register} />
-          <Route exact path= "/protected" component={TestProtected} />
-        </Switch>
-        <Footer />
-      </div>
-    </Router>
+        <div>
+          <Navbar />
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/Login" component={LoginPage} />
+            <Route path="/SignUp" component={SignUp} />
+            <Route path="/Connect" component={Connect} />
+            <Route path="/Services" component={Services} />
+            <Route path="/Register" component={Register} />
+            <Route path="/Chat" component={ChatPage} />
+            <Protected>
+              <Route path={"/protected2"} component={Protected2} />
+            </Protected>
+            {/* <Route exact path= "/protected" component={TestProtected} /> */}
+          </Switch>
+          {/* <Footer /> */}
+        </div>
+      </Router>
     );
   }
 }

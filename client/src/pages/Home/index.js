@@ -33,7 +33,7 @@ class Home extends Component {
             username: this.state.username,
             password: this.state.password
         }).then((res) =>{
-            window.location.assign("/protected")
+            window.location.assign("/protected2")
         })
     }
     re
