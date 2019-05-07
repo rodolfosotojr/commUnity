@@ -14,6 +14,8 @@ const Page = styled.div`
     width:100%;
 `;
 
+
+
 const data = [
     {
         first: 'Rodolfo',
@@ -45,21 +47,15 @@ function SlideView(props) {
                 infinite={true}
                 dots={true}
             >
-                <Container>
-                    {data.map(dataItem => (
-                        <Col size="md-4">
-                            <ProfileCard
-                                firstName={dataItem.first}
-                                lastName={dataItem.last}
-                                city={dataItem.city}
-                            />
-                        </Col>
-                    ))}
-                </Container>
-                <Page>Page one</Page>
-                <Page>Page two</Page>
-                <Page>Page three</Page>
-                <p>{props.profile}</p>
+                {data.map(dataItem => (
+                    <Col size="md-12">
+                        <ProfileCard
+                            firstName={dataItem.first}
+                            lastName={dataItem.last}
+                            city={dataItem.city}
+                        />
+                    </Col>
+                ))}
             </Slider>
 
         </Wrapper>
