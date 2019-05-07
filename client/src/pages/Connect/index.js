@@ -47,15 +47,7 @@ function Connect() {
                     <Col size="md-12">
                     <h1>Volunteer profiles go here!</h1>
                     </Col>
-                    {data.map(data => (
-                        <Col size="md-6">
-                        <ProfileCard
-                        firstName={data.first}
-                        lastName={data.last}
-                        city={data.city}
-                     />
-                    </Col>
-                    ))}
+
                
                 </Row>
             </Container>
