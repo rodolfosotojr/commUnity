@@ -25,16 +25,8 @@ export class ChatApp extends Component {
   loginId = 'orlando';
 
   componentDidMount() {
-    const instanceLocator = process.env.REACT_APP_INSTANCE_LOCATOR;
-    const tokenUrl = process.env.REACT_APP_TOKEN_PROVIDER_URL;
-    const chatManager = new ChatManager({
-      instanceLocator,
-      userId: this.loginId,
-      tokenProvider: new TokenProvider({
-        url: tokenUrl
-      })
-    }) // end chatManager
 
+    // -------------AUTHENTICATION-----------
     // check JWT and get userID, username and set to state.
     const jwt = getJwt();
     if (!jwt) {
@@ -43,23 +35,31 @@ export class ChatApp extends Component {
       });
       return
     }
-
     // set jwt token 'cool-jwt' to header
-    axios.get('/getUser', { headers: { Authorization: getJwt() } })
-      .then(res => {
-        this.setState({
-          user: res.data,
-          username: undefined,
-          id: res.data.id,
-          email: res.data.email
-        });
+    axios.post("/auth/local/protected").then(res => {
+      console.log("AUTH RESPONSE: ", res.data.username)
+      if (res.status === 200) {
+          this.setState({
+              loggedIn: true,
+              username: res.data.username,
+          });
       }
-      )
-      .catch(err => {
-        // remove token from localStorage if the token is not valid before being sent to /Login
-        // localStorage.removeItem('cool-jwt');
-        window.location.assign('/');
+
+  })
+    // -------------END AUTHENTICATION-----------
+
+    const instanceLocator = process.env.REACT_APP_INSTANCE_LOCATOR;
+    const tokenUrl = process.env.REACT_APP_TOKEN_PROVIDER_URL;
+
+    const chatManager = new ChatManager({
+      instanceLocator,
+      userId: this.loginId,
+      tokenProvider: new TokenProvider({
+        url: tokenUrl
       })
+    }) // end chatManager
+
+
 
     // handles all the connections
     chatManager.connect()

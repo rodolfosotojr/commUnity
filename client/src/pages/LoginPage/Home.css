@@ -1,0 +1,30 @@
+.homeComponent{
+    background: url(./banner.jpg) no-repeat center center fixed;
+    background-size: cover;
+    min-height: 667px;
+    
+    z-index: 1;
+
+    
+}
+
+.overlay{
+    min-height: 667px;
+    background-image: linear-gradient(to bottom,  rgba(255,0,0,0), rgb(255, 255, 255));
+    z-index:2;
+
+}
+
+img{
+    max-width: 100px;
+    max-height: 100px;
+ 
+}
+
+h1, h2,p{
+    text-align: center;
+}
+
+h2{
+    font-weight: lighter;
+}

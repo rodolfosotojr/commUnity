@@ -7,9 +7,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
-import Connect from "./pages/Connect/index";
-import Services from "./pages/Services/index";
-import LoginPage from "./pages/LoginPage/index"
+import Connect from "./pages/Connect";
+import Services from "./pages/Services";
+import LoginPage from "./pages/LoginPage"
 import Register from "./pages/Register";
 // import TestProtected from "./pages/TestProtected";
 import Protected from "./pages/Protected";
@@ -26,16 +26,16 @@ class App extends Component {
           <Navbar />
           <Navbar />
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/Login" component={LoginPage} />
+            <Route exact path="/" component={LoginPage} />
+            <Route path="/Home" component={Home} />
             <Route path="/SignUp" component={SignUp} />
             <Route path="/Connect" component={Connect} />
             <Route path="/Services" component={Services} />
             <Route path="/Register" component={Register} />
             <Route path="/Chat" component={ChatPage} />
-            <Protected>
+            {/* <Protected>
               <Route path={"/protected2"} component={Protected2} />
-            </Protected>
+            </Protected> */}
             {/* <Route exact path= "/protected" component={TestProtected} /> */}
           </Switch>
           {/* <Footer /> */}

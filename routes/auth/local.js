@@ -12,8 +12,11 @@ router.route("/").post(passport.authenticate('local',{session: false}), function
     res.cookie('jwt', token, { httpOnly: true })
     .sendStatus(200);
 });
+
 router.route("/protected").post(passport.authenticate("jwt", {session: false}), function(req, res){
   res.send(req.user)
 
 })
+
+
 module.exports = router;
