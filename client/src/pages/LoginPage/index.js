@@ -1,25 +1,31 @@
-import React, {Component} from "react";
-import {API_URL} from "../../config";
-import { Input, FormBtn} from "../../components/Form";
-import axios from 'axios'
+//this will be the landing page
+
+import React, { Component } from "react";
+import Container from "../../components/Container";
+import Row from "../../components/Row";
+import Col from "../../components/Col";
+import './Home.css';
+import logo from './logo1.png';
+import axios from "axios";
 
 class LoginPage extends Component {
     state = {
-        username: "",
-        password: "",
-      };
+        username: '',
+        password: '',
+        rememberMe: false,
+    }
 
-    // handleclick = () => {
-    //     fetch("/auth/facebook").then(() => {
-    //         console.log("fetched!")
-    //     })
-    // }
-    handleInputChange = event => {
-        const { name, value } = event.target;
+    // Using [event.target.name] to handle onChange for multiple elements using a single function
+    handleInput = event => {
         this.setState({
-          [name]: value
-        });
-      };
+            [event.target.name]: event.target.value
+        })
+    }
+    handleCheck = event => {
+        this.setState({
+            rememberMe: event.target.checked
+        })
+    }
     handleFormSubmit = event =>
     {
         event.preventDefault();
@@ -27,37 +33,59 @@ class LoginPage extends Component {
             username: this.state.username,
             password: this.state.password
         }).then((res) =>{
-            console.log(res)
-            // localStorage.setItem('JWT', res.data.token);
-            window.location.assign("/")
+            window.location.assign("/Home")
         })
     }
-    render(){
+
+    render() {
         return (
-        <div>
-            <form>
-                <h1>Login</h1>
-                <button onClick={this.handleclick}>Facebook</button>
-                <a href={`${API_URL}/auth/facebook`}>facebook</a>
-                <Input
-                    value={this.state.username}
-                    onChange={this.handleInputChange}
-                    name="username"
-                    placeholder="username (required)"
-                />
-                <Input
-                    value={this.state.password}
-                    onChange={this.handleInputChange}
-                    name="password"
-                    placeholder="password (required)"
-                />
-                <FormBtn
-                    onClick={this.handleFormSubmit}
-                    >
-                    Login 
-                </FormBtn>
-            </form>
-        </div>
+            <div className="homeComponent">
+                <div className="overlay">
+                    <Container>
+                        <Row className="row justify-content-center pt-3">
+                            <Col size="md-6" align="center">
+                                <img src={logo} />
+                                <h1>Comm<span className="font-weight-bold">Unity</span></h1>
+                            </Col>
+                        </Row>
+                        <Row className="row justify-content-center">
+                            <Col size='sm-4'>
+                                <form>
+                                    <div className="form-group">
+                                        {/* <label>Enter Username</label> */}
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name="username"
+                                            onChange={this.handleInput}
+                                            value={this.state.username}
+                                            placeholder="Enter Username" />
+                                    </div>
+                                    <div className="form-group">
+                                        {/* <label>Password</label> */}
+                                        <input
+                                            type="password"
+                                            className="form-control"
+                                            name="password"
+                                            onChange={this.handleInput}
+                                            value={this.state.password}
+                                            placeholder="Password" />
+                                    </div>
+
+                                    <div className="form-group form-check">
+                                        <input type="checkbox" className="form-check-input" id="rememberme" />
+                                        <label className="form-check-label">Remember Me</label>
+                                        <button type="submit" className="btn btn-primary float-right" onClick={this.handleFormSubmit}>Login</button>
+                                    </div>
+                                </form>
+                                <div className="text-center pt-3">Not a Member? <a href="/Register">Register Now! <i class="fas fa-user-plus"></i></a></div>
+                            </Col>
+                        </Row>
+
+                    </Container>
+                </div>
+            </div>
+
         )
     }
 }

@@ -20,6 +20,7 @@ app.use(bodyParser());
 
 app.use(passport.initialize());
 app.use(routes)
+require("./routes/API/apiRoutes")(app);
 
 var syncOptions = { force: false };
 
