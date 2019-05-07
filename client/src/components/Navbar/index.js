@@ -9,8 +9,8 @@ function Navbar() {
       <div>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <NavLink exact to="/" className="nav-link">
-              About
+            <NavLink exact to="/Home" className="nav-link">
+              Home
             </NavLink>
           </li>
           <li className="nav-item">

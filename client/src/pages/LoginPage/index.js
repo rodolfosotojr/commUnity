@@ -54,6 +54,7 @@ class LoginPage extends Component {
                         <Col size="md-6" align="center">
                             <img src={logo} />
                             <h1 className="text-light">Comm<span className="font-weight-bold">Unity</span></h1>
+                            <h2>Welcoming You Home</h2>
                         </Col>
                     </Row>
                     <Row className="row justify-content-center">

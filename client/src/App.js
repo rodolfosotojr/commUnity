@@ -11,6 +11,7 @@ import Connect from "./pages/Connect";
 import Services from "./pages/Services";
 import LoginPage from "./pages/LoginPage"
 import Register from "./pages/Register";
+import Container from "./components/Container";
 // import TestProtected from "./pages/TestProtected";
 import Protected from "./pages/Protected";
 import Protected2 from "./components/Protected2";
@@ -23,7 +24,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-         
+      
           <Switch>
             <Route exact path="/" component={LoginPage} />
             <Route path="/Home" component={Home} />
@@ -41,6 +42,7 @@ class App extends Component {
           <Navbar />
           <Navbar />
         </div>
+        
       </Router>
     );
   }
