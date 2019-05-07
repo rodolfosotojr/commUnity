@@ -26,6 +26,11 @@ class Register extends Component {
       [name]: value
     });
   };
+  handleDropdown = event => {
+    this.setState({
+      userType: event.target.value
+    });
+  };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
@@ -37,7 +42,7 @@ class Register extends Component {
         "city": this.state.city,
         "username": this.state.username,
         "password": this.state.password,
-        "userType": this.state.value 
+        "userType": this.state.userType 
     }).then(
         console.log("post")
     )
@@ -93,9 +98,10 @@ class Register extends Component {
                   />
                 <label>
                     Sign up as a...
-                    <select value={this.state.value} onChange={this.handleChange}>
-                        <option value="volunteer">Volunteer</option>
-                        <option value="user">User</option>
+                    <select value={this.state.userType} onChange={this.handleDropdown}>
+                        <option></option>
+                        <option name="volunteer" value="volunteer">Volunteer</option>
+                        <option name="user" value="user">User</option>
                     </select>
                 </label>
                   <FormBtn

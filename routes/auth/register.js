@@ -30,7 +30,7 @@ router.route("/").post(function(req,res){
                 email: req.body.email,
                 username: req.body.username,
                 password: hashedPW
-            })
+            }).then(()=> res.redirect("/"))
         }
         else {
           db.User.create({
@@ -41,8 +41,8 @@ router.route("/").post(function(req,res){
             email: req.body.email,
             username: req.body.username,
             password: hashedPW
-        })
-        res.redirect("/")
+        }).then(()=> res.redirect("/"))
+        // res.redirect("/")
       }
     })
   });
