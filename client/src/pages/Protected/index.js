@@ -19,6 +19,8 @@ class Protected extends Component {
                     loggedIn: true,
                     username: res.data.username,
                 });
+            } else {
+                
             }
 
         })

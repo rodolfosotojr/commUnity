@@ -34,7 +34,7 @@ class App extends Component {
             <Route path="/Register" component={Register} />
             <Route path="/Chat" component={ChatPage} />
             {/* <Protected>
-              <Route path={"/protected2"} component={Protected2} />
+              <Route exact path={"/protected2"} component={Protected2} />
             </Protected> */}
             {/* <Route exact path= "/protected" component={TestProtected} /> */}
           </Switch>

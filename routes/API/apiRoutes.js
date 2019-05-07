@@ -5,7 +5,8 @@ module.exports = function (app) {
     // LOGOUT ROUTE
     // Logout using .logout() method then redirect to login page.
     app.get("/api/logout", function (req, res) {
-        req.logout();
+        req.logOut();
+        
         res.redirect("/");
     });
 }
