@@ -21,6 +21,7 @@ app.use(bodyParser());
 app.use(passport.initialize());
 app.use(routes)
 require("./routes/API/apiRoutes")(app);
+require("./routes/API/chatRoutes")(app);
 
 var syncOptions = { force: false };
 

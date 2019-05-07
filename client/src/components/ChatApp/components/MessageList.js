@@ -24,7 +24,7 @@ class MessageList extends Component {
             return (
                 <div className="card-body msg_card_body">
                     <div className="join-room text-center">
-                        <h3><i className="fas fa-door-open"></i> Join a room!</h3>
+                        <h3>Hi, {this.props.user}! <i className="fas fa-door-open"></i> Join a room!</h3>
                     </div>
                 </div>
             )

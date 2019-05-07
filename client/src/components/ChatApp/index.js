@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { ChatManager, TokenProvider } from '@pusher/chatkit-client'; // WAS @pusher/chatkit
-import Chatkit from '@pusher/chatkit-server';
 import MessageList from './components/MessageList';
 import SendMessageForm from './components/SendMessageForm';
 import RoomList from './components/RoomList';
@@ -16,59 +15,71 @@ export class ChatApp extends Component {
     joinableRooms: [],
     joinedRooms: [],
     currentUser: '',
-    userId: '',
+    // userId: undefined,
     user: '',
+    username: undefined,
     email: ''
   }
 
 
-  loginId = 'orlando';
-
   componentDidMount() {
-
-    // -------------AUTHENTICATION-----------
-    // check JWT and get userID, username and set to state.
-    const jwt = getJwt();
-    if (!jwt) {
-      this.setState({
-        user: null
-      });
-      return
-    }
-    // set jwt token 'cool-jwt' to header
-    axios.post("/auth/local/protected").then(res => {
-      console.log("AUTH RESPONSE: ", res.data.username)
-      if (res.status === 200) {
+    // -------------AUTHENTICATION------------------------------------
+    // Get Username from JWT Cookie
+    axios.post("/auth/local/protected")
+      .then(res => {
+        console.log("AUTH RESPONSE: ", res.data.username)
+        if (res.status === 200) {
           this.setState({
-              loggedIn: true,
-              username: res.data.username,
+            loggedIn: true,
+            username: res.data.username,
           });
-      }
+        }
 
-  })
-    // -------------END AUTHENTICATION-----------
+        // Find user
 
-    const instanceLocator = process.env.REACT_APP_INSTANCE_LOCATOR;
-    const tokenUrl = process.env.REACT_APP_TOKEN_PROVIDER_URL;
-
-    const chatManager = new ChatManager({
-      instanceLocator,
-      userId: this.loginId,
-      tokenProvider: new TokenProvider({
-        url: tokenUrl
       })
-    }) // end chatManager
-
-
-
-    // handles all the connections
-    chatManager.connect()
-      .then(currentUser => {
-        this.currentUser = currentUser; // hook itself
-        this.setState({ currentUser: this.currentUser });
-        this.getRooms();
+      .then(() => {
+        console.log("FIND CHAT USER HERE");
+        axios.post("/api/chat-user", { username: this.state.username })
+          .then(response => {
+            console.log(response.data.status);
+            // create user if does not exist
+            if (response.data.status === 404) {
+              const newUser = {
+                username: this.state.username,
+                name: this.state.username
+              }
+              axios.post("/api/create-chat-user", newUser)
+              .then(response => console.log("New User Created: ", response.data))
+            }
+          })
       })
-      .catch(err => console.log("ChatManager Connection Error: ", err));
+      .then(() => {
+        const instanceLocator = process.env.REACT_APP_INSTANCE_LOCATOR;
+        const tokenUrl = process.env.REACT_APP_TOKEN_PROVIDER_URL;
+
+        const chatManager = new ChatManager({
+          instanceLocator,
+          userId: this.state.username,
+          tokenProvider: new TokenProvider({
+            url: tokenUrl
+          })
+        }) // end chatManager
+
+
+
+        // handles all the connections
+        chatManager.connect()
+          .then(currentUser => {
+            this.currentUser = currentUser; // hook itself
+            this.setState({ currentUser: this.currentUser });
+            this.getRooms();
+          })
+          .catch(err => console.log("ChatManager Connection Error: ", err));
+
+        // end componentDidMount()
+      })
+    // -------------END AUTHENTICATION------------------------------------
 
   } // end componentDidMount()
 
@@ -111,8 +122,12 @@ export class ChatApp extends Component {
 
   // pass function to NewRoomForm
   createRoom = (name) => {
+    const volunteer = this.state.username;
+    const user = this.state.user;
     this.currentUser.createRoom({
-      name
+      name: `${volunteer}-${user}`,
+      private: true,
+      addUserIds: [user]
     })
       .then(room => this.subscribeToRoom(room.id))
       .catch(err => ("Error creating room: ", err))
@@ -136,6 +151,7 @@ export class ChatApp extends Component {
           <div className="col-md-12 message-window">
 
             <MessageList
+              user={this.state.username}
               currentUser={this.state.currentUser}
               roomId={this.state.roomId}
               messages={this.state.messages} />
