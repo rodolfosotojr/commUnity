@@ -10,10 +10,7 @@ import styled from "styled-components";
 import SlideView from "../../components/SlideView"
 
 
-const ProfileWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-`;
+
 
 const data = [
     {
