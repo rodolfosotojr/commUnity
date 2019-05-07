@@ -24,11 +24,14 @@ class Home extends Component {
                     loggedIn: true,
                     username: res.data.username,
                 });
-            } else {
-                window.location.assign("/");
-            }
+            } 
 
+        }).catch(err =>{
+            console.log(err)
+            window.location.assign("/");
         })
+
+        
     }
 
     handleLogout() {
@@ -39,43 +42,40 @@ class Home extends Component {
     }
 
     render() {
-
-        return (
-            
+        if(this.state.loggedIn)
+        {
+            return (
             <div className="homeComponent">
-
-<Container className="container">
-                        <Row className="row justify-content-center">
-                            <Col size="md-12" align="center">
-                                <Carousel />
-                            </Col>
-                        </Row>
-
-                        <Row className="row justify-content-center pt-2"> 
-                            <Col size="md-6" align="center">
-                                <img className="homeLogo" src={logo} />
-                                <h1 className="homeHeader">Comm<span className="font-weight-bold">Unity</span></h1>
-                                <h2>Welcoming You Home, {this.state.username}!</h2>
-                                <p>We're so happy to have you!<br />
-                                    Let's Get Started!<br />
-                                    Click on services to navigate to nearby service centers.
-                                            Or, click on connect to meet local families!</p>
-
-                            </Col>
-                        </Row>
-                        <Row className="row justify-content-center mb-5">
-                            <Col size='sm-4'>
-                                <div className="text-center pt-3">Not you? <a href="#" onClick={this.handleLogout}>Logout Now! <i class="fas fa-user-minus"></i></a></div>
-                            </Col>
-                        </Row>
-
-                        </Container>
-                    </div>
-                   
-                 
-           
-        )
-
+                <Container className="container">
+                    <Row className="row justify-content-center">
+                        <Col size="md-12" align="center">
+                            <Carousel />
+                        </Col>
+                    </Row>
+                    <Row className="row justify-content-center pt-2"> 
+                        <Col size="md-6" align="center">
+                            <img className="homeLogo" src={logo} />
+                            <h1 className="homeHeader">Comm<span className="font-weight-bold">Unity</span></h1>
+                            <h2>Welcoming You Home, {this.state.username}!</h2>
+                            <p>We're so happy to have you!<br />
+                                Let's Get Started!<br />
+                                Click on services to navigate to nearby service centers.
+                                        Or, click on connect to meet local families!</p>
+                        </Col>
+                    </Row>
+                    <Row className="row justify-content-center mb-5">
+                        <Col size='sm-4'>
+                            <div className="text-center pt-3">Not you? <a href="#" onClick={this.handleLogout}>Logout Now! <i class="fas fa-user-minus"></i></a></div>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+            )
+        }
+        else   
+            return (
+                <div></div>
+            )
     }
 }
 
