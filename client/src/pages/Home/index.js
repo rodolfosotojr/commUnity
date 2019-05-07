@@ -7,6 +7,7 @@ import Col from "../../components/Col";
 import './Home.css';
 import logo from './logo1.png';
 import axios from "axios";
+import Carousel from "../../components/Carousel/carousel";
 
 
 class Home extends Component {
@@ -42,7 +43,14 @@ class Home extends Component {
         return (
             <div className="homeComponent">
                 <div className="overlay">
-                    <Container>
+
+                     <Container>
+                        <Row>
+                            <Col size="md-12" align="center">
+                                <Carousel />
+                            </Col>
+                        </Row>
+
                         <Row className="row justify-content-center pt-3">
                             <Col size="md-6" align="center">
                                 <img src={logo} />
@@ -52,6 +60,7 @@ class Home extends Component {
                                     Let's Get Started!<br />
                                     Click on services to navigate to nearby service centers.
                                             Or, click on connect to meet local families!</p>
+
                             </Col>
                         </Row>
                         <Row className="row justify-content-center">
@@ -61,8 +70,10 @@ class Home extends Component {
                         </Row>
 
                     </Container>
-                </div>
-            </div>
+                    </div>
+                    </div>
+                
+           
         )
 
     }
