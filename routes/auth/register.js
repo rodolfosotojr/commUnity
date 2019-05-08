@@ -59,6 +59,17 @@ router.route("/").post(function (req, res) {
           }).catch((err) => {
             console.log(err);
           });
+        if (userType === 'volunteer') {
+          chatkit.createRoom({
+            creatorId: username,
+            name: username,
+          })
+            .then(() => {
+              console.log('Room created successfully');
+            }).catch((err) => {
+              console.log(err);
+            });
+        }
       })
       .then(() => res.redirect("/"))
   }

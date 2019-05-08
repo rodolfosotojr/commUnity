@@ -18,10 +18,13 @@ export class ChatApp extends Component {
     // userId: undefined,
     user: '',
     username: undefined,
-    email: ''
+    email: '',
+    volunteerRoomId: null,
   }
 
   componentDidMount() {
+
+
     // -------------AUTHENTICATION------------------------------------
     // Get Username from JWT Cookie
     axios.post("/auth/local/protected")
@@ -64,7 +67,36 @@ export class ChatApp extends Component {
       .then(currentUser => {
         this.currentUser = currentUser; // hook itself
         this.setState({ currentUser: this.currentUser });
-        this.getRooms();
+        if (this.state.userType === 'user') {
+          this.getRooms();
+        }
+        else {
+          this.setState({ messages: [] }) // clear chats in room before showing selected room
+
+          // find room id by volunteer name
+          axios.get("/api/getrooms")
+            .then(response => {
+              let room = response.data.find(item => item.name === this.state.username);
+              console.log("Volunteer Room Id: ", room.id.toString());
+              this.setState({ volunteerRoomId: room.id.toString() })
+            }).then(() => {
+
+              this.currentUser.subscribeToRoom({
+                // .subscribeToRoomMultipart() has .parts[] array instead of .text property
+                roomId: this.state.volunteerRoomId,
+                hooks: {
+                  onMessage: message => {
+                    this.setState({
+                      messages: [...this.state.messages, message]
+                      // Multipart version: parts[0].payload.content
+                    })
+                  }
+                }
+              })
+                .then(room => { this.setState({ roomId: this.state.volunteerRoomId }); this.getRooms(); })
+                .catch(err => console.log('Error subscribing to room! ', err))
+            })
+        }
       })
       .catch(err => console.log("ChatManager Connection Error: ", err));
   }
@@ -139,39 +171,75 @@ export class ChatApp extends Component {
 
 
   render() {
-    return (
-      <div className="row justify-content-center">
-        <div className="col-lg-6">
+    if (this.state.userType === 'user') {
+      return (
+        <div className="row justify-content-center">
+          <div className="col-lg-6">
 
-          <div className="col-md-12 bg-primary rounded py-2">
-            {/* <NewRoomForm createRoom={this.createRoom} /> */}
+            <div className="col-md-12 bg-primary rounded py-2">
 
-            <RoomList
-              subscribeToRoom={this.subscribeToRoom}
-              rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
-              roomId={this.state.roomId}
-            />
+              <RoomList
+                subscribeToRoom={this.subscribeToRoom}
+                rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
+                roomId={this.state.roomId}
+              />
+            </div>
+
+            <div className="col-md-12 message-window">
+
+              <MessageList
+                firstname={this.state.firstname}
+                lastname={this.state.lastname}
+                user={this.state.username}
+                currentUser={this.state.currentUser}
+                roomId={this.state.roomId}
+                messages={this.state.messages} />
+
+              <SendMessageForm
+                disabled={!this.state.roomId}
+                sendMessage={this.sendMessage} />
+
+            </div>
+
           </div>
+        </div >
+      )
+    } else {
+      return (
+        <div className="row justify-content-center">
+          <div className="col-lg-6">
 
-          <div className="col-md-12 message-window">
+            <div className="col-md-12 bg-primary rounded py-2">
+              <NewRoomForm createRoom={this.createRoom} />
 
-            <MessageList
-              firstname={this.state.firstname}
-              lastname={this.state.lastname}
-              user={this.state.username}
-              currentUser={this.state.currentUser}
-              roomId={this.state.roomId}
-              messages={this.state.messages} />
+              <RoomList
+                subscribeToRoom={this.subscribeToRoom}
+                rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
+                roomId={this.state.roomId}
+              />
+            </div>
 
-            <SendMessageForm
-              disabled={!this.state.roomId}
-              sendMessage={this.sendMessage} />
+            <div className="col-md-12 message-window">
+
+              <MessageList
+                firstname={this.state.firstname}
+                lastname={this.state.lastname}
+                user={this.state.username}
+                currentUser={this.state.currentUser}
+                roomId={this.state.roomId}
+                messages={this.state.messages} />
+
+              <SendMessageForm
+                disabled={!this.state.roomId}
+                sendMessage={this.sendMessage} />
+
+            </div>
 
           </div>
+        </div >
+      )
+    }
 
-        </div>
-      </div >
-    )
   }
 }
 

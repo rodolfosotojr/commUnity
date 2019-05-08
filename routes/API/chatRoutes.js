@@ -46,23 +46,19 @@ module.exports = function (app) {
   });
 
   // GET ROOM
-  app.get('/api/findroom', (req, res) => {
-    const roomId = req.body.roomId;
-    // console.log('RoomID: ', req.body)
-
+  app.get('/api/getrooms', (req, res) => {
     // INIT ChatKit
-    // const chatkit = new Chatkit.default({
-    //   instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
-    //   key: process.env.REACT_APP_SECRET_KEY,
-    // });
+    const chatkit = new Chatkit.default({
+      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+      key: process.env.REACT_APP_SECRET_KEY,
+    });
 
-    chatkit.getRoom({
-      roomId: roomId
-    })
-      .then(room => res.json(room))
-      .catch(err => res.json(err))
+    // get all rooms
+    chatkit.getRooms({})
+      .then(rooms => res.json(rooms))
+        .catch(err => res.json(err))
 
-  })
+  });
 
   app.post('/api/chatusers', (req, res) => {
     const chatkit = new Chatkit.default({
