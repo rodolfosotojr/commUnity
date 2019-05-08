@@ -144,7 +144,7 @@ export class ChatApp extends Component {
         <div className="col-lg-6">
 
           <div className="col-md-12 bg-primary rounded py-2">
-            <NewRoomForm createRoom={this.createRoom} />
+            {/* <NewRoomForm createRoom={this.createRoom} /> */}
 
             <RoomList
               subscribeToRoom={this.subscribeToRoom}

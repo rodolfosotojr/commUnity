@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class RoomList extends Component {
     state = {
         open: false,
-        currentRoom: "Chat Rooms"
+        currentRoom: "Volunteer Rooms"
     }
 
     toggleCollapse = () => {
