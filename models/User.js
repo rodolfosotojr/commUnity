@@ -37,6 +37,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         zip: {
             type: DataTypes.STRING,
+        },
+        roomId: {
+            type: DataTypes.STRING,
         }
     });
 
