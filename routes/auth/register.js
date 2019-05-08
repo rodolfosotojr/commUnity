@@ -20,31 +20,19 @@ router.route("/").post(function(req,res){
         {
           res.redirect("/")
         }
-        else if (req.body.userType==="volunteer")
-        {
-            db.Volunteer.create({
+     
+        db.User.create({
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 state: req.body.state,
                 city: req.body.city,
                 email: req.body.email,
                 username: req.body.username,
-                password: hashedPW
+                password: hashedPW,
+                userType: req.body.userType
             }).then(()=> res.redirect("/"))
         }
-        else {
-          db.User.create({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            state: req.body.state,
-            city: req.body.city,
-            email: req.body.email,
-            username: req.body.username,
-            password: hashedPW
-        }).then(()=> res.redirect("/"))
-        // res.redirect("/")
-      }
-    })
+      )
   });
 
   module.exports = router;
