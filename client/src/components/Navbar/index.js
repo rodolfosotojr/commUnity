@@ -1,34 +1,43 @@
-import React from "react";
+
+import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import "./style.css";
 
-function Navbar() {
-  return (
+class Navbar extends Component {
+  render() {
+   
+    return (
+      this.props.location.pathname === "/" || this.props.location.pathname === "/Register" ? null :
 
-<nav className="navbar navbar-expand fixed-bottom navbar-light">
-      <div>
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <NavLink exact to="/Home" className="nav-link">
-              Home
+      <nav className= "navbar navbar-expand fixed-bottom navbar-light">
+        <div>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <NavLink exact to="/Home" className="nav-link">
+                Home
             </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/Connect" className="nav-link" activeClassName="active">
-              Connect
+            </li>
+            <li className="nav-item">
+              <NavLink to="/Connect" className="nav-link" activeClassName="active">
+                Connect
             </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/Services" className="nav-link" activeClassName="active">
-              Services
+            </li>
+            <li className="nav-item">
+              <NavLink to="/Services" className="nav-link" activeClassName="active">
+                Services
             </NavLink>
-          </li>
-        </ul>
-      </div>
-    </nav>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-  );
+    )
+  }
 }
 
 
-export default Navbar;
+
+export default withRouter(Navbar);
+
+
