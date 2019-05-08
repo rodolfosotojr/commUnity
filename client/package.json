@@ -8,11 +8,14 @@
     "@pusher/chatkit-client": "^1.5.0",
     "@pusher/chatkit-server": "^1.1.0",
     "axios": "^0.18.0",
+    "prop-types": "^15.7.2",
     "react": "^16.6.3",
+    "react-avatar": "^3.6.0",
     "react-dom": "^16.6.3",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^2.1.1",
     "react-slick": "^0.24.0",
+    "react-spinkit": "^3.0.0",
     "styled-components": "^4.2.0"
   },
   "scripts": {
