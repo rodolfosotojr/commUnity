@@ -44,7 +44,7 @@ class Register extends Component {
         "password": this.state.password,
         "userType": this.state.userType 
     }).then(
-        console.log("post")
+        window.location.assign("/")
     )
   }
     render() {
