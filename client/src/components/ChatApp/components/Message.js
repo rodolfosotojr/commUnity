@@ -1,4 +1,5 @@
 import React from "react";
+import Avatar from 'react-avatar';
 
 function Message(props) {
 
@@ -13,8 +14,9 @@ function Message(props) {
                         <span className="msg_time_send mt-2">{props.username}</span>
                     </div>
                     <div className="img_cont_msg">
-                        <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/sweet-girl-profile-pictures-9.jpg"
-                            className="rounded-circle user_img_msg" />
+                        <Avatar name={props.username} size="40" />
+                        {/* <img src="http://profilepicturesdp.com/wp-content/uploads/2018/07/sweet-girl-profile-pictures-9.jpg"
+                            className="rounded-circle user_img_msg" /> */}
                     </div>
                 </div>
 
@@ -26,8 +28,9 @@ function Message(props) {
         <React.Fragment>
             <div className="d-flex justify-content-start mb-4">
                 <div className="img_cont_msg">
-                    <img src="https://2.bp.blogspot.com/-8ytYF7cfPkQ/WkPe1-rtrcI/AAAAAAAAGqU/FGfTDVgkcIwmOTtjLka51vineFBExJuSACLcBGAs/s320/31.jpg"
-                        className="rounded-circle user_img_msg" />
+                    <Avatar name={props.username} size="40" />
+                    {/* <img src="https://2.bp.blogspot.com/-8ytYF7cfPkQ/WkPe1-rtrcI/AAAAAAAAGqU/FGfTDVgkcIwmOTtjLka51vineFBExJuSACLcBGAs/s320/31.jpg"
+                        className="rounded-circle user_img_msg" /> */}
                 </div>
                 <div className="msg_container px-3">
                     {props.text}

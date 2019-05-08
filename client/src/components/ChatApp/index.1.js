@@ -21,13 +21,13 @@ export class ChatApp extends Component {
     email: ''
   }
 
+
   componentDidMount() {
     // -------------AUTHENTICATION------------------------------------
     // Get Username from JWT Cookie
     axios.post("/auth/local/protected")
       .then(res => {
-        // console.log("User Name: ", res.data.username);
-        // console.log("UserType: ", res.data.userType);
+        console.log("AUTH RESPONSE: ", res.data.username)
         if (res.status === 200) {
           this.setState({
             loggedIn: true,
@@ -37,54 +37,55 @@ export class ChatApp extends Component {
             userType: res.data.userType
           });
         }
+
+        // Find user
+
       })
       .then(() => {
-        const userId = this.state.username
-        this.mountChatKit(userId);
+        console.log("FIND CHAT USER HERE");
+        axios.post("/api/chat-user", { username: this.state.username })
+          .then(response => {
+            console.log(response.data.status);
+            // create user if does not exist
+            if (response.data.status === 404) {
+              const newUser = {
+                username: this.state.username,
+                name: this.state.username
+              }
+              axios.post("/api/create-chat-user", newUser)
+                .then(response => console.log("New User Created: ", response.data))
+            }
+          })
       })
+      .then(() => {
+        const instanceLocator = process.env.REACT_APP_INSTANCE_LOCATOR;
+        const tokenUrl = process.env.REACT_APP_TOKEN_PROVIDER_URL;
 
+        const chatManager = new ChatManager({
+          instanceLocator,
+          userId: this.state.username,
+          tokenProvider: new TokenProvider({
+            url: tokenUrl
+          })
+        }) // end chatManager
+
+
+
+        // handles all the connections
+        chatManager.connect()
+          .then(currentUser => {
+            this.currentUser = currentUser; // hook itself
+            this.setState({ currentUser: this.currentUser });
+            this.getRooms();
+          })
+          .catch(err => console.log("ChatManager Connection Error: ", err));
+
+        // end componentDidMount()
+      })
     // -------------END AUTHENTICATION------------------------------------
 
   } // end componentDidMount()
 
-  mountChatKit = (id) => {
-    const instanceLocator = process.env.REACT_APP_INSTANCE_LOCATOR;
-    const tokenUrl = process.env.REACT_APP_TOKEN_PROVIDER_URL;
-
-    const chatManager = new ChatManager({
-      instanceLocator,
-      userId: id,
-      tokenProvider: new TokenProvider({
-        url: tokenUrl
-      })
-    }) // end chatManager
-
-    // handles all the connections
-    chatManager.connect()
-      .then(currentUser => {
-        this.currentUser = currentUser; // hook itself
-        this.setState({ currentUser: this.currentUser });
-        this.getRooms();
-      })
-      .catch(err => console.log("ChatManager Connection Error: ", err));
-  }
-
-  findUser = () => {
-    // console.log("FIND CHAT USER HERE");
-    axios.post("/api/chat-user", { username: this.state.username })
-      .then(response => {
-        // console.log(response.data.status);
-        // create user if does not exist
-        if (response.data.status === 404) {
-          const newUser = {
-            username: this.state.username,
-            name: this.state.username
-          }
-          axios.post("/api/create-chat-user", newUser)
-            .then(response => console.log("New User Created: ", response.data))
-        }
-      })
-  }
   getRooms = () => {
     this.currentUser.getJoinableRooms()
       .then(joinableRooms => {
@@ -127,16 +128,13 @@ export class ChatApp extends Component {
     const volunteer = this.state.username;
     const user = this.state.user;
     this.currentUser.createRoom({
-      name: `${volunteer}-testuser`,
+      name: `${volunteer}-${user}`,
       private: true,
       addUserIds: [user]
     })
       .then(room => this.subscribeToRoom(room.id))
       .catch(err => ("Error creating room: ", err))
   }
-
-
-
 
   render() {
     return (

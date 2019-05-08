@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const passport = require("./config/passport");
 const routes = require("./routes");
 const db = require("./models");
+const Chatkit = require('@pusher/chatkit-server');
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -21,9 +22,15 @@ app.use(bodyParser());
 app.use(passport.initialize());
 app.use(routes)
 require("./routes/API/apiRoutes")(app);
-require("./routes/API/chatRoutes")(app);
 
 var syncOptions = { force: false };
+
+//CHATKIT
+const chatkit = new Chatkit.default({
+  instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+  key: process.env.REACT_APP_SECRET_KEY,
+});
+require("./routes/API/chatRoutes")(app);
 
 
 db.sequelize.sync(syncOptions).then(function() {

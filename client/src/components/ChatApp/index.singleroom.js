@@ -10,7 +10,9 @@ import axios from 'axios';
 
 export class ChatApp extends Component {
   state = {
-    roomId: null,
+    roomId: '19398007',
+    // roomId: null,
+    roomName: '',
     messages: [],
     joinableRooms: [],
     joinedRooms: [],
@@ -18,16 +20,17 @@ export class ChatApp extends Component {
     // userId: undefined,
     user: '',
     username: undefined,
-    email: ''
+    email: '',
+
   }
+
 
   componentDidMount() {
     // -------------AUTHENTICATION------------------------------------
     // Get Username from JWT Cookie
     axios.post("/auth/local/protected")
       .then(res => {
-        // console.log("User Name: ", res.data.username);
-        // console.log("UserType: ", res.data.userType);
+        console.log("AUTH RESPONSE: ", res.data.username)
         if (res.status === 200) {
           this.setState({
             loggedIn: true,
@@ -37,43 +40,59 @@ export class ChatApp extends Component {
             userType: res.data.userType
           });
         }
+
+        // Find user
+
       })
       .then(() => {
-        const userId = this.state.username
-        this.mountChatKit(userId);
+        const instanceLocator = process.env.REACT_APP_INSTANCE_LOCATOR;
+        const tokenUrl = process.env.REACT_APP_TOKEN_PROVIDER_URL;
+
+        const chatManager = new ChatManager({
+          instanceLocator,
+          userId: this.state.username,
+          tokenProvider: new TokenProvider({
+            url: tokenUrl
+          })
+        }) // end chatManager
+
+        // handles all the connections
+        chatManager.connect()
+          .then(currentUser => {
+            this.currentUser = currentUser; // hook itself
+            this.setState({ currentUser: this.currentUser });
+            this.getRooms();
+
+            this.setState({ messages: [] }) // clear chats in room before showing selected room
+            currentUser.subscribeToRoom({
+              // .subscribeToRoomMultipart() has .parts[] array instead of .text property
+              roomId: this.state.roomId,
+              hooks: {
+                onMessage: message => {
+                  this.setState({
+                    messages: [...this.state.messages, message]
+                    // Multipart version: parts[0].payload.content
+                  })
+                }
+              }
+            })
+              .then(room => { this.setState({ roomId: room.id }); this.getRooms(); })
+              .catch(err => console.log('Error subscribing to room! ', err))
+
+          })
+          .catch(err => console.log("ChatManager Connection Error: ", err));
       })
+
 
     // -------------END AUTHENTICATION------------------------------------
 
   } // end componentDidMount()
 
-  mountChatKit = (id) => {
-    const instanceLocator = process.env.REACT_APP_INSTANCE_LOCATOR;
-    const tokenUrl = process.env.REACT_APP_TOKEN_PROVIDER_URL;
-
-    const chatManager = new ChatManager({
-      instanceLocator,
-      userId: id,
-      tokenProvider: new TokenProvider({
-        url: tokenUrl
-      })
-    }) // end chatManager
-
-    // handles all the connections
-    chatManager.connect()
-      .then(currentUser => {
-        this.currentUser = currentUser; // hook itself
-        this.setState({ currentUser: this.currentUser });
-        this.getRooms();
-      })
-      .catch(err => console.log("ChatManager Connection Error: ", err));
-  }
-
-  findUser = () => {
-    // console.log("FIND CHAT USER HERE");
-    axios.post("/api/chat-user", { username: this.state.username })
+  findUser = (name) => {
+    console.log("FIND CHAT USER HERE");
+    axios.post("/api/chat-user", { username: name })
       .then(response => {
-        // console.log(response.data.status);
+        console.log(response.data.status);
         // create user if does not exist
         if (response.data.status === 404) {
           const newUser = {
@@ -85,6 +104,7 @@ export class ChatApp extends Component {
         }
       })
   }
+
   getRooms = () => {
     this.currentUser.getJoinableRooms()
       .then(joinableRooms => {
@@ -96,23 +116,18 @@ export class ChatApp extends Component {
       .catch(err => console.log('Error on joinableRooms: ', err))
   }
 
-  subscribeToRoom = roomId => {
-    this.setState({ messages: [] }) // clear chats in room before showing selected room
-    this.currentUser.subscribeToRoom({
-      // .subscribeToRoomMultipart() has .parts[] array instead of .text property
-      roomId: roomId,
-      hooks: {
-        onMessage: message => {
-          this.setState({
-            messages: [...this.state.messages, message]
-            // Multipart version: parts[0].payload.content
-          })
-        }
-      }
-    })
-      .then(room => { this.setState({ roomId: room.id }); this.getRooms(); })
-      .catch(err => console.log('Error subscribing to room! ', err))
+  joinRoom = (room) => {
+    const currentUser = this.state.currentUser;
+    currentUser.subscribeToRoom({ roomId: room })
+      .then(room => {
+        this.setState({ roomId: room.id, roomName: room.name })
+        console.log(`Joined room with ID: ${room.id}`)
+      })
+      .catch(err => {
+        console.log(`Error joining room ${room}: ${err}`)
+      })
   }
+
 
   // inverse data flow by sending function down to child
   sendMessage = text => {
@@ -127,7 +142,7 @@ export class ChatApp extends Component {
     const volunteer = this.state.username;
     const user = this.state.user;
     this.currentUser.createRoom({
-      name: `${volunteer}-testuser`,
+      name: `${volunteer}-${user}`,
       private: true,
       addUserIds: [user]
     })
@@ -135,23 +150,20 @@ export class ChatApp extends Component {
       .catch(err => ("Error creating room: ", err))
   }
 
-
-
-
   render() {
     return (
       <div className="row justify-content-center">
         <div className="col-lg-6">
 
-          <div className="col-md-12 bg-primary rounded py-2">
-            <NewRoomForm createRoom={this.createRoom} />
+          {/* <div className="col-md-12 bg-primary rounded py-2"> */}
+          {/* <NewRoomForm createRoom={this.createRoom} /> */}
 
-            <RoomList
+          {/* <RoomList
               subscribeToRoom={this.subscribeToRoom}
               rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
               roomId={this.state.roomId}
             />
-          </div>
+          </div> */}
 
           <div className="col-md-12 message-window">
 

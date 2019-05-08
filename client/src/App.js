@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ChatPage from "./pages/ChatPage";
+import Volunteer from "./components/Chat/Volunteer";
+import User from "./components/Chat/User";
 // import HomePage from "./pages/HomePage";
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -12,9 +14,6 @@ import Services from "./pages/Services";
 import LoginPage from "./pages/LoginPage"
 import Register from "./pages/Register";
 import Container from "./components/Container";
-// import TestProtected from "./pages/TestProtected";
-import Protected from "./pages/Protected";
-import Protected2 from "./components/Protected2";
 
 
 
@@ -33,10 +32,9 @@ class App extends Component {
             <Route path="/Services" component={Services} />
             <Route path="/Register" component={Register} />
             <Route path="/Chat" component={ChatPage} />
-            {/* <Protected>
-              <Route exact path={"/protected2"} component={Protected2} />
-            </Protected> */}
-            {/* <Route exact path= "/protected" component={TestProtected} /> */}
+            <Route path="/User" component={User} />
+            <Route path="/Volunteer" component={Volunteer} />
+            {/* <Route path="/User" component={User} /> */}
           </Switch>
           {/* <Footer /> */}
           <Navbar />

@@ -7,12 +7,10 @@ module.exports = function (app) {
   // GET USER INFO
   app.post('/api/chat-user', (request, result) => {
     // INIT ChatKit
-    const chatkit = new Chatkit.default({
-      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
-      key: process.env.REACT_APP_SECRET_KEY,
-    });
-    // console.log('REACT_APP_INSTANCE_LOCATOR\n', process.env.REACT_APP_INSTANCE_LOCATOR)
-    // console.log('REACT_APP_SECRET_KEY\n', process.env.REACT_APP_SECRET_KEY)
+    // const chatkit = new Chatkit.default({
+    //   instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+    //   key: process.env.REACT_APP_SECRET_KEY,
+    // });
 
     // stuff here
     chatkit.getUser({
@@ -27,11 +25,12 @@ module.exports = function (app) {
 
   // CREATE USER
   app.post('/api/create-chat-user', (request, result) => {
-    const chatkit = new Chatkit.default({
-      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
-      key: process.env.REACT_APP_SECRET_KEY,
-    });
-    
+
+    // const chatkit = new Chatkit.default({
+    //   instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+    //   key: process.env.REACT_APP_SECRET_KEY,
+    // });
+
     const id = request.body.username;
     const name = request.body.name;
     chatkit.createUser({
@@ -52,10 +51,10 @@ module.exports = function (app) {
     // console.log('RoomID: ', req.body)
 
     // INIT ChatKit
-    const chatkit = new Chatkit.default({
-      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
-      key: process.env.REACT_APP_SECRET_KEY,
-    });
+    // const chatkit = new Chatkit.default({
+    //   instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+    //   key: process.env.REACT_APP_SECRET_KEY,
+    // });
 
     chatkit.getRoom({
       roomId: roomId
@@ -63,6 +62,41 @@ module.exports = function (app) {
       .then(room => res.json(room))
       .catch(err => res.json(err))
 
+  })
+
+  app.post('/api/chatusers', (req, res) => {
+    const chatkit = new Chatkit.default({
+      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+      key: process.env.REACT_APP_SECRET_KEY,
+    });
+
+    const { userId } = req.body;
+
+    chatkit.createUser({
+      id: userId,
+      name: userId,
+    })
+      .then(() => res.sendStatus(201))
+      .catch(err => {
+        if (err.error === 'services/chatkit/user_already_exists') {
+          console.log(`User already exists: ${userId}`);
+          res.sendStatus(200);
+        } else {
+          res.status(err.status).json(err);
+        }
+      });
+  });
+
+  app.post('/api/authchat', (req, res) => {
+    const chatkit = new Chatkit.default({
+      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+      key: process.env.REACT_APP_SECRET_KEY,
+    });
+
+    const authData = chatkit.authenticate({
+      userId: req.body.user_id,
+    });
+    res.status(authData.status).send(authData.body);
   })
 
 } // END EXPORT

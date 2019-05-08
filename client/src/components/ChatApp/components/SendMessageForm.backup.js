@@ -29,6 +29,7 @@ class SendMessageForm extends Component {
                 <div className="input-group">
                     <input
                         className="form-control"
+                        disabled={this.props.disabled}
                         onChange={this.msgChange}
                         value={this.state.msgInput}
                         placeholder="Enter message"
