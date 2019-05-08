@@ -29,7 +29,6 @@ class App extends Component {
             <Route exact path="/Services" component={Services} />
             <Route exact path="/Register" component={Register} />
             <Route exact path="/Chat" component={ChatPage} />
-            <Route exact path="/User" component={User} />
           </Switch>
           {/* <Footer /> */}
           <Navbar />
