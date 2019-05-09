@@ -7,8 +7,6 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 import axios from 'axios';
 import './Register.css';
 import logo from './logo1.png';
-import { Form } from 'react-final-form';
-import { Field } from 'react-final-form-html5-validation';
 
 class Register extends Component {
   // Setting our component's initial state
@@ -38,6 +36,8 @@ class Register extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
+
+
     axios.post("/auth/register", {
       "firstname": this.state.firstName,
       "email": this.state.email,

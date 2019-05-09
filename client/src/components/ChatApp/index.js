@@ -173,7 +173,7 @@ export class ChatApp extends Component {
   render() {
     if (this.state.userType === 'user') {
       return (
-        <div className="row justify-content-center">
+        <div className="row justify-content-center chat-bg">
           <div className="col-lg-6">
 
             <div className="col-md-12 bg-primary rounded py-2">
@@ -206,7 +206,7 @@ export class ChatApp extends Component {
       )
     } else {
       return (
-        <div className="row justify-content-center">
+        <div className="row justify-content-center chat-bg">
           <div className="col-lg-6">
 
             <div className="col-md-12 bg-primary rounded py-2">
