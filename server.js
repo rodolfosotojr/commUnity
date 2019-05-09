@@ -25,11 +25,7 @@ require("./routes/API/apiRoutes")(app);
 
 var syncOptions = { force: false };
 
-//CHATKIT
-const chatkit = new Chatkit.default({
-  instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
-  key: process.env.REACT_APP_SECRET_KEY,
-});
+
 require("./routes/API/chatRoutes")(app);
 
 
