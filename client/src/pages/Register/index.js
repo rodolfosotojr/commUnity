@@ -135,7 +135,7 @@ class Register extends Component {
             currentStep={this.state.currentStep}
             handleInputChange={this.handleInputChange}
             userType={this.state.userType}
-            onChange={this.handleDropdown}
+            handleDropdown={this.handleDropdown}
             // onClick={this.handleFormSubmit}
 
           />
