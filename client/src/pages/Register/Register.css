@@ -1,4 +1,22 @@
+
 .homeLogo{
     width:100px;
     height:100px;
+   
+}
+
+.register-bg {
+    background-image: linear-gradient(to top, rgb(53, 73, 92), rgb(16, 23, 29), rgb(16, 23, 29));
+    /* height: 100vh; */
+
+    z-index: 1;
+}
+
+.form-control{
+    margin:5px;
+}
+
+img{
+    margin: auto;    
+    display: block;
 }
