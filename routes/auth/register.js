@@ -52,9 +52,12 @@ router.route("/").post(function (req, res) {
         chatkit.createUser({
           id: username,
           name,
+          customData: {
+            userType
+          }
         })
-          .then(() => {
-            console.log('User created successfully');
+          .then((response) => {
+            console.log('User created successfully\n', response.data);
             // result.json(response)
           }).catch((err) => {
             console.log(err);
@@ -64,8 +67,16 @@ router.route("/").post(function (req, res) {
             creatorId: username,
             name: username,
           })
-            .then(() => {
+            .then((results) => {
               console.log('Room created successfully');
+              db.User.update({
+                roomId: results.id
+              },
+              {
+                where: {
+                  username
+                }
+              })
             }).catch((err) => {
               console.log(err);
             });
