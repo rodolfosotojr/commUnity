@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import "./RoomList.css";
 class RoomList extends Component {
     state = {
         open: false,
@@ -16,9 +16,9 @@ class RoomList extends Component {
 
     render() {
         return (
-            <div className="rooms-list bg-primary text-light">
+            <div className="rooms-list text-light">
                 {/* show/hide button for rooms */}
-                <button className="btn btn-secondary showrooms" onClick={this.toggleCollapse} data-toggle="collapse">{this.state.currentRoom}</button>
+                <button className="btn rooms-btn showrooms" onClick={this.toggleCollapse} data-toggle="collapse">{this.state.currentRoom}</button>
                 
                 <div id="rooms" className={'collapse' + (this.state.open ? ' show' : '')}>
                     {[...this.props.rooms].sort((a, b) => a.id - b.id).map(room => {

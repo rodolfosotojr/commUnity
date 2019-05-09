@@ -54,14 +54,14 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="login-bg">
-        <Container>
-          <Row className="row justify-content-center py-5">
-            <Col size="sm-3">
-              
-              <h1 className="text-light mb-3"><img className="homeLogo" src={logo} /> Sign Up to Connect with Families!</h1>
-              <form>
-                <div className="form-group">
+      <Container>
+        <Row className="row justify-content-center register-bg py-5">
+          <Col size="md-5">
+
+            <h1 className="text-light mb-3"><img className="homeLogo" src={logo} /> Sign Up to Connect with Families!</h1>
+            <form>
+              <div className="form-row">
+                <div className="col">
                   <Input
                     value={this.state.firstName}
                     onChange={this.handleInputChange}
@@ -69,6 +69,8 @@ class Register extends Component {
                     placeholder="First-Name (required)"
                     required
                   />
+                </div>
+                <div className="col">
                   <Input
                     value={this.state.lastName}
                     onChange={this.handleInputChange}
@@ -76,27 +78,21 @@ class Register extends Component {
                     placeholder="Last-Name (required)"
                     required
                   />
-                  <Input
-                    value={this.state.email}
-                    onChange={this.handleInputChange}
-                    name="email"
-                    placeholder="Email (required)"
-                    required
-                  />
-                  <Input
-                    value={this.state.city}
-                    onChange={this.handleInputChange}
-                    name="city"
-                    placeholder="City (required)"
-                    required
-                  />
-                  <Input
-                    value={this.state.state}
-                    onChange={this.handleInputChange}
-                    name="state"
-                    placeholder="State (required)"
-                    required
-                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <Input
+                  value={this.state.email}
+                  onChange={this.handleInputChange}
+                  name="email"
+                  placeholder="Email (required)"
+                  required
+                />
+              </div>
+
+              <div className="form-row">
+                <div className="col">
                   <Input
                     value={this.state.username}
                     onChange={this.handleInputChange}
@@ -104,6 +100,8 @@ class Register extends Component {
                     placeholder="username (required)"
                     required
                   />
+                </div>
+                <div className="col">
                   <Input
                     value={this.state.password}
                     onChange={this.handleInputChange}
@@ -111,28 +109,54 @@ class Register extends Component {
                     placeholder="password (required)"
                     required
                   />
-                  <label className="text-light">
-                    Sign up as a...</label>
-                  <select className="form-control form-control-lg" value={this.state.userType} onChange={this.handleDropdown} required>
-                    <option>Please Make A Selection</option>
-                    <option name="volunteer" value="volunteer">Volunteer</option>
-                    <option name="user" value="user">User</option>
-                  </select>
-
-                  <FormBtn
-                    className="btn btn-primary"
-                    onClick={this.handleFormSubmit}
-                  >
-                    Submit
-                  </FormBtn>
                 </div>
-              </form>
-            </Col>
+              </div>
 
-          </Row>
+              <div className="form-row">
+                <div className="col">
+                  <Input
+                    value={this.state.city}
+                    onChange={this.handleInputChange}
+                    name="city"
+                    placeholder="City (required)"
+                    required
+                  />
+                </div>
+                <div className="col">
+                  <Input
+                    value={this.state.state}
+                    onChange={this.handleInputChange}
+                    name="state"
+                    placeholder="State (required)"
+                    required
+                  />
+                </div>
+              </div>
 
-        </Container>
-      </div>
+              <div className="form-group">
+                <label className="text-light">
+                  Sign up as a...</label>
+                <select className="form-control form-control-lg" value={this.state.userType} onChange={this.handleDropdown} required>
+                  <option>Please Make A Selection</option>
+                  <option name="volunteer" value="volunteer">Volunteer</option>
+                  <option name="user" value="user">User</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <FormBtn
+                  className="btn btn-primary"
+                  onClick={this.handleFormSubmit}
+                >
+                  Submit
+                  </FormBtn>
+              </div>
+            </form>
+          </Col>
+
+        </Row>
+
+      </Container >
     );
   }
 

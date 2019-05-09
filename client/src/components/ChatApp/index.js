@@ -174,9 +174,9 @@ export class ChatApp extends Component {
     if (this.state.userType === 'user') {
       return (
         <div className="row justify-content-center chat-bg">
-          <div className="col-lg-6">
+          <div className="col-md-7 justify-content-center">
 
-            <div className="col-md-12 bg-primary rounded py-2">
+            <div className="rooms-bg rounded p-2">
 
               <RoomList
                 subscribeToRoom={this.subscribeToRoom}
@@ -185,7 +185,7 @@ export class ChatApp extends Component {
               />
             </div>
 
-            <div className="col-md-12 message-window">
+            <div className="col-md-12 message-window bg-light">
 
               <MessageList
                 firstname={this.state.firstname}
@@ -207,10 +207,10 @@ export class ChatApp extends Component {
     } else {
       return (
         <div className="row justify-content-center chat-bg">
-          <div className="col-lg-6">
+          <div className="col-md-7 justify-content-center">
 
-            <div className="col-md-12 bg-primary rounded py-2">
-              <NewRoomForm createRoom={this.createRoom} />
+            <div className="rooms-bg rounded p-2">
+              {/* <NewRoomForm createRoom={this.createRoom} /> */}
 
               <RoomList
                 subscribeToRoom={this.subscribeToRoom}
@@ -219,7 +219,7 @@ export class ChatApp extends Component {
               />
             </div>
 
-            <div className="col-md-12 message-window">
+            <div className="col-md-12 message-window bg-light">
 
               <MessageList
                 firstname={this.state.firstname}

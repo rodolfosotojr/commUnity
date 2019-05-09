@@ -59,35 +59,43 @@ class LoginPage extends Component {
                     </Row>
                     <Row className="row justify-content-center">
                         <Col size='sm-5'>
-                            <form>
-                                <div className="form-group">
-                                    {/* <label>Enter Username</label> */}
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        name="username"
-                                        onChange={this.handleInput}
-                                        value={this.state.username}
-                                        placeholder="Enter Username" />
-                                </div>
-                                <div className="form-group">
-                                    {/* <label>Password</label> */}
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        name="password"
-                                        onChange={this.handleInput}
-                                        value={this.state.password}
-                                        placeholder="Password" />
+                            <form className="mb-3">
+                                <div className="form-row mb-2">
+                                    <div className="col">
+                                        {/* <label>Enter Username</label> */}
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name="username"
+                                            onChange={this.handleInput}
+                                            value={this.state.username}
+                                            placeholder="Enter Username" />
+                                    </div>
+                                    <div className="col">
+                                        {/* <label>Password</label> */}
+                                        <input
+                                            type="password"
+                                            className="form-control"
+                                            name="password"
+                                            onChange={this.handleInput}
+                                            value={this.state.password}
+                                            placeholder="Password" />
+                                    </div>
                                 </div>
 
-                                <div className="form-group form-check">
-                                    <input type="checkbox" className="form-check-input" id="rememberme" />
-                                    <label className="form-check-label text-light">Remember Me</label>
+                                <div className="form-row">
+                                    <div className="col">
+                                        <div className="form-check">
+                                            <input type="checkbox" className="form-check-input" id="rememberme" />
+                                            <label className="form-check-label text-light">Remember Me</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="form-row justify-content-center">
                                     <button type="submit" className="btn btn-primary float-right" onClick={this.handleFormSubmit}>Login</button>
                                 </div>
                             </form>
-                            <div className="text-center pt-3 text-light">Not a Member? <a href="/Register">Register Now! <i class="fas fa-user-plus"></i></a></div>
+                            <div className="text-center pt-3 text-light">Not a Member? <a className="text-warning" href="/Register">Register Now! <i class="fas fa-user-plus"></i></a></div>
                         </Col>
                     </Row>
 
