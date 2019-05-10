@@ -4,6 +4,7 @@ import Col from "../Col"
 import ProfileCard from "../ProfileCard"
 import styled from "styled-components"
 import Slider from "react-slick"
+import axios from "axios"
 
 const Wrapper = styled.div`
     width:100%;
@@ -11,33 +12,28 @@ const Wrapper = styled.div`
     margin: 0 auto;
 `;
 
-const data = [
-    {
-        first: 'Rodolfo',
-        last: 'Soto',
-        city: "Chicago",
-        email: "rodolfo@gmail.com",
-        bio: "My name is Rodolfo and I want to help"
-    },
-    {
-        first: 'Sam',
-        last: 'Samson',
-        city: "Sacramento",
-        email: "sam@gmail.com",
-        bio: "My name is Sam and I want to help"
-    },
-    {
-        first: 'John',
-        last: 'Smith',
-        city: "New York City",
-        email: "jon@gmail.com",
-        bio: "My name is jon and I want to help"
+class SlideView extends React.Component {
+
+    state = {
+        volunteers:[]
     }
 
+    componentDidMount () {
+        this.getData();
+    }
 
-]
+    getData = () => {
+        axios.get('/api/posts')
+        .then(response => 
+            {
+                this.setState({volunteers: response.data})
+                console.log(response, this.state)
+            })
+        .catch(error => console.log(error));
+        
+    }
 
-function SlideView(props) {
+    render() {
 
     return (
         <Wrapper>
@@ -49,20 +45,20 @@ function SlideView(props) {
                 dots={true}
                 arrows={false}
             >
-                {data.map(data => (
+                {this.state.volunteers.map(data => (
                     <Col size="md-12">
                         <ProfileCard
-                            firstName={data.first}
-                            lastName={data.last}
+                            firstName={data.firstname}
+                            lastName={data.lastname}
                             city={data.city}
                             email={data.email}
-                            shortBio={data.bio}
                         />
                     </Col>
                 ))}
             </Slider>
         </Wrapper>
     );
+}
 }
 
 export default SlideView;
