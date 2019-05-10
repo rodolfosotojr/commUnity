@@ -10,7 +10,7 @@ import Services from "./pages/Services";
 import LoginPage from "./pages/LoginPage"
 import Register from "./pages/Register";
 import Container from "./components/Container";
-import UploadImage from "./components/UploadImage";
+import UploadImage from "./pages/UploadImage";
 // import Footer from "./components/Footer";
 
 

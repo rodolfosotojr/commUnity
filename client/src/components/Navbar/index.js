@@ -8,7 +8,7 @@ class Navbar extends Component {
   render() {
    
     return (
-      this.props.location.pathname === "/" || this.props.location.pathname === "/Register" ? null :
+      this.props.location.pathname === "/UploadImage" ||this.props.location.pathname === "/" || this.props.location.pathname === "/Register" ? null :
 
       <nav className= "navbar navbar-expand fixed-bottom navbar-light">
         <div>
