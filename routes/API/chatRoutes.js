@@ -11,10 +11,10 @@ module.exports = function (app) {
   // GET USER INFO
   app.post('/api/chat-user', (request, result) => {
     // INIT ChatKit
-    // const chatkit = new Chatkit.default({
-    //   instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
-    //   key: process.env.REACT_APP_SECRET_KEY,
-    // });
+    const chatkit = new Chatkit.default({
+      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+      key: process.env.REACT_APP_SECRET_KEY,
+    });
 
     // stuff here
     chatkit.getUser({
@@ -30,10 +30,10 @@ module.exports = function (app) {
   // CREATE USER
   app.post('/api/create-chat-user', (request, result) => {
 
-    // const chatkit = new Chatkit.default({
-    //   instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
-    //   key: process.env.REACT_APP_SECRET_KEY,
-    // });
+    const chatkit = new Chatkit.default({
+      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+      key: process.env.REACT_APP_SECRET_KEY,
+    });
 
     const id = request.body.username;
     const name = request.body.name;
@@ -65,10 +65,10 @@ module.exports = function (app) {
   });
 
   app.post('/api/chatusers', (req, res) => {
-    // const chatkit = new Chatkit.default({
-    //   instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
-    //   key: process.env.REACT_APP_SECRET_KEY,
-    // });
+    const chatkit = new Chatkit.default({
+      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+      key: process.env.REACT_APP_SECRET_KEY,
+    });
 
     const { userId } = req.body;
 
@@ -88,10 +88,10 @@ module.exports = function (app) {
   });
 
   app.post('/api/authchat', (req, res) => {
-    // const chatkit = new Chatkit.default({
-    //   instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
-    //   key: process.env.REACT_APP_SECRET_KEY,
-    // });
+    const chatkit = new Chatkit.default({
+      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+      key: process.env.REACT_APP_SECRET_KEY,
+    });
 
     const authData = chatkit.authenticate({
       userId: req.body.user_id,
