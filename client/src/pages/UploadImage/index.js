@@ -34,6 +34,7 @@ class UploadImage extends Component {
             this.state.file.name
         )
         axios.post('/api/upload', formData)
+        .then(window.location.assign("/"))
     }
 
     setRedirect = () => {
@@ -68,19 +69,6 @@ class UploadImage extends Component {
                     </Row>
                 </Container>
                 </div>
-                /* <h1>Would you like to Upload a Profile Picture?</h1>
-                <form>
-                    <label>Select File</label>
-                    <input type="file" name="userPhoto" onChange={this.handleFileChange} />
-
-                    <button type="button" onClick={this.handleFileUpload}>Upload</button>
-
-                </form>
-                <div>
-                    {this.renderRedirect()}
-                    <button onClick={this.setRedirect}>Nah, im ok</button>
-                </div>
-            </div> */
         )
     }
 }
