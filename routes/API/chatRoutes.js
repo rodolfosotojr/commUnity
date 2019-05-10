@@ -3,6 +3,10 @@ var db = require("../../models");
 const bodyParser = require('body-parser');
 
 module.exports = function (app) {
+  const chatkit = new Chatkit.default({
+    instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+    key: process.env.REACT_APP_SECRET_KEY,
+  });
 
   // GET USER INFO
   app.post('/api/chat-user', (request, result) => {
@@ -56,15 +60,15 @@ module.exports = function (app) {
     // get all rooms
     chatkit.getRooms({})
       .then(rooms => res.json(rooms))
-        .catch(err => res.json(err))
+      .catch(err => res.json(err))
 
   });
 
   app.post('/api/chatusers', (req, res) => {
-    const chatkit = new Chatkit.default({
-      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
-      key: process.env.REACT_APP_SECRET_KEY,
-    });
+    // const chatkit = new Chatkit.default({
+    //   instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+    //   key: process.env.REACT_APP_SECRET_KEY,
+    // });
 
     const { userId } = req.body;
 
@@ -84,10 +88,10 @@ module.exports = function (app) {
   });
 
   app.post('/api/authchat', (req, res) => {
-    const chatkit = new Chatkit.default({
-      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
-      key: process.env.REACT_APP_SECRET_KEY,
-    });
+    // const chatkit = new Chatkit.default({
+    //   instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+    //   key: process.env.REACT_APP_SECRET_KEY,
+    // });
 
     const authData = chatkit.authenticate({
       userId: req.body.user_id,

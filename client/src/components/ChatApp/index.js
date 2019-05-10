@@ -5,8 +5,9 @@ import SendMessageForm from './components/SendMessageForm';
 import RoomList from './components/RoomList';
 import NewRoomForm from './components/NewRoomForm';
 import "./styles.css";
-import { getJwt } from '../../utils/jwt';
-import axios from 'axios';
+// import { getJwt } from '../../utils/jwt';
+// import axios from 'axios';
+import API from "../../utils/API";
 
 export class ChatApp extends Component {
   state = {
@@ -23,11 +24,9 @@ export class ChatApp extends Component {
   }
 
   componentDidMount() {
-
-
     // -------------AUTHENTICATION------------------------------------
     // Get Username from JWT Cookie
-    axios.post("/auth/local/protected")
+    API.getCookie()
       .then(res => {
         // console.log("User Name: ", res.data.username);
         // console.log("UserType: ", res.data.userType);
@@ -74,8 +73,9 @@ export class ChatApp extends Component {
           this.setState({ messages: [] }) // clear chats in room before showing selected room
 
           // find room id by volunteer name
-          axios.get("/api/getrooms")
+          API.getChatRooms()
             .then(response => {
+              console.log("GET ROOMS:\n", response.data)
               let room = response.data.find(item => item.name === this.state.username);
               console.log("Volunteer Room Id: ", room.id.toString());
               this.setState({ volunteerRoomId: room.id.toString() })
@@ -103,7 +103,7 @@ export class ChatApp extends Component {
 
   findUser = () => {
     // console.log("FIND CHAT USER HERE");
-    axios.post("/api/chat-user", { username: this.state.username })
+    API.getChatUser(this.state.username)
       .then(response => {
         // console.log(response.data.status);
         // create user if does not exist
@@ -112,7 +112,7 @@ export class ChatApp extends Component {
             username: this.state.username,
             name: this.state.username
           }
-          axios.post("/api/create-chat-user", newUser)
+          API.createChatUser(newUser)
             .then(response => console.log("New User Created: ", response.data))
         }
       })

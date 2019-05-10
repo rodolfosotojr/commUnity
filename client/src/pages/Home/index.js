@@ -29,19 +29,19 @@ class Home extends Component {
 
         }).catch(err =>{
             console.log(err)
+            this.setState({
+                loggedIn:false
+            })
             window.location.assign("/");
         })
-
-        
+   
     }
-
     handleLogout() {
         axios.get("/api/logout")
             .then((res) => {
                 window.location.assign("/")
             })
     }
-
     render() {
         if(this.state.loggedIn)
         {

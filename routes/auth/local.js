@@ -7,7 +7,7 @@ router.route("/").post(passport.authenticate('local',{session: false}), function
     let token = jwt.sign({
     id: req.user.username},
     process.env.secretOrKey,
-    {expiresIn: "1m"} 
+    {expiresIn: "11m"} 
     );
     res.cookie('jwt', token, { httpOnly: true })
     .sendStatus(200);
