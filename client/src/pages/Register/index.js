@@ -57,7 +57,7 @@ class Register extends Component {
       "password": this.state.password,
       "userType": this.state.userType
     }).then(
-      window.location.assign("/")
+      window.location.assign("/UploadImage")
     )
   }
 
