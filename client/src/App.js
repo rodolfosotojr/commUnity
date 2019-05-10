@@ -32,7 +32,6 @@ class App extends Component {
             <Route exact path="/Chat" component={ChatPage} />
             <Route exact path="/UploadImage" component={UploadImage} />
           </Switch>
-          {/* <Footer /> */}
           <Navbar />
         </div>
         
