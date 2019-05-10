@@ -8,6 +8,7 @@ import './Home.css';
 import logo from './logo1.png';
 import axios from "axios";
 import Carousel from "../../components/Carousel/carousel";
+import Navbar from "../../components/Navbar";
 
 
 class Home extends Component {
@@ -63,12 +64,14 @@ class Home extends Component {
                                         Or, click on connect to meet local families!</p>
                         </Col>
                     </Row>
-                    <Row className="row justify-content-center mb-5">
+                    <Row className="row justify-content-center">
                         <Col size='sm-4'>
-                            <div className="text-center pt-3">Not you? <a href="#" onClick={this.handleLogout}>Logout Now! <i class="fas fa-user-minus"></i></a></div>
+                            <div className="text-center text-light pt-3">Not you? <a href="#" onClick={this.handleLogout}>Logout Now! <i class="fas fa-user-minus"></i></a></div>
                         </Col>
                     </Row>
+                    
                 </Container>
+                <Navbar />
             </div>
             )
         }
