@@ -10,6 +10,7 @@ import Services from "./pages/Services";
 import LoginPage from "./pages/LoginPage"
 import Register from "./pages/Register";
 import Container from "./components/Container";
+import UploadImage from "./components/UploadImage";
 // import Footer from "./components/Footer";
 
 
@@ -29,6 +30,7 @@ class App extends Component {
             <Route exact path="/Services" component={Services} />
             <Route exact path="/Register" component={Register} />
             <Route exact path="/Chat" component={ChatPage} />
+            <Route exact path="/UploadImage" component={UploadImage} />
           </Switch>
           {/* <Footer /> */}
           <Navbar />

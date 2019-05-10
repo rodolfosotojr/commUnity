@@ -30,6 +30,7 @@
     "fetch": "^1.1.0",
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.1",
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",
     "passport-facebook": "^3.0.0",
