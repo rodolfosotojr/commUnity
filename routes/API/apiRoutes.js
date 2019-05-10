@@ -22,11 +22,11 @@ module.exports = function (app) {
                 res.json(dbUser);
             });
     });
+
     // LOGOUT ROUTE
     // Logout using .logout() method then redirect to login page.
     app.get("/api/logout", function (req, res) {
         req.logOut();
-
         res.redirect("/");
     });
 
