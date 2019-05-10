@@ -8,8 +8,7 @@ import axios from "axios"
 
 const Wrapper = styled.div`
     width:100%;
-    padding:100px;
-    margin: 0 auto;
+    margin:0 auto;
 `;
 
 class SlideView extends React.Component {
