@@ -1,5 +1,7 @@
 //this will be the sign up form page
 import React, { Component } from "react";
+import { withRouter } from 'react-router'
+// import  { Redirect } from 'react-router-dom'
 import Container from "../../components/Container";
 import Row from "../../components/Row";
 import Col from "../../components/Col";
@@ -29,6 +31,11 @@ class Register extends Component {
 
   };
 
+  // componentDidMount() {
+  //   console.log("COMPONENT DID MOUNT");
+  //   this.props.globalUpdateUsername("Orlando");
+  // }
+
   // Handles updating component state when the user types into the input field
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -45,8 +52,7 @@ class Register extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-
-
+    this.props.globalUpdateUsername(this.state.username);
     axios.post("/auth/register", {
       "firstname": this.state.firstName,
       "email": this.state.email,
@@ -56,9 +62,11 @@ class Register extends Component {
       "username": this.state.username,
       "password": this.state.password,
       "userType": this.state.userType
-    }).then(
-      window.location.assign("/UploadImage")
-    )
+    })
+    .then( () => this.props.history.push("/UploadImage") )
+    // .then( 
+    //   window.location.assign("/UploadImage")
+    // )
   }
 
   _next = () => {
@@ -67,6 +75,7 @@ class Register extends Component {
     this.setState({
       currentStep: currentStep
     })
+    this.props.globalUpdateUsername(this.state.username);
   }
 
   _prev = () => {
