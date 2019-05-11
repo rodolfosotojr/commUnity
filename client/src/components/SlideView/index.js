@@ -6,9 +6,11 @@ import styled from "styled-components"
 import Slider from "react-slick"
 import axios from "axios"
 
+
 const Wrapper = styled.div`
     width:100%;
     margin:0 auto;
+
 `;
 
 class SlideView extends React.Component {
@@ -55,7 +57,8 @@ class SlideView extends React.Component {
                     </Col>
                 ))}
             </Slider>
-        </Wrapper>
+            </Wrapper>
+            
     );
 }
 }
