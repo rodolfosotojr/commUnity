@@ -18,10 +18,10 @@ function Connect() {
                             <h1>Volunteer profiles go here!</h1>
                         </Col>
                     </Row>
-                </Container>
-                
-                <Container>
-                    <SlideView />
+
+                    <Row>
+                        <SlideView />
+                    </Row>
                 </Container>
 
             </div>
