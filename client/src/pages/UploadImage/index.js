@@ -54,6 +54,7 @@ class UploadImage extends Component {
                 <Container>
                     <Row className= "row justify-content-center py-5">
                         <Col size="sm-12" align="center">
+                        <h1>Hi, {this.props.globalUsername} !!!</h1>
                         <img src={img} />
                             <h2 className="text-light"> Would you like to upload a profile picture?</h2>
                             <form>
