@@ -23,7 +23,7 @@ app.use(passport.initialize());
 app.use(routes)
 require("./routes/API/apiRoutes")(app);
 
-var syncOptions = { force: false };
+var syncOptions = { force: true };
 
 
 require("./routes/API/chatRoutes")(app);
