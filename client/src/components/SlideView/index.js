@@ -37,7 +37,7 @@ class SlideView extends React.Component {
     return (
         <Wrapper>
             <Slider
-                speed={1000}
+                speed={500}
                 slidesToShow={1}
                 slidesToScroll={1}
                 infinite={true}
