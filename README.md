@@ -20,3 +20,9 @@ Here are the technologies that you need to install
 ## ChatKit logic
 * Volunteers will be able to see a list of private rooms linked to users.
 * Users may be limited to a single volunteer or show volunteers that they have chatted with already.
+
+## Upload Image
+1. I append the username to the formData using `formData.append('username', this.props.globalusername)`
+2. Upload response:
+username = req.body.username
+updated filename = req.file.filename

@@ -2,6 +2,7 @@ const db = require("../../models");
 const passport = require("../../config/passport");
 const multer = require('multer');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 // SET STORAGE
 const storage = multer.diskStorage({
@@ -9,7 +10,7 @@ const storage = multer.diskStorage({
         callback(null, './client/public/uploads');
     },
     filename: function (req, file, callback) {
-        callback(null, file.fieldname + '-' + Date.now()+ path.extname(file.originalname));
+        callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
 const upload = multer({ storage: storage }).single('userPhoto');
@@ -31,13 +32,43 @@ module.exports = function (app) {
     });
 
     // ------------MULTER ROUTE------------
+    // app.post('/api/upload', function (req, res) {
+    //     console.log(req.body.formData)
+    //     upload(req.body.formData, res, function (err) {
+    //         if (err) {
+    //             return res.end("Error uploading file.");
+    //         }
+    //         console.log(res)
+    //         res.end("File is uploaded");
+    //     });
+    // });
+
     app.post('/api/upload', function (req, res) {
+        // console.log(req.body.username)
+
         upload(req, res, function (err) {
             if (err) {
                 return res.end("Error uploading file.");
+            } else {
+
+                // console.log(req.file.filename);
+                console.log("USERNAME***************\n", req.body.username)
+                console.log("UPLOAD***************\n", req.file.filename)
+                //---DB UPDATE USER---
+    
+                //---DB UPDATE USER---
+                res.end("File is uploaded");
+                db.User.update({
+                    profileImg: req.file.filename
+                  },
+                  {
+                    where: {
+                      username: req.body.username
+                    }
+                  })
             }
-            console.log(res)
-            res.end("File is uploaded");
+
+
         });
     });
 

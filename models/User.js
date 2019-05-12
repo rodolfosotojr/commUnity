@@ -40,6 +40,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         roomId: {
             type: DataTypes.STRING,
+        },
+        profileImg: {
+            type: DataTypes.STRING,
+			defaultValue: 'imgDefault.jpg',
         }
     });
 

@@ -6,10 +6,9 @@ import Row from "../../components/Row";
 import Col from "../../components/Col";
 import img from './imgDefault.jpg';
 import './style.css';
+import API from "../../utils/API";
 
 const axios = require("axios");
-
-
 
 class UploadImage extends Component {
 
@@ -31,10 +30,12 @@ class UploadImage extends Component {
         formData.append(
             'userPhoto',
             this.state.file,
-            this.state.file.name
-        )
+            this.state.file.name,
+        );
+        formData.append("username", this.props.globalUsername)
         axios.post('/api/upload', formData)
-        .then(window.location.assign("/"))
+        // API.uploadImage(formData)
+        .then( () => this.props.history.push("/") )
     }
 
     setRedirect = () => {

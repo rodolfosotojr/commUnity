@@ -87,7 +87,7 @@ class LoginPage extends Component {
                                     <button type="submit" className="btn btn-primary float-right" onClick={this.handleFormSubmit}>Login</button>
                                 </div>
                             </form>
-                            <div className="text-center pt-3 text-light">Not a Member? <a href="/Register">Register Now! <i class="fas fa-user-plus"></i></a></div>
+                            <div className="text-center pt-3 text-light">Not a Member? <a href="/Register">Register Now! <i className="fas fa-user-plus"></i></a></div>
                         </Col>
                     </Row>
 
