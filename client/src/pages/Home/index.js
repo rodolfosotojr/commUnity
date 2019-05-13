@@ -9,6 +9,7 @@ import logo from './logo1.png';
 import axios from "axios";
 import Carousel from "../../components/Carousel/carousel";
 import Navbar from "../../components/Navbar";
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 
 
 class Home extends Component {
@@ -57,16 +58,29 @@ class Home extends Component {
                         <Col size="md-6" align="center">
                             <img className="homeLogo" src={logo} />
                             <h1 className="homeHeader">Comm<span className="font-weight-bold">Unity</span></h1>
-                            <h2>Welcoming You Home, {this.state.username}!</h2>
-                            <p>We're so happy to have you!<br />
-                                Let's Get Started!<br />
-                                Click on services to navigate to nearby service centers.
-                                        Or, click on connect to meet local families!</p>
+                            <h2>
+                                <FormattedMessage id="homepage.home-welcome"
+                                        defaultMessage="Welcoming You Home, { name }!"
+                                        values = {{ name: this.state.username}} />
+                            </h2>
+                            <p>
+                            <FormattedHTMLMessage id="homepage.happymsg"
+                                    defaultMessage="We're so happy to have you!<br />
+                                    Let's Get Started!<br />
+                                    Click on services to navigate to nearby service centers.
+                                    Or, click on connect to meet local families!" />
+                            </p>
                         </Col>
                     </Row>
                     <Row className="row justify-content-center">
                         <Col size='sm-4'>
-                            <div className="text-center text-light pt-3">Not you? <a href="#" onClick={this.handleLogout}>Logout Now! <i class="fas fa-user-minus"></i></a></div>
+                            <div className="text-center text-light pt-3">
+                            <FormattedMessage id="homepage.notyou1"
+                                    defaultMessage="Not you?" />
+                            {" "}<a href="#" onClick={this.handleLogout}>
+                            <FormattedMessage id="homepage.notyou2"
+                                    defaultMessage="Logout Now!" />
+                            {" "}<i class="fas fa-user-minus"></i></a></div>
                         </Col>
                     </Row>
                     

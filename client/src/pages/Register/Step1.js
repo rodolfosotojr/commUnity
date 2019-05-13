@@ -1,60 +1,83 @@
 import React from "react";
 import { Input, TextArea, FormBtn } from "../../components/Form";
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 
 function Step1(props) {
-    if (props.currentStep !== 1) {
-      return null
-    } 
-    return(
-      <div className="form-group">
-        <Input
+  if (props.currentStep !== 1) {
+    return null
+  }
+  return (
+    <div className="form-group">
+      <FormattedMessage id="step1.fname" defaultMessage="First-Name (required)">
+        {placeholder => <Input
           className="form-control"
           id="firstName"
           name="firstName"
           type="text"
-          placeholder="First-Name (required)"
+          placeholder={placeholder}
           value={props.firstName}
           onChange={props.handleInputChange}
-          />
-          
+        />}
+      </FormattedMessage>
+
+      <FormattedMessage id="step1.lname" defaultMessage="Last-Name (required)">
+        {placeholder =>
           <Input
-          className="form-control"
-          id="lastName"
-          name="lastName"
-          type="text"
-          placeholder="Last-Name (required)"
-          value={props.lastName}
-          onChange={props.handleInputChange}
+            className="form-control"
+            id="lastName"
+            name="lastName"
+            type="text"
+            placeholder={placeholder}
+            value={props.lastName}
+            onChange={props.handleInputChange}
           />
+        }
+      </FormattedMessage>
+
+
+      <FormattedMessage id="step1.email" defaultMessage="Enter email">
+        {placeholder =>
           <Input
-          className="form-control"
-          id="email"
-          name="email"
-          type="text"
-          placeholder="Enter email"
-          value={props.email}
-          onChange={props.handleInputChange}
+            className="form-control"
+            id="email"
+            name="email"
+            type="text"
+            placeholder={placeholder}
+            value={props.email}
+            onChange={props.handleInputChange}
           />
+        }
+      </FormattedMessage>
+
+
+      <FormattedMessage id="step1.city" defaultMessage="City (required)">
+        {placeholder =>
           <Input
-          className="form-control"
-          id="city"
-          name="city"
-          type="text"
-          placeholder="City (required)"
-          value={props.city}
-          onChange={props.handleInputChange}
+            className="form-control"
+            id="city"
+            name="city"
+            type="text"
+            placeholder={placeholder}
+            value={props.city}
+            onChange={props.handleInputChange}
           />
+        }
+      </FormattedMessage>
+      <FormattedMessage id="step1.state" defaultMessage="State (required)">
+        {placeholder =>
           <Input
-          className="form-control"
-          id="state"
-          name="state"
-          type="text"
-          placeholder="State (required)"
-          value={props.state}
-          onChange={props.handleInputChange}
+            className="form-control"
+            id="state"
+            name="state"
+            type="text"
+            placeholder={placeholder}
+            value={props.state}
+            onChange={props.handleInputChange}
           />
-      </div>
-    );
-  }
-  
-  export default Step1;
+        }
+      </FormattedMessage>
+    </div>
+  );
+}
+
+export default Step1;

@@ -7,6 +7,7 @@ import Col from "../../components/Col";
 import './login.css';
 import logo from './logo1.png';
 import axios from "axios";
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 
 class LoginPage extends Component {
     state = {
@@ -54,40 +55,69 @@ class LoginPage extends Component {
                         <Col size="md-6" align="center">
                             <img src={logo} />
                             <h1 className="text-light">Comm<span className="font-weight-bold">Unity</span></h1>
-                            <h2>Welcoming You Home</h2>
+                            <h2>
+                                <FormattedMessage id="loginpage.welcome"
+                                    defaultMessage="Welcoming You Home"
+                                    description="Welcome header on Login page" />
+                            </h2>
                         </Col>
                     </Row>
                     <Row className="row justify-content-center">
                         <Col size='sm-5'>
                             <form>
+
                                 <div className="form-group">
                                     {/* <label>Enter Username</label> */}
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        name="username"
-                                        onChange={this.handleInput}
-                                        value={this.state.username}
-                                        placeholder="Enter Username" />
+                                    <FormattedMessage id="loginpage.username">
+                                        {placeholder => <input
+                                            type="text"
+                                            className="form-control"
+                                            name="username"
+                                            onChange={this.handleInput}
+                                            value={this.state.username}
+                                            placeholder={placeholder} />}
+                                    </FormattedMessage>
+
                                 </div>
                                 <div className="form-group">
                                     {/* <label>Password</label> */}
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        name="password"
-                                        onChange={this.handleInput}
-                                        value={this.state.password}
-                                        placeholder="Password" />
+
+                                    <FormattedMessage id="loginpage.password">
+                                        {placeholder => <input
+                                            type="password"
+                                            className="form-control"
+                                            name="password"
+                                            onChange={this.handleInput}
+                                            value={this.state.password}
+                                            placeholder={ placeholder } />}
+                                    </FormattedMessage>
+
                                 </div>
 
                                 <div className="form-group form-check">
                                     <input type="checkbox" className="form-check-input" id="rememberme" />
-                                    <label className="form-check-label text-light">Remember Me</label>
-                                    <button type="submit" className="btn btn-primary float-right" onClick={this.handleFormSubmit}>Login</button>
+                                    <label className="form-check-label text-light">
+                                        <FormattedMessage id="loginpage.remember"
+                                            defaultMessage="Remember Me"
+                                            description="Remember Me" />
+                                    </label>
+                                    <button type="submit" className="btn btn-primary float-right" onClick={this.handleFormSubmit}>
+                                        <FormattedMessage id="loginpage.loginBtn"
+                                            defaultMessage="Login"
+                                            description="Login" />
+                                    </button>
                                 </div>
                             </form>
-                            <div className="text-center pt-3 text-light">Not a Member? <a href="/Register">Register Now! <i className="fas fa-user-plus"></i></a></div>
+                            <div className="text-center pt-3 text-light">
+                                <FormattedMessage id="loginpage.notamember"
+                                    defaultMessage="Not a Member?"
+                                    description="Not a Member?" />
+                                {" "}
+                                <a href="/Register">
+                                    <FormattedMessage id="loginpage.registernow"
+                                        defaultMessage="Register Now!"
+                                        description="Register Now!" />
+                                    <i className="fas fa-user-plus"></i></a></div>
                         </Col>
                     </Row>
 
