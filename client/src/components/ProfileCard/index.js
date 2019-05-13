@@ -10,7 +10,7 @@ const ProfileWrapper = styled.div`
 const cardStyle = {
     width: "18rem",
     backgroundColor: "#e1dfdf",
-    fontFamily: "Karma, serif"
+    fontFamily: "Karma, serif",
 };
 
 const pictureStyle = {
