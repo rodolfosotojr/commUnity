@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react';
 import styled from "styled-components"
 import "./style.css"
 
@@ -18,21 +18,32 @@ const pictureStyle = {
     maxHeight: "300px"
 }
 
-export default function ProfileCard(props) {
-    return (
-        <ProfileWrapper>
-            <div className="card" style={cardStyle}>
-                <img src="http://drforum.gemini.edu/wp-content/uploads/2019/04/jo03wn_avatar_1555607085.jpg" className="card-img-top" style={pictureStyle} alt="Profile Image" />
-                <div className="card-body">
-                    <h1 className="card-title">{props.firstName} {props.lastName}</h1>
-                    <h3 className="card-title">{props.city}</h3>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+class ProfileCard extends Component {
+
+    getRoomId = (event) => {
+        // this.props.globalRoomId("test")
+        this.props.globalRoomId(event.target.name)
+    }
+
+
+    render() {
+        return (
+            <ProfileWrapper>
+                <div className="card" style={cardStyle}>
+                    <img src={`/uploads/${this.props.profileImg}`} className="card-img-top" style={pictureStyle} alt="Profile Image" />
+                    <div className="card-body">
+                        <h1 className="card-title">{this.props.firstName} {this.props.lastName}</h1>
+                        <h3 className="card-title">{this.props.city}</h3>
+                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                    <div className="card-body">
+                        <a href={`mailto:${this.props.email}`} className="card-link">email</a>
+                        <button className="btn" onClick={this.getRoomId} name={this.props.roomId}>chat</button>
+                    </div>
                 </div>
-                <div className="card-body">
-                    <a href={`mailto:${props.email}`} className="card-link">email</a>
-                    <a href="..." className="card-link">chat</a>
-                </div>
-            </div>
-        </ProfileWrapper>
-    )
+            </ProfileWrapper>
+        );
+    }
 }
+
+export default ProfileCard;

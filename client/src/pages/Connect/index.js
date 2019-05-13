@@ -7,7 +7,7 @@ import Col from "../../components/Col";
 import './Connect.css';
 import SlideView from "../../components/SlideView"
 
-function Connect() {
+function Connect(props) {
     return (
         <div className="connectComponent">
             <div className="overlay">
@@ -16,11 +16,12 @@ function Connect() {
                     <Row>
                         <Col size="md-12">
                             <h1>Volunteer profiles go here!</h1>
+                            <h2>Hi, {props.globalUsername}!</h2>
                         </Col>
                     </Row>
 
                     <Row>
-                        <SlideView />
+                        <SlideView gblUser={props.globalUsername} globalRoomId={props.globalRoomId}/>
                     </Row>
                 </Container>
 

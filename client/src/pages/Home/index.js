@@ -19,6 +19,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
+        console.log("GLOBAL: ", this.props.globalUsername);
         axios.post("/auth/local/protected").then(res => {
             console.log("AUTH RESPONSE: ", res.data.username)
             if (res.status === 200) {
@@ -26,6 +27,7 @@ class Home extends Component {
                     loggedIn: true,
                     username: res.data.username,
                 });
+                this.props.globalUpdateUsername(this.state.username);
             } 
 
         }).catch(err =>{
