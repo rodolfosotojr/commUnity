@@ -28,8 +28,6 @@ export class ChatApp extends Component {
     // Get Username from JWT Cookie
     API.getCookie()
       .then(res => {
-        // console.log("User Name: ", res.data.username);
-        // console.log("UserType: ", res.data.userType);
         if (res.status === 200) {
           this.setState({
             loggedIn: true,
@@ -70,25 +68,23 @@ export class ChatApp extends Component {
           this.getRooms();
         }
         else {
-          this.setState({ messages: [] }) // clear chats in room before showing selected room
+          // Connect Volunteer to their chatroom=======================================
+          this.setState({ messages: [] }) // clear chats
 
           // find room id by volunteer name
           API.getChatRooms()
             .then(response => {
-              console.log("GET ROOMS:\n", response.data)
               let room = response.data.find(item => item.name === this.state.username);
-              console.log("Volunteer Room Id: ", room.id.toString());
               this.setState({ volunteerRoomId: room.id.toString() })
             }).then(() => {
-
-              this.currentUser.subscribeToRoom({
-                // .subscribeToRoomMultipart() has .parts[] array instead of .text property
+              // .subscribeToRoomMultipart() has .parts[] array instead of .text property
+              this.currentUser.subscribeToRoom({ 
                 roomId: this.state.volunteerRoomId,
                 hooks: {
                   onMessage: message => {
                     this.setState({
-                      messages: [...this.state.messages, message]
                       // Multipart version: parts[0].payload.content
+                      messages: [...this.state.messages, message]
                     })
                   }
                 }
@@ -101,22 +97,6 @@ export class ChatApp extends Component {
       .catch(err => console.log("ChatManager Connection Error: ", err));
   }
 
-  findUser = () => {
-    // console.log("FIND CHAT USER HERE");
-    API.getChatUser(this.state.username)
-      .then(response => {
-        // console.log(response.data.status);
-        // create user if does not exist
-        if (response.data.status === 404) {
-          const newUser = {
-            username: this.state.username,
-            name: this.state.username
-          }
-          API.createChatUser(newUser)
-            .then(response => console.log("New User Created: ", response.data))
-        }
-      })
-  }
   getRooms = () => {
     this.currentUser.getJoinableRooms()
       .then(joinableRooms => {
@@ -168,9 +148,8 @@ export class ChatApp extends Component {
   }
 
 
-
-
   render() {
+    // USER VIEW=========================================================
     if (this.state.userType === 'user') {
       return (
         <div className="row justify-content-center">
@@ -205,12 +184,13 @@ export class ChatApp extends Component {
         </div >
       )
     } else {
+    // VOLUNTEER VIEW=========================================================
       return (
         <div className="row justify-content-center">
           <div className="col-lg-6">
 
             <div className="col-md-12 bg-primary rounded py-2">
-              <NewRoomForm createRoom={this.createRoom} />
+              {/* <NewRoomForm createRoom={this.createRoom} /> */}
 
               <RoomList
                 subscribeToRoom={this.subscribeToRoom}

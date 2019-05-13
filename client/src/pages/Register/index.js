@@ -8,6 +8,7 @@ import Col from "../../components/Col";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import axios from 'axios';
 import './Register.css';
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 import logo from './logo1.png';
 import Step1 from "./Step1";
 import Step2 from "./Step2";
@@ -63,7 +64,7 @@ class Register extends Component {
       "password": this.state.password,
       "userType": this.state.userType
     })
-    .then( () => this.props.history.push("/UploadImage") )
+      .then(() => this.props.history.push("/UploadImage"))
     // .then( 
     //   window.location.assign("/UploadImage")
     // )
@@ -117,45 +118,47 @@ class Register extends Component {
   render() {
     return (
       <React.Fragment>
-         <div className="login-bg">
-        <Container>
-        <Row className="row justify-content-center py-5">
-          <Col size="md-5">
-          <img className="homeLogo" src={logo} /> 
-      <h1 className="text-light mb-3"> Sign Up to Connect with Families!</h1>
-    
-        <form onSubmit={this.handleFormSubmit}>
-          <Step1
-            currentStep={this.state.currentStep}
-            handleInputChange={this.handleInputChange}
-            firstName={this.state.firstName}
-            lastName={this.state.lastName}
-            email={this.state.email}
-            city={this.state.city}
-            state={this.state.state}
-          />
-          <Step2
-            currentStep={this.state.currentStep}
-            handleInputChange={this.handleInputChange}
-            username={this.state.username}
-            password={this.state.password}
-          />
-          <Step3
-            currentStep={this.state.currentStep}
-            handleInputChange={this.handleInputChange}
-            userType={this.state.userType}
-            handleDropdown={this.handleDropdown}
-            // onClick={this.handleFormSubmit}
+        <div className="login-bg">
+          <Container>
+            <Row className="row justify-content-center py-5">
+              <Col size="md-5">
+                <img className="homeLogo" src={logo} />
+                <h1 className="text-light mb-3">
+                  <FormattedMessage id="register.heading" defaultMessage="Sign Up to Connect with Families!" />
+                </h1>
 
-          />
+                <form onSubmit={this.handleFormSubmit}>
+                  <Step1
+                    currentStep={this.state.currentStep}
+                    handleInputChange={this.handleInputChange}
+                    firstName={this.state.firstName}
+                    lastName={this.state.lastName}
+                    email={this.state.email}
+                    city={this.state.city}
+                    state={this.state.state}
+                  />
+                  <Step2
+                    currentStep={this.state.currentStep}
+                    handleInputChange={this.handleInputChange}
+                    username={this.state.username}
+                    password={this.state.password}
+                  />
+                  <Step3
+                    currentStep={this.state.currentStep}
+                    handleInputChange={this.handleInputChange}
+                    userType={this.state.userType}
+                    handleDropdown={this.handleDropdown}
+                  // onClick={this.handleFormSubmit}
 
-          {this.previousButton()}
-          {this.nextButton()}
-      
-        </form>
-        </Col>
-        </Row>
-        </Container>
+                  />
+
+                  {this.previousButton()}
+                  {this.nextButton()}
+
+                </form>
+              </Col>
+            </Row>
+          </Container>
         </div>
       </React.Fragment>
     );

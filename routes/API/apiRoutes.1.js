@@ -55,21 +55,33 @@ module.exports = function (app) {
                 console.log("USERNAME***************\n", req.body.username)
                 console.log("UPLOAD***************\n", req.file.filename)
                 //---DB UPDATE USER---
-    
+
                 //---DB UPDATE USER---
                 res.end("File is uploaded");
                 db.User.update({
                     profileImg: req.file.filename
-                  },
-                  {
-                    where: {
-                      username: req.body.username
-                    }
-                  })
+                },
+                    {
+                        where: {
+                            username: req.body.username
+                        }
+                    })
             }
 
 
         });
     });
 
-}
+    //Get route for getting all the resources information
+    app.post("/api/resources", function (req, res) {
+        db.Resources.findAll({
+            where: {
+                resource_department: req.body.resource_department
+            }
+        })
+            .then(dbres => {
+                res.json(dbres)
+            });
+    });
+
+} // END EXPORTS

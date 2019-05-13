@@ -2,3 +2,4 @@ node_modules
 .DS_Store
 .env
 client/.env
+client/public/uploads/userPhoto*

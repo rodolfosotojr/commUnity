@@ -30,6 +30,11 @@ class App extends Component {
       globalUsername: username
     })
   }
+  globalUpdateVolunteer = (username) => {
+    this.setState({
+      globalUsername: username
+    })
+  }
 
   render() {
     return (
@@ -40,19 +45,17 @@ class App extends Component {
             <Route exact path="/" component={LoginPage} />
             <Route exact path="/Home" component={Home} />
             <Route exact path="/SignUp" component={SignUp} />
-            <Route exact path="/Connect" component={Connect} />
+            <Route exact path="/Connect" render={
+              (props) => <Connect globalUsername={this.state.globalUsername} globalUpdateVolunteer={this.state.globalUpdateVolunteer} {...props} />
+            } />
             <Route exact path="/Services" component={Services} />
-            {/* <Route exact path="/Register" component={Register} /> */}
-            <Route exact path="/Register"
-              render={(props) => <Register globalUpdateUsername={this.globalUpdateUsername} {...props} />}
-            />
-
-            {/* <Route exact path="/UploadImage" component={UploadImage} /> */}
-            <Route
-              exact path="/UploadImage"
-              render={(props) => <UploadImage globalUsername={this.state.globalUsername} {...props} />}
-            />
-            <Route exact path="/Chat" component={ChatPage} />
+            <Route exact path="/Register" render={
+              (props) => <Register globalUpdateUsername={this.globalUpdateUsername} {...props} />
+            } />
+            <Route exact path="/UploadImage" render={
+              (props) => <UploadImage globalUsername={this.state.globalUsername} {...props} />
+            } />
+            <Route exact path="/Chat" render={(props) => <ChatPage globalUsername={this.state.globalUsername} {...props} />} />
           </Switch>
           <Navbar />
         </div>

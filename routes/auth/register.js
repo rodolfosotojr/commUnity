@@ -14,7 +14,7 @@ router.route("/").post(function (req, res) {
   const password = hashedPW;
   const userType = req.body.userType;
 
-  console.log(req.body);
+  console.log(username, userType);
   var hashedPW = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10), null)
   db.User.findOne({
     where: {
@@ -57,30 +57,36 @@ router.route("/").post(function (req, res) {
           }
         })
           .then((response) => {
-            console.log('User created successfully\n', response.data);
+            console.log('User created successfully\n', response);
             // result.json(response)
-          }).catch((err) => {
+          })
+          .then(() => {
+            if (userType === 'volunteer') {
+              chatkit.createRoom({
+                creatorId: username,
+                name: username,
+              })
+                .then((results) => {
+                  console.log('Room created successfully');
+                  db.User.update({
+                    roomId: results.id
+                  },
+                    {
+                      where: {
+                        username
+                      }
+                    })
+                }).catch((err) => {
+                  console.log("Room creation error!!!!!!!!!!!!!!!!\n", err);
+                });
+            }
+          })
+          .catch((err) => {
             console.log(err);
           });
-        if (userType === 'volunteer') {
-          chatkit.createRoom({
-            creatorId: username,
-            name: username,
-          })
-            .then((results) => {
-              console.log('Room created successfully');
-              db.User.update({
-                roomId: results.id
-              },
-              {
-                where: {
-                  username
-                }
-              })
-            }).catch((err) => {
-              console.log(err);
-            });
-        }
+
+
+
       })
       .then(() => res.redirect("/"))
   }
