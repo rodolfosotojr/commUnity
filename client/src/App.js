@@ -30,9 +30,14 @@ class App extends Component {
       globalUsername: username
     })
   }
-  globalUpdateVolunteer = (username) => {
+  globalRoomId = (room) => {
     this.setState({
-      globalUsername: username
+      globalRoomId: room
+    })
+  }
+  globalUpdateVolunteer = (volunteer) => {
+    this.setState({
+      globalVolunteer: volunteer
     })
   }
 
@@ -43,10 +48,14 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={LoginPage} />
-            <Route exact path="/Home" component={Home} />
+
+            <Route exact path="/Home" render={
+              (props) => <Home globalUsername={this.state.globalUsername} globalUpdateUsername={this.globalUpdateUsername} {...props} />
+            } />
             <Route exact path="/SignUp" component={SignUp} />
+
             <Route exact path="/Connect" render={
-              (props) => <Connect globalUsername={this.state.globalUsername} globalUpdateVolunteer={this.state.globalUpdateVolunteer} {...props} />
+              (props) => <Connect globalUsername={this.state.globalUsername} globalRoomId={this.globalRoomId} {...props} />
             } />
             <Route exact path="/Services" component={Services} />
             <Route exact path="/Register" render={

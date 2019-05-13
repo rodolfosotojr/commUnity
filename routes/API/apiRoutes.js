@@ -18,7 +18,11 @@ const upload = multer({ storage: storage }).single('userPhoto');
 module.exports = function (app) {
     //GET route for getting all of my user information
     app.get("/api/posts", function (req, res) {
-        db.User.findAll({})
+        db.User.findAll({
+            where: {
+                userType: "volunteer"
+            }
+        })
             .then(function (dbUser) {
                 res.json(dbUser);
             });
@@ -30,18 +34,6 @@ module.exports = function (app) {
         req.logOut();
         res.redirect("/");
     });
-
-    // ------------MULTER ROUTE------------
-    // app.post('/api/upload', function (req, res) {
-    //     console.log(req.body.formData)
-    //     upload(req.body.formData, res, function (err) {
-    //         if (err) {
-    //             return res.end("Error uploading file.");
-    //         }
-    //         console.log(res)
-    //         res.end("File is uploaded");
-    //     });
-    // });
 
     app.post('/api/upload', function (req, res) {
         // console.log(req.body.username)
