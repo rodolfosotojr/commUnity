@@ -14,7 +14,7 @@ router.route("/").post(function (req, res) {
   const password = hashedPW;
   const userType = req.body.userType;
 
-  console.log(username, userType);
+  // console.log(username, userType);
   var hashedPW = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10), null)
   db.User.findOne({
     where: {
@@ -52,12 +52,14 @@ router.route("/").post(function (req, res) {
         chatkit.createUser({
           id: username,
           name,
+          // avatarURL: 'http://localhost:3000/uploads/imgDefault.jpg', // FOR DEV
+          // avatarURL: 'https://community-chicago.herokuapp.com//uploads/imgDefault.jpg' // FOR PRODUCTION
           customData: {
             userType
           }
         })
           .then((response) => {
-            console.log('User created successfully\n', response);
+            console.log('CHAT User created successfully\n', response);
             // result.json(response)
           })
           .then(() => {
@@ -67,7 +69,7 @@ router.route("/").post(function (req, res) {
                 name: username,
               })
                 .then((results) => {
-                  console.log('Room created successfully');
+                  // console.log('Room created successfully');
                   db.User.update({
                     roomId: results.id
                   },

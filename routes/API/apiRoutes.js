@@ -47,17 +47,35 @@ module.exports = function (app) {
                 console.log("USERNAME***************\n", req.body.username)
                 console.log("UPLOAD***************\n", req.file.filename)
                 //---DB UPDATE USER---
-    
+
                 //---DB UPDATE USER---
                 res.end("File is uploaded");
                 db.User.update({
                     profileImg: req.file.filename
-                  },
-                  {
-                    where: {
-                      username: req.body.username
-                    }
-                  })
+                },
+                    {
+                        where: {
+                            username: req.body.username
+                        }
+                    })
+                    // TODO ============= Update ChatKit ============
+                    // .then(() => {
+                    //     const chatkit = new Chatkit.default({
+                    //         instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+                    //         key: process.env.REACT_APP_SECRET_KEY,
+                    //     });
+
+                    //     chatkit.updateUser({
+                    //         id: username,
+                    //         // avatarURL: 'http://localhost:3000/uploads/' + profileImg // FOR DEV
+                    //         // avatarURL: 'https://community-chicago.herokuapp.com//uploads/' + profileImg // FOR PRODUCTION
+                    //     })
+                    //         .then(() => {
+                    //             console.log('User updated successfully');
+                    //         }).catch((err) => {
+                    //             console.log(err);
+                    //         });
+                    // })
             }
 
 
