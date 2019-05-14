@@ -3,6 +3,7 @@ const passport = require("../../config/passport");
 const multer = require('multer');
 const path = require('path');
 const bodyParser = require('body-parser');
+const Chatkit = require('@pusher/chatkit-server');
 
 // SET STORAGE
 const storage = multer.diskStorage({
@@ -50,8 +51,12 @@ module.exports = function (app) {
 
                 //---DB UPDATE USER---
                 res.end("File is uploaded");
+                const profileImg = process.env.NODE_ENV === 'production'
+                ? 'https://community-chicago.herokuapp.com//uploads/' + req.file.filename
+                : 'http://localhost:3000/uploads/' + req.file.filename;
+
                 db.User.update({
-                    profileImg: req.file.filename
+                    profileImg
                 },
                     {
                         where: {
@@ -65,10 +70,13 @@ module.exports = function (app) {
                             key: process.env.REACT_APP_SECRET_KEY,
                         });
 
+                        const avatarURL = process.env.NODE_ENV === 'production'
+                            ? 'https://community-chicago.herokuapp.com//uploads/' + req.file.filename
+                            : 'http://localhost:3000/uploads/' + req.file.filename;
+
                         chatkit.updateUser({
-                            id: username,
-                            avatarURL: 'http://localhost:3000/uploads/' + profileImg // FOR DEV
-                            // avatarURL: 'https://community-chicago.herokuapp.com//uploads/' + profileImg // FOR PRODUCTION
+                            id: req.body.username,
+                            avatarURL
                         })
                             .then(() => {
                                 console.log('User updated successfully');
