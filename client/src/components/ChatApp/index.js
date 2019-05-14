@@ -41,7 +41,7 @@ export class ChatApp extends Component {
         }
       })
       .then(() => {
-        
+
         const userId = this.state.username
         this.mountChatKit(userId);
       })
@@ -150,10 +150,12 @@ export class ChatApp extends Component {
 
   render() {
     return (
-      <div className="row justify-content-center">
-        <div className="col-lg-6">
+      <div className="chat-bg">
+        {/* <div className="row justify-content-center chat-bg"> */}
+        <div className="d-flex justify-content-center ">
+          <div className="col-lg-6">
 
-          <div className="col-md-12 bg-primary rounded py-2">
+            <div className="col-md-12 bg-primary py-2">
               {/* <NewRoomForm createRoom={this.createRoom} />
 
               <RoomList
@@ -161,25 +163,26 @@ export class ChatApp extends Component {
                 rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
                 roomId={this.state.roomId}
               /> */}
-              <h1>Room {this.state.roomId} </h1>
+              Room {this.state.roomId}
             </div>
 
-          <div className="col-md-12 message-window">
+            <div className="col-md-12 message-window">
 
-            <MessageList
-              firstname={this.state.firstname}
-              lastname={this.state.lastname}
-              user={this.state.username}
-              currentUser={this.state.currentUser}
-              roomId={this.state.roomId}
-              messages={this.state.messages} />
+              <MessageList
+                firstname={this.state.firstname}
+                lastname={this.state.lastname}
+                user={this.state.username}
+                currentUser={this.state.currentUser}
+                roomId={this.state.roomId}
+                messages={this.state.messages} />
 
-            <SendMessageForm
-              disabled={!this.state.roomId}
-              sendMessage={this.sendMessage} />
+              <SendMessageForm
+                disabled={!this.state.roomId}
+                sendMessage={this.sendMessage} />
+
+            </div>
 
           </div>
-
         </div>
       </div >
     )
