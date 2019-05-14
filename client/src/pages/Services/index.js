@@ -15,7 +15,7 @@ class Services extends React.Component {
     state = {
         resources: [],
         department: "",
-        categories: [{ name: "Legal", display: true, icon: "fas fa-gavel fa-4x" }, { name: "Health", display: true, icon: "fas fa-user-md fa-4x"  }, { name: "Education", display: true, icon:"fas fa-graduation-cap fa-4x" }, { name: "Jobs", display: true, icon:"far fa-building fa-4x" }, { name: "English", display: true, icon:"fas fa-book-reader fa-4x" }, { name: "Community", display: true, icon:"fas fa-users fa-4x" }],
+        categories: [{ name: "Legal", display: true, icon: "fas fa-gavel fa-4x" }, { name: "Healthcare", display: true, icon: "fas fa-user-md fa-4x"  }, { name: "Education", display: true, icon:"fas fa-graduation-cap fa-4x" }, { name: "Jobs", display: true, icon:"far fa-building fa-4x" }, { name: "Language", display: true, icon:"fas fa-book-reader fa-4x" }, { name: "Community", display: true, icon:"fas fa-users fa-4x" }],
         renderButton: false
     }
 
@@ -36,7 +36,7 @@ class Services extends React.Component {
                     return category
                 })
                 this.setState({ resources: response.data, department: name, categories: newArray, renderButton: true })
-
+                console.log(name)
                 console.log(response.data);
 
             });
