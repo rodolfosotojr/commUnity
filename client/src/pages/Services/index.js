@@ -95,7 +95,7 @@ class Services extends React.Component {
                                             <div className="flip-card">
                                                 <div className="flip-card-inner">
                                                     <div className="flip-card-front">
-                                                    <p><img className="img-fluid" src={placeholder} alt="card image" /></p>
+                                                    <p><img className="placeHolderImg img-fluid" src={placeholder} alt="card image" /></p>
                                                         <h1 className="cardTitle">{resource.org_name}</h1>
                                                         <p>{resource.org_website}</p>
                                                         <p>{resource.org_contact}</p>
