@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ChatPage from "./pages/ChatPage";
+import ChatApp from "./components/ChatApp";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import SignUp from "./pages/SignUp";
@@ -13,16 +13,14 @@ import Container from "./components/Container";
 import UploadImage from "./pages/UploadImage";
 // import Footer from "./components/Footer";
 
-
-
-
 class App extends Component {
   // GLOBAL STATE
   state = {
-    globalRoomId: null,
+    globalRoomId: "",
     globalUsername: '',
     globalVolunteerRoomId: null,
-    globalVolunteer: ''
+    globalVolunteer: '',
+    globalUserType: 'user'
   }
 
   globalUpdateUsername = (username) => {
@@ -64,7 +62,8 @@ class App extends Component {
             <Route exact path="/UploadImage" render={
               (props) => <UploadImage globalUsername={this.state.globalUsername} {...props} />
             } />
-            <Route exact path="/Chat" render={(props) => <ChatPage globalUsername={this.state.globalUsername} {...props} />} />
+            <Route exact path="/Chat" render={
+              (props) => <ChatApp globalUsername={this.state.globalUsername} globalRoomId={this.state.globalRoomId} {...props} />} />
           </Switch>
           <Navbar />
         </div>
