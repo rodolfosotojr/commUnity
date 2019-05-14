@@ -51,6 +51,7 @@ export class ChatApp extends Component {
   } // end componentDidMount()
 
   mountChatKit = (id) => {
+    
     const instanceLocator = process.env.REACT_APP_INSTANCE_LOCATOR;
     const tokenUrl = process.env.REACT_APP_TOKEN_PROVIDER_URL;
 
@@ -63,37 +64,59 @@ export class ChatApp extends Component {
     }) // end chatManager
 
     // handles all the connections
+
+    // TODO 
+    // if (this.state.userType === "user") {
+    //   // let room = response.data.find(item => item.name === this.state.username);
+    //   this.setState({ roomId: this.props.globalRoomId })
+    // }
+
     chatManager.connect()
       .then(currentUser => {
         this.currentUser = currentUser; // hook itself
         this.setState({ currentUser: this.currentUser });
         // this.getRooms();
         this.setState({ messages: [] }) // clear chats
-
-        // find room id by volunteer name
-        API.getChatRooms()
-          .then(response => {
-            if (this.state.userType === "user") {
-              // let room = response.data.find(item => item.name === this.state.username);
-              this.setState({ roomId: this.props.globalRoomId })
+      })
+      // ========= Subscribe to Room =========
+      .then(() => {
+        // .subscribeToRoomMultipart() has .parts[] array instead of .text property
+        this.currentUser.subscribeToRoom({
+          roomId: this.state.roomId,
+          hooks: {
+            onMessage: message => {
+              this.setState({
+                // Multipart version: parts[0].payload.content
+                messages: [...this.state.messages, message]
+              })
             }
-          }).then(() => {
-            // .subscribeToRoomMultipart() has .parts[] array instead of .text property
-            this.currentUser.subscribeToRoom({
-              roomId: this.state.roomId,
-              hooks: {
-                onMessage: message => {
-                  this.setState({
-                    // Multipart version: parts[0].payload.content
-                    messages: [...this.state.messages, message]
-                  });
-                  console.log("==============MESSAGES=============\n",this.state.messages)
-                }
-              }
-            })
-              .then(room => { this.setState({ roomId: this.state.roomId }); this.getRooms(); })
-              .catch(err => console.log('Error subscribing to room! ', err))
+          }
+        })
+          .then(room => {
+            this.setState({ roomId: this.state.roomId });
+            this.getRooms();
           })
+          .catch(err => console.log('Error subscribing to room! ', err))
+      })
+      .then(() => {
+        API.getRoomInfo(this.props.glo)
+        .then(res => {
+          if (res.status === 200) {
+            this.setState({
+              loggedIn: true,
+              firstname: res.data.firstname,
+              lastname: res.data.lastname,
+              username: res.data.username,
+              userType: res.data.userType,
+              roomId: res.data.roomId
+            });
+          }
+        })
+        .then(() => {
+  
+          const userId = this.state.username
+          this.mountChatKit(userId);
+        })
       })
       .catch(err => console.log("ChatManager Connection Error: ", err));
   }
