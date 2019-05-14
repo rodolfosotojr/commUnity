@@ -11,6 +11,7 @@ import LoginPage from "./pages/LoginPage"
 import Register from "./pages/Register";
 import Container from "./components/Container";
 import UploadImage from "./pages/UploadImage";
+import Volunteer from "./pages/Volunteer/Volunteer"
 // import Footer from "./components/Footer";
 
 class App extends Component {
@@ -56,6 +57,7 @@ class App extends Component {
               (props) => <Connect globalUsername={this.state.globalUsername} globalRoomId={this.globalRoomId} {...props} />
             } />
             <Route exact path="/Services" component={Services} />
+            <Route exact path="/Volunteer" component={Volunteer} />
             <Route exact path="/Register" render={
               (props) => <Register globalUpdateUsername={this.globalUpdateUsername} {...props} />
             } />
