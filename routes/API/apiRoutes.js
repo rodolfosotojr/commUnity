@@ -29,6 +29,19 @@ module.exports = function (app) {
             });
     });
 
+     //Get route for getting all the resources information
+     app.post("/api/resources", function (req, res) {
+        db.Resources.findAll({
+            where: {
+                resource_department: req.body.resource_department
+            }
+        })
+            .then(dbres => {
+                res.json(dbres)
+            });
+    });
+
+
     // LOGOUT ROUTE
     // Logout using .logout() method then redirect to login page.
     app.get("/api/logout", function (req, res) {

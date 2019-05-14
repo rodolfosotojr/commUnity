@@ -15,7 +15,8 @@ import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 class Home extends Component {
     state = {
         loggedIn: false,
-        username: undefined
+        username: undefined,
+        userType: ""
     }
 
     componentDidMount() {
@@ -26,11 +27,18 @@ class Home extends Component {
                 this.setState({
                     loggedIn: true,
                     username: res.data.username,
+                    userType: res.data.userType
                 });
                 this.props.globalUpdateUsername(this.state.username);
             } 
 
-        }).catch(err =>{
+        })
+        .then(() => {
+            if(this.state.userType==="volunteer"){
+                window.location.assign("/Volunteer")
+            }
+        })
+        .catch(err =>{
             console.log(err)
             this.setState({
                 loggedIn:false
