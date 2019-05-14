@@ -86,7 +86,8 @@ export class ChatApp extends Component {
                   this.setState({
                     // Multipart version: parts[0].payload.content
                     messages: [...this.state.messages, message]
-                  })
+                  });
+                  console.log("==============MESSAGES=============\n",this.state.messages)
                 }
               }
             })

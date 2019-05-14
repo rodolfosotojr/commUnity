@@ -53,7 +53,7 @@ router.route("/").post(function (req, res) {
           id: username,
           name,
           // avatarURL: 'http://localhost:3000/uploads/imgDefault.jpg', // FOR DEV
-          // avatarURL: 'https://community-chicago.herokuapp.com//uploads/imgDefault.jpg' // FOR PRODUCTION
+          avatarURL: 'https://community-chicago.herokuapp.com//uploads/imgDefault.jpg', // FOR PRODUCTION
           customData: {
             userType
           }
