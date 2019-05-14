@@ -31,6 +31,20 @@ module.exports = function (app) {
         res.redirect("/");
     });
 
+
+//Route for getting services
+app.post("/api/resources", function (req, res) {
+    // console.log(req.body)
+    db.Resources.findAll({
+        where: {
+            resource_department: req.body.resource_department
+        }
+    })
+        .then(dbres => {
+            res.json(dbres)
+        });
+});
+
     // ------------MULTER ROUTE------------
     // app.post('/api/upload', function (req, res) {
     //     console.log(req.body.formData)
@@ -72,16 +86,5 @@ module.exports = function (app) {
         });
     });
 
-    //Get route for getting all the resources information
-    app.post("/api/resources", function (req, res) {
-        db.Resources.findAll({
-            where: {
-                resource_department: req.body.resource_department
-            }
-        })
-            .then(dbres => {
-                res.json(dbres)
-            });
-    });
-
+   
 } // END EXPORTS
