@@ -26,16 +26,16 @@ class SendMessageForm extends Component {
     render() {
         return (
             <form onSubmit={this.msgSubmit} className="send-message-form" >
-                <div className="input-group">
+                <div className="input-group py-3">
                     <input
-                        className="form-control"
+                        className="form-control bg-light"
                         onChange={this.msgChange}
                         value={this.state.msgInput}
                         placeholder="Enter message"
                         type="text"
                     />
                     <div className="input-group-append">
-                        <button className="btn btn-primary" id="create-room-btn" type="submit">SEND</button>
+                        <button className="btn btn-primary" id="create-room-btn" type="submit">Send</button>
                     </div>
                 </div>
             </form>
