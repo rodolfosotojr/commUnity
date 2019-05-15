@@ -1,30 +1,47 @@
 import React, { Component } from 'react';
 import MapGL, {Marker, Popup, NavigationControl, FullscreenControl} from 'react-map-gl';
 import MapMarker from '../MapMarker';
-import './style.css'
+import MapMarkerInfo from '../MapMarkerInfo';
+import axios from 'axios';
 
-const TOKEN = "pk.eyJ1IjoiY3JvZHJpIiwiYSI6ImNqdm42ZmNzYjFlNmczeXBiZW01MmQydXAifQ.d5FzYKJaPQJisDkKwe6RgQ"; 
+const TOKEN = process.env.REACT_APP_MAP_BOX_TOKEN;
 
+const fullScreenStyle = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  padding: '10px'
+};
 
-const data = [
-    {
-        lat: 41.879160,
-        lng: -87.626230
-
-    }
-]
+ const navigationControlsStyle = {
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  padding: '10px'
+};
 class MapBox extends Component {
     state = {
+            data: [],
             viewport: {
                 latitude: 41.879160,
                 longitude: -87.626230,
-                zoom: 16.5,
-                bearing: 0,
-                pitch: 0
+                zoom: 12.5,
             },
             popupInfo: null
         }
 
+    getData = () => {
+      axios.get(`api/data/resources/${this.props.tableName}`).then((res)=>{
+        console.log(res)
+        this.setState( {data: res.data} )
+      }).catch(function(err){
+        console.log(err)
+    })
+
+    }
+    componentDidMount = () =>{
+      this.getData()
+    }
     updateViewport = (viewport) => {
         this.setState({viewport});
     }
@@ -35,12 +52,12 @@ class MapBox extends Component {
         return (
           <Marker 
             key={`marker-${index}`}
-            longitude={marker.lng}
-            latitude={marker.lat} 
+            longitude={marker.org_lng}
+            latitude={marker.org_lat} 
             anchor={"bottom"}
             
             >
-          <MapMarker />
+          <MapMarker onClick={() => {this.setState({popupInfo:marker})}}/>
 
           </Marker>
         );
@@ -52,42 +69,34 @@ class MapBox extends Component {
         return popupInfo && (
           <Popup tipSize={5}
             anchor="top"
-            longitude={popupInfo.longitude}
-            latitude={popupInfo.latitude}
+            longitude={popupInfo.org_lng}
+            latitude={popupInfo.org_lat}
             closeOnClick={false}
             onClose={() => this.setState({popupInfo: null})} >
-            <h1 style={{height:"40px", width:"40px"}}> Some info </h1>
+            <MapMarkerInfo info={this.state.popupInfo}/>
           </Popup>
         );
       }
     render() {
-
         const {viewport} = this.state;
-    
         return (
-            <div style={{height:"100vh", width:"100%"}}>
-          <MapGL
-            {...viewport}
-            width="100%"
-            height="100%"
-            mapStyle="mapbox://styles/mapbox/dark-v9"
-            onViewportChange={this.updateViewport}
-            mapboxApiAccessToken={TOKEN} >
-
-            { data.map(this.renderMarker) }
-
-            {this.renderPopup()}
-
-            <div className="fullscreenControlStyle fullscreen">
-                <FullscreenControl />
-            </div> 
-            <div className="nav navStyle">
-                <NavigationControl onViewportChange={this.updateViewport} />
-            </div>
-        */}
-            {/* <ControlPanel containerComponent={this.props.containerComponent} /> */}
-
-            </MapGL>
+          <div style={{height:`${this.props.height}`, width:`${this.props.width}`}}>
+            <MapGL
+                {...viewport}
+                width="100%"
+                height="100%"
+                mapStyle="mapbox://styles/mapbox/dark-v9"
+                onViewportChange={this.updateViewport}
+                mapboxApiAccessToken={TOKEN} >
+                { this.state.data.map(this.renderMarker) }
+                {this.renderPopup()}
+                <div className="fullscreen" style={fullScreenStyle}>
+                    <FullscreenControl />
+                </div> 
+                <div className="nav" style={navigationControlsStyle}>
+                    <NavigationControl onViewportChange={this.updateViewport} />
+                </div>
+              </MapGL>
           </div>
         );
     }

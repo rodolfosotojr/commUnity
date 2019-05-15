@@ -8,17 +8,20 @@ C20.1,15.8,20.2,15.8,20.2,15.7z`;
 class MapMarker extends Component{
     
     render(){
+        const {size = 20, onClick} = this.props;
+
         return (
             <svg 
-            height={40}
-            viewBox="0 0 24 24"
-            style={
-                {
-                    cursor: 'pointer',
-                    fill: '#d00',
-                }}
-                >
-            <path d={ICON} />        
+                height={size}
+                viewBox="0 0 24 24"
+                style={
+                    {
+                        cursor: 'pointer',
+                        fill: '#d00',
+                    }}
+                onClick={onClick}
+                    >
+                <path d={ICON} />        
             </svg>
         )
     }

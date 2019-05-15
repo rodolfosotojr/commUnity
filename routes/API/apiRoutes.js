@@ -27,6 +27,16 @@ module.exports = function (app) {
                 res.json(dbUser);
             });
     });
+    //Get resource data
+    app.get("/api/data/resources/:tablename", function(req, res){
+        db.Resources.findAll({
+            where:{
+                resource_department: req.params.tablename
+            }
+        }).then(function(dbResouces){
+            res.json(dbResouces)
+        })
+    })
 
     // LOGOUT ROUTE
     // Logout using .logout() method then redirect to login page.
