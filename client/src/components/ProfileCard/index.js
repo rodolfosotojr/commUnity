@@ -32,7 +32,7 @@ class ProfileCard extends Component {
         return (
             <ProfileWrapper>
                 <div className="card" style={cardStyle}>
-                    <img src={`/uploads/${this.props.profileImg}`} className="card-img-top" style={pictureStyle} alt="Profile Image" />
+                    <img src={this.props.profileImg} className="card-img-top" style={pictureStyle} alt="Profile Image" />
                     <div className="card-body">
                         <h1 className="card-title">{this.props.firstName} {this.props.lastName}</h1>
                         <h3 className="card-title">{this.props.city}</h3>
