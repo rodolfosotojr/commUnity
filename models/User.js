@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         profileImg: {
             type: DataTypes.STRING,
-			defaultValue: 'imgDefault.jpg',
+			defaultValue: 'https://community-chicago.herokuapp.com/uploads/imgDefault.jpg',
         }
     });
 

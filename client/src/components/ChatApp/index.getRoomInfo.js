@@ -19,6 +19,7 @@ export class ChatApp extends Component {
     user: '',
     username: undefined,
     email: '',
+    roomId
   }
 
   componentDidMount() {
@@ -70,13 +71,23 @@ export class ChatApp extends Component {
         // this.getRooms();
         this.setState({ messages: [] }) // clear chats
 
-        // find room id by volunteer name
-        API.getChatRooms()
+        // get Room Info by Room ID
+
+        if (this.props.globalUserType === "user") {
+          this.setState({
+            roomId: this.props.globalRoomId
+          })
+        } else {
+            this.setState({
+              roomId: this.props.globalVolunteerRoomId
+            })
+        }
+
+        API.getRoomInfo(this.state.roomId)
           .then(response => {
-            if (this.state.userType === "user") {
-              // let room = response.data.find(item => item.name === this.state.username);
-              this.setState({ roomId: this.props.globalRoomId })
-            }
+            // get Users
+            const users = response.member_user_ids;
+            
           }).then(() => {
             // .subscribeToRoomMultipart() has .parts[] array instead of .text property
             this.currentUser.subscribeToRoom({
@@ -86,8 +97,7 @@ export class ChatApp extends Component {
                   this.setState({
                     // Multipart version: parts[0].payload.content
                     messages: [...this.state.messages, message]
-                  });
-                  console.log("==============MESSAGES=============\n",this.state.messages)
+                  })
                 }
               }
             })
