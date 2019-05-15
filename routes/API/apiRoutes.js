@@ -65,7 +65,7 @@ module.exports = function (app) {
                 //---DB UPDATE USER---
                 res.end("File is uploaded");
                 const profileImg = process.env.NODE_ENV === 'production'
-                ? 'https://community-chicago.herokuapp.com//uploads/' + req.file.filename
+                ? 'https://community-chicago.herokuapp.com/uploads/' + req.file.filename
                 : 'http://localhost:3000/uploads/' + req.file.filename;
 
                 db.User.update({
