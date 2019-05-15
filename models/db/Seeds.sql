@@ -12,7 +12,7 @@ VALUES ("Education", "Centro Romero", "Determined to bridge the gap between immi
 
  INSERT INTO Resources (resource_department, org_name, org_description, org_location, org_website, org_contact)
 VALUES ("Education", "The Chatholic Charities", "For more than 40 years, Catholic Charities has helped refugees from around the world to call Chicago home. Each year, we resettle around 200 refugees who have been forced to flee their homelands due to war, terror, and persecution.","721 N. LaSalle",
- "http://www.catholiccharities.net/GetHelp/OurServices/RefugeeResettlementServices.aspx", "312-655-7700");
+ "http://www.catholiccharities.net", "312-655-7700");
 ------------------------ Healthcare ---------------------------
 INSERT INTO Resources
     (resource_department, org_name, org_description, org_location, org_website, org_contact)
@@ -37,7 +37,7 @@ VALUES
 Chicago, Illinois 60604", "www.icirr.org", "312-332-7360");
 
 INSERT INTO Resources (resource_department, org_name, org_description, org_location, org_website, org_contact)
-VALUES ("Language", "World Relief Chicago", "World Relief Chicago assists refugees and immigrants navigate American culture and organization. By contributing help to find employment, apply for government aid or assistance, navigate the American immigration system, or learn the English language, World Relief Chicago is dedicated to offering a comprehensive resettlement program for immigrants and refugees from all over the world.", "3507 W Lawrence Chicago, Illinois 60625",
+VALUES ("Language", "World Relief Chicago", "World Relief Chicago assists refugees and immigrants navigate American culture and organization. By contributing help to find employment, apply for government aid or assistance, navigate the American immigration system, or learn the English language.", "3507 W Lawrence Chicago, Illinois 60625",
  "https://worldreliefchicago.org/", "773.583.9191");
 
 INSERT INTO Resources (resource_department, org_name, org_description, org_location, org_website, org_contact)
@@ -50,7 +50,7 @@ VALUES ("Language", "GirlFoward", "Working in both Chicago and Austin, GirlForwa
 
   INSERT INTO Resources (resource_department, org_name, org_description, org_location, org_website, org_contact)
 VALUES ("Language", "The Chatholic Charities", "For more than 40 years, Catholic Charities has helped refugees from around the world to call Chicago home. Each year, we resettle around 200 refugees who have been forced to flee their homelands due to war, terror, and persecution.","721 N. LaSalle",
- "http://www.catholiccharities.net/GetHelp/OurServices/RefugeeResettlementServices.aspx", "312-655-7700");
+ "http://www.catholiccharities.net", "312-655-7700");
 
 ------------------------ Legal ---------------------------
 
@@ -61,7 +61,7 @@ VALUES
 Chicago, Illinois 60604", "www.icirr.org", "312-332-7360");
 
 INSERT INTO Resources (resource_department, org_name, org_description, org_location, org_website, org_contact)
-VALUES ("Legal", "World Relief Chicago", "World Relief Chicago assists refugees and immigrants navigate American culture and organization. By contributing help to find employment, apply for government aid or assistance, navigate the American immigration system, or learn the English language, World Relief Chicago is dedicated to offering a comprehensive resettlement program for immigrants and refugees from all over the world.", "3507 W Lawrence Chicago, Illinois 60625", 
+VALUES ("Legal", "World Relief Chicago", "World Relief Chicago assists refugees and immigrants navigate American culture and organization. By contributing help to find employment, apply for government aid or assistance, navigate the American immigration system, or learn the English language.", "3507 W Lawrence Chicago, Illinois 60625", 
 "https://worldreliefchicago.org/", "773.583.9191");
 
 INSERT INTO Resources (resource_department, org_name, org_description, org_location, org_website, org_contact)
@@ -74,7 +74,7 @@ VALUES ("Legal", "Centro Romero", "Determined to bridge the gap between immigran
 
  INSERT INTO Resources (resource_department, org_name, org_description, org_location, org_website, org_contact)
 VALUES ("Legal", "The Chatholic Charities", "For more than 40 years, Catholic Charities has helped refugees from around the world to call Chicago home. Each year, we resettle around 200 refugees who have been forced to flee their homelands due to war, terror, and persecution.","721 N. LaSalle",
- "http://www.catholiccharities.net/GetHelp/OurServices/RefugeeResettlementServices.aspx", "312-655-7700");
+ "http://www.catholiccharities.net", "312-655-7700");
 
 
 
@@ -82,7 +82,7 @@ VALUES ("Legal", "The Chatholic Charities", "For more than 40 years, Catholic Ch
 INSERT INTO Resources
     (resource_department, org_name, org_description, org_location, org_website, org_contact)
 VALUES
-    ("Jobs", "World Relief Chicago", "World Relief Chicago assists refugees and immigrants navigate American culture and organization. By contributing help to find employment, apply for government aid or assistance, navigate the American immigration system, or learn the English language, World Relief Chicago is dedicated to offering a comprehensive resettlement program for immigrants and refugees from all over the world.", "3507 W Lawrence Chicago, Illinois 60625",
+    ("Jobs", "World Relief Chicago", "World Relief Chicago assists refugees and immigrants navigate American culture and organization. By contributing help to find employment, apply for government aid or assistance, navigate the American immigration system, or learn the English language.", "3507 W Lawrence Chicago, Illinois 60625",
         "https://worldreliefchicago.org/", "773.583.9191");
 
 INSERT INTO Resources (resource_department, org_name, org_description, org_location, org_website, org_contact)
@@ -95,7 +95,7 @@ VALUES ("Jobs", "RefugeeOne", "Working with refugees upon arrival at the airport
 
   INSERT INTO Resources (resource_department, org_name, org_description, org_location, org_website, org_contact)
 VALUES ("Job", "The Chatholic Charities", "For more than 40 years, Catholic Charities has helped refugees from around the world to call Chicago home. Each year, we resettle around 200 refugees who have been forced to flee their homelands due to war, terror, and persecution.","721 N. LaSalle",
- "http://www.catholiccharities.net/GetHelp/OurServices/RefugeeResettlementServices.aspx", "312-655-7700");
+ "http://www.catholiccharities.net", "312-655-7700");
 
 
 ------------------------ Community ---------------------------
@@ -107,7 +107,7 @@ VALUES
 Chicago, Illinois 60604", "www.icirr.org", "312-332-7360");
 
 INSERT INTO Resources (resource_department, org_name, org_description, org_location, org_website, org_contact)
-VALUES ("Community", "World Relief Chicago", "World Relief Chicago assists refugees and immigrants navigate American culture and organization. By contributing help to find employment, apply for government aid or assistance, navigate the American immigration system, or learn the English language, World Relief Chicago is dedicated to offering a comprehensive resettlement program for immigrants and refugees from all over the world.", "3507 W Lawrence Chicago, Illinois 60625",
+VALUES ("Community", "World Relief Chicago", "World Relief Chicago assists refugees and immigrants navigate American culture and organization. By contributing help to find employment, apply for government aid or assistance, navigate the American immigration system, or learn the English language.", "3507 W Lawrence Chicago, Illinois 60625",
  "https://worldreliefchicago.org/", "773.583.9191");
 
  INSERT INTO Resources (resource_department, org_name, org_description, org_location, org_website, org_contact)
@@ -128,7 +128,7 @@ VALUES ("Community", "Centro Romero", "Determined to bridge the gap between immi
 
   INSERT INTO Resources (resource_department, org_name, org_description, org_location, org_website, org_contact)
 VALUES ("Community", "The Chatholic Charities", "For more than 40 years, Catholic Charities has helped refugees from around the world to call Chicago home. Each year, we resettle around 200 refugees who have been forced to flee their homelands due to war, terror, and persecution.","721 N. LaSalle",
- "http://www.catholiccharities.net/GetHelp/OurServices/RefugeeResettlementServices.aspx", "312-655-7700");
+ "http://www.catholiccharities.net", "312-655-7700");
 
 
 

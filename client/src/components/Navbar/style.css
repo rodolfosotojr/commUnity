@@ -1,8 +1,15 @@
 .navbar{
     display: flex;
     justify-content: center;
-    background-color:rgba(209, 206, 206, 0.658);
-    color: rgb(43, 43, 43);
+    background-color:rgba(16, 23, 29, 0.89);
+    color: white;
     z-index: 3;
 }
 
+.nav-link{
+    color:rgb(151, 150, 150)!important;
+}
+
+.nav-link-active {
+    color:white!important;
+}

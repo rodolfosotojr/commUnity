@@ -15,7 +15,7 @@ class Services extends React.Component {
     state = {
         resources: [],
         department: "",
-        categories: [{ name: "Legal", display: true, icon: "fas fa-gavel fa-4x" }, { name: "Healthcare", display: true, icon: "fas fa-user-md fa-4x"  }, { name: "Education", display: true, icon:"fas fa-graduation-cap fa-4x" }, { name: "Jobs", display: true, icon:"far fa-building fa-4x" }, { name: "Language", display: true, icon:"fas fa-book-reader fa-4x" }, { name: "Community", display: true, icon:"fas fa-users fa-4x" }],
+        categories: [{ name: "Legal", display: true, icon: "fas fa-gavel fa-2x" }, { name: "Healthcare", display: true, icon: "fas fa-user-md fa-2x"  }, { name: "Education", display: true, icon:"fas fa-graduation-cap fa-2x" }, { name: "Jobs", display: true, icon:"far fa-building fa-2x" }, { name: "Language", display: true, icon:"fas fa-book-reader fa-2x" }, { name: "Community", display: true, icon:"fas fa-users fa-2x" }],
         renderButton: false
     }
 
@@ -61,26 +61,26 @@ class Services extends React.Component {
     render() {
         return (
             <div className="servicesComponent">
-                <div className="overlay">
+                
                     <div className="container pt-3">
                         <div className="row justify-content-center">
                             <Col size="md-12 text-center">
-                                <h1>Resources</h1>
+                                <h1 className="resourcesTitle">Resources</h1>
                             </Col>
                             
                         {this.state.renderButton ? 
-                            <button className="backBtn" onClick={this.reset}> Return </button>
+                            <button className="backBtn glow-button" onClick={this.reset}> Return </button>
                         : "" }
                             
                         </div>
-                        <div className="row justify-content-center">
+                        <div className="icons row mt-2">
                             {this.state.categories.map(category => {
                                 return (
                                     category.display ?
-                                        <Col size="-6">
-                                            <button className="iconCard" onClick={this.handleInputChange} name={category.name}>
-                                                <i className={category.icon}></i>
-                                                <div>{category.name}</div>
+                                        <Col size="md-12">
+                                            <button className=" btnIcon glow-button btn-lg btn-block" onClick={this.handleInputChange} name={category.name}>
+                                               
+                                                <div className="iconDiv"> <i className={category.icon}></i> {category.name}</div>
                                             </button>
                                         </Col> : "")
                             })}
@@ -95,16 +95,17 @@ class Services extends React.Component {
                                             <div className="flip-card">
                                                 <div className="flip-card-inner">
                                                     <div className="flip-card-front">
-                                                    <p><img className="placeHolderImg img-fluid" src={placeholder} alt="card image" /></p>
+                                                    {/* <p><img className="placeHolderImg img-fluid" src={placeholder} alt="card image" /></p> */}
                                                         <h1 className="cardTitle">{resource.org_name}</h1>
-                                                        <p>{resource.org_website}</p>
-                                                        <p>{resource.org_contact}</p>
+                                                        <p className="orgContact">{resource.org_contact}</p>
+                                                        <p className="orgWebsite">{resource.org_website}</p>
+                                                        
                                                     </div>
                                                         <div className="flip-card-back">
                                                             
-                                                            <h4>Our Work</h4>
+                                                            <h4 className="cardBackTitle">Our Work</h4>
                                                             <br></br>
-                                                            <p>{resource.org_description}</p>
+                                                            <p className="orgDescrip">{resource.org_description}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -118,7 +119,7 @@ class Services extends React.Component {
                         </div>
                     </div>
                 </div>
-                        </div>
+                        
                         </div>
 
 
