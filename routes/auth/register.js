@@ -49,9 +49,11 @@ router.route("/").post(function (req, res) {
         });
 
         const name = firstname + " " + lastname;
-        const avatarURL = process.env.NODE_ENV === 'production'
-          ? 'https://community-chicago.herokuapp.com/uploads/imgDefault.jpg'
-          : 'http://localhost:3000/uploads/imgDefault.jpg';
+        const avatarURL = 'https://community-chicago.herokuapp.com/uploads/imgDefault.jpg';
+
+        // const avatarURL = process.env.NODE_ENV === 'production'
+        //   ? 'https://community-chicago.herokuapp.com/uploads/imgDefault.jpg'
+        //   : 'http://localhost:3000/uploads/imgDefault.jpg';
 
         chatkit.createUser({
           id: username,

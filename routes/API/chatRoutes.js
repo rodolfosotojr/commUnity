@@ -27,6 +27,26 @@ module.exports = function (app) {
       .catch(err => result.json(err))
   });
 
+  // UPDATE CHAT USER
+  app.post('/api/chat-update', (request, result) => {
+
+    const chatkit = new Chatkit.default({
+      instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+      key: process.env.REACT_APP_SECRET_KEY,
+    });
+
+    chatkit.updateUser({
+      id: request.body.username,
+      avatarURL: request.body.url
+    })
+      .then((response) => {
+        console.log('CHAT User updated successfully\n', response);
+        result.json(response)
+      }).catch((err) => {
+        console.log(err);
+      });
+  });
+
   // CREATE USER
   app.post('/api/create-chat-user', (request, result) => {
 
