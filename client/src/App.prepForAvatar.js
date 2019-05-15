@@ -11,9 +11,6 @@ import LoginPage from "./pages/LoginPage"
 import Register from "./pages/Register";
 import Container from "./components/Container";
 import UploadImage from "./pages/UploadImage";
-import MapBox from "./components/MapBox";
-import Volunteer from "./pages/Volunteer/Volunteer"
-
 // import Footer from "./components/Footer";
 
 class App extends Component {
@@ -31,14 +28,21 @@ class App extends Component {
       globalUsername: username
     })
   }
+
+  globalUpdateUserType = (userType) => {
+    this.setState({
+      globalUserType: userType
+    })
+  }
+
   globalRoomId = (room) => {
     this.setState({
       globalRoomId: room
     })
   }
-  globalUpdateVolunteer = (volunteer) => {
+  globalUpdateVolRmId = (roomId) => {
     this.setState({
-      globalVolunteer: volunteer
+      globalVolunteerRoomId: roomId
     })
   }
 
@@ -49,10 +53,13 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={LoginPage} />
-            <Route exact path="/map" render={
-              (props) => <MapBox tableName={"Education"} height={"400px"} width={"400px"} {...props}/> } />
+
             <Route exact path="/Home" render={
-              (props) => <Home globalUsername={this.state.globalUsername} globalUpdateUsername={this.globalUpdateUsername} {...props} />
+              (props) => <Home
+                globalUsername={this.state.globalUsername}
+                globalUpdateUsername={this.globalUpdateUsername}
+                globalUpdateVolRmId={this.globalUpdateVolRmId}
+                {...props} />
             } />
             <Route exact path="/SignUp" component={SignUp} />
 
@@ -60,7 +67,6 @@ class App extends Component {
               (props) => <Connect globalUsername={this.state.globalUsername} globalRoomId={this.globalRoomId} {...props} />
             } />
             <Route exact path="/Services" component={Services} />
-            <Route exact path="/Volunteer" component={Volunteer} />
             <Route exact path="/Register" render={
               (props) => <Register globalUpdateUsername={this.globalUpdateUsername} {...props} />
             } />
@@ -68,7 +74,11 @@ class App extends Component {
               (props) => <UploadImage globalUsername={this.state.globalUsername} {...props} />
             } />
             <Route exact path="/Chat" render={
-              (props) => <ChatApp globalUsername={this.state.globalUsername} globalRoomId={this.state.globalRoomId} {...props} />} />
+              (props) => <ChatApp
+                globalUsername={this.state.globalUsername}
+                globalRoomId={this.state.globalRoomId}
+                globalVolunteerRoomId={this.state.globalVolunteerRoomId}
+                {...props} />} />
           </Switch>
           <Navbar />
         </div>

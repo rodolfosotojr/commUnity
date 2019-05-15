@@ -23,13 +23,9 @@ app.use(passport.initialize());
 app.use(routes)
 require("./routes/API/apiRoutes")(app);
 
-var syncOptions = { force: false }; // set to true to drop and create tables everytime server starts
-
+var syncOptions = { force: true }; // set to true to drop and create tables everytime server starts
 
 require("./routes/API/chatRoutes")(app);
-
-
-
 
 db.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, () => {

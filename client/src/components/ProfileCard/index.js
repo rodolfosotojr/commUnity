@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from "styled-components"
 import "./style.css"
 
@@ -22,7 +23,8 @@ class ProfileCard extends Component {
 
     getRoomId = (event) => {
         // this.props.globalRoomId("test")
-        this.props.globalRoomId(event.target.name)
+        this.props.globalRoomId(event.target.name);
+        this.props.history.push('/Chat');
     }
 
 
@@ -30,7 +32,7 @@ class ProfileCard extends Component {
         return (
             <ProfileWrapper>
                 <div className="card" style={cardStyle}>
-                    <img src={`/uploads/${this.props.profileImg}`} className="card-img-top" style={pictureStyle} alt="Profile Image" />
+                    <img src={this.props.profileImg} className="card-img-top" style={pictureStyle} alt="Profile Image" />
                     <div className="card-body">
                         <h1 className="card-title">{this.props.firstName} {this.props.lastName}</h1>
                         <h3 className="card-title">{this.props.city}</h3>
@@ -38,7 +40,7 @@ class ProfileCard extends Component {
                     </div>
                     <div className="card-body">
                         <a href={`mailto:${this.props.email}`} className="card-link">email</a>
-                        <button className="btn" onClick={this.getRoomId} name={this.props.roomId}>chat</button>
+                        <button className="btn btn-primary ml-3" onClick={this.getRoomId} name={this.props.roomId}>chat</button>
                     </div>
                 </div>
             </ProfileWrapper>
@@ -46,4 +48,5 @@ class ProfileCard extends Component {
     }
 }
 
-export default ProfileCard;
+export default withRouter(ProfileCard);
+// export default ProfileCard;

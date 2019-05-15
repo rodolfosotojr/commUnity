@@ -33,6 +33,7 @@ class MessageList extends Component {
             <div ref={msgList => { this.msgList = msgList; }} className="card-body msg_card_body message-list">
 
                 {this.props.messages.map((message, index) => {
+                    const user = message.senderId
                     return (
                         <Message
                             key={index} 
@@ -44,6 +45,7 @@ class MessageList extends Component {
                             // user={this.props.username}
                             roomId={this.props.roomId}
                             text={message.text}
+                            profileImg={message.userStore.users[user].avatarURL}
                         />
                     )
                 })}

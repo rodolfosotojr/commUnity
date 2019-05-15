@@ -16,7 +16,8 @@ class Home extends Component {
     state = {
         loggedIn: false,
         username: undefined,
-        userType: ""
+        roomId: undefined,
+        userType: undefined,
     }
 
     componentDidMount() {
@@ -27,18 +28,15 @@ class Home extends Component {
                 this.setState({
                     loggedIn: true,
                     username: res.data.username,
+                    roomId: res.data.roomId,
                     userType: res.data.userType
                 });
                 this.props.globalUpdateUsername(this.state.username);
+                this.props.globalUpdateVolRmId(this.state.roomId);
+                this.props.globalUpdateUserType(this.state.userType);
             } 
 
-        })
-        .then(() => {
-            if(this.state.userType==="volunteer"){
-                window.location.assign("/Volunteer")
-            }
-        })
-        .catch(err =>{
+        }).catch(err =>{
             console.log(err)
             this.setState({
                 loggedIn:false

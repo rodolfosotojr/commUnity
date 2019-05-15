@@ -3,6 +3,7 @@ const passport = require("../../config/passport");
 const multer = require('multer');
 const path = require('path');
 const bodyParser = require('body-parser');
+const Chatkit = require('@pusher/chatkit-server');
 
 // SET STORAGE
 const storage = multer.diskStorage({
@@ -38,6 +39,30 @@ module.exports = function (app) {
         })
     })
 
+    //Get route for getting all the resources information
+    app.post("/api/resources", function (req, res) {
+        db.Resources.findAll({
+            where: {
+                resource_department: req.body.resource_department
+            }
+        })
+            .then(dbres => {
+                res.json(dbres)
+            });
+    });
+
+    // ================== Map API ==================
+    app.get("/api/data/resources/:tablename", function (req, res) {
+        db.Resources.findAll({
+            where: {
+                resource_department: req.params.tablename
+            }
+        }).then(function (dbResouces) {
+            res.json(dbResouces)
+        })
+    })
+
+
     // LOGOUT ROUTE
     // Logout using .logout() method then redirect to login page.
     app.get("/api/logout", function (req, res) {
@@ -57,17 +82,43 @@ module.exports = function (app) {
                 console.log("USERNAME***************\n", req.body.username)
                 console.log("UPLOAD***************\n", req.file.filename)
                 //---DB UPDATE USER---
-    
+
                 //---DB UPDATE USER---
                 res.end("File is uploaded");
+                const profileImg = process.env.NODE_ENV === 'production'
+                    ? 'https://community-chicago.herokuapp.com/uploads/' + req.file.filename
+                    : 'http://localhost:3000/uploads/' + req.file.filename;
+
+
                 db.User.update({
-                    profileImg: req.file.filename
-                  },
-                  {
-                    where: {
-                      username: req.body.username
-                    }
-                  })
+                    profileImg
+                },
+                    {
+                        where: {
+                            username: req.body.username
+                        }
+                    })
+                    // TODO ============= Update ChatKit ============
+                    .then(() => {
+                        const chatkit = new Chatkit.default({
+                            instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+                            key: process.env.REACT_APP_SECRET_KEY,
+                        });
+
+                        const avatarURL = process.env.NODE_ENV === 'production'
+                            ? 'https://community-chicago.herokuapp.com//uploads/' + req.file.filename
+                            : 'http://localhost:3000/uploads/' + req.file.filename;
+
+                        chatkit.updateUser({
+                            id: req.body.username,
+                            avatarURL
+                        })
+                            .then(() => {
+                                console.log('User updated successfully');
+                            }).catch((err) => {
+                                console.log(err);
+                            });
+                    })
             }
 
 
