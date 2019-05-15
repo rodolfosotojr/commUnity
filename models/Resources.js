@@ -31,6 +31,12 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             notEmpty: true
         },
+        org_lat: {
+            type: DataTypes.FLOAT,
+        },
+        org_lng : {
+            type: DataTypes.FLOAT,
+        }
        
         
     },
