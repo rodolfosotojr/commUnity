@@ -65,7 +65,7 @@ class Volunteer extends React.Component {
 
   render() {
     return (
-      <div className="servicesComponent">
+      <div className="volunteerComponent">
         <div className="overlay">
           <div className="container pt-3">
             <div className="row justify-content-center">

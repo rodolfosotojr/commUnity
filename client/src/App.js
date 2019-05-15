@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ChatApp from "./components/ChatApp";
-import "./App.css";
 import Navbar from "./components/Navbar";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";

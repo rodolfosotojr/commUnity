@@ -1,14 +1,14 @@
-.servicesComponent {
+.volunteerComponent {
     background: url(./banner3.jpg) no-repeat center center fixed;
     background-size: cover;
     min-height: 667px;
 }
 
-.overlay {
+/* .overlay {
     min-height: 667px;
     background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), rgb(255, 255, 255));
     z-index: 1;
-}
+} */
 
 .iconCard {
     /* display: inline-block; */
@@ -27,6 +27,8 @@ h1 {
     z-index: 2;
     color: black;
 }
+
+
 
 .cardTitle{
     font-size: 20px;
@@ -112,5 +114,6 @@ h1 {
     background-color: rgba(54, 54, 54, 0.144);
     color: white;
     transform: rotateY(180deg);
+   
   }
 

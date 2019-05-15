@@ -1,35 +1,79 @@
 .servicesComponent {
-    background: url(./banner3.jpg) no-repeat center center fixed;
-    background-size: cover;
-    min-height: 667px;
+  background-image: linear-gradient(to top, rgb(53, 73, 92), rgb(16, 23, 29), rgb(16, 23, 29));
+  min-height: 670;
+  z-index: 1;
+  overflow: auto;
 }
 
-.overlay {
-    min-height: 667px;
-    background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), rgb(255, 255, 255));
-    z-index: 1;
+.container {
+  max-width: 100%;
+  height: 100vh;
+  
 }
 
-.iconCard {
-    /* display: inline-block; */
-    vertical-align: middle;
-    text-align: center;
-    background-color: rgba(252, 252, 252, 0.267);
-    box-sizing: border-box;
-    width: 120px;
-    height: 120px;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 15px;
-}
+
 
 h1 {
     z-index: 2;
     color: black;
 }
 
+
+
+.btnIcon{
+ margin: 5px;
+  background: url(./banner.jpg) no-repeat center center fixed;
+  border-style: none;
+  border-left: solid;
+  border-left-color: rgb(201, 78, 201);
+  transition: all 0.3s ease-in-out;
+}
+
+.glow-button:hover {
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 2px 8px white;
+}
+
+.iconDiv{
+  text-align: left;
+  background: url(./banner.jpg) no-repeat center center fixed; 
+  padding-bottom: 8px;
+  padding-top: 4px;
+}
+
+.icons{
+  
+  justify-content: left;
+  
+}
+
+
 .cardTitle{
-    font-size: 20px;
+  font-family: 'Catamaran', sans-serif;
+  font-weight: 300;
+    font-size: 40px;
+    color: white;
+}
+
+.resourcesTitle{
+  font-family: 'Catamaran', sans-serif;
+  color: white;
+}
+
+.cardBackTitle{
+  font-family: 'Catamaran', sans-serif;
+}
+
+.orgWebsite{
+  font-family: 'Catamaran', sans-serif;
+}
+
+.orgContact{
+  font-family: 'Catamaran', sans-serif;
+}
+
+.orgDescrip{
+  font-family: 'Catamaran', sans-serif;
 }
 
 .placeHolderImg{
@@ -39,9 +83,10 @@ h1 {
 
 .backBtn{
   border-radius: 4px;
-  background: rgba(80, 78, 78, 0.274);
+  background: rgba(128, 128, 128);
   padding: 5px;
   transition: box-shadow .3s;
+  color:white;
 
 }
 .backBtn :hover {
@@ -51,10 +96,10 @@ h1 {
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
     background-color: transparent;
-    width: 250px;
-    height: 300px;
+    width: 300px;
+    height: 200px;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
-    margin: 5px;
+   
     
   }
   
@@ -64,8 +109,9 @@ h1 {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
+    transition: transform 0.9s;
     transform-style: preserve-3d;
+   
     
     
   }
@@ -81,20 +127,36 @@ h1 {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    padding: 20px
+   
+    margin-top: 15px; 
   }
   
   /* Style the front side (fallback if image is missing) */
   .flip-card-front {
+    
     background-color:rgba(15, 15, 15, 0.144);
+    border-left: solid;
+    border-left-color: rgb(201, 78, 164);
     color: black;
+    
+    
+    
+  
+   
   }
   
   /* Style the back side */
   .flip-card-back {
+    
     background-color: rgba(54, 54, 54, 0.144);
+    border-left: solid;
+    border-left-color: rgb(92, 216, 204);
     color: white;
     transform: rotateY(180deg);
+    overflow: hidden;
+    
+   
+   
   }
 
 
