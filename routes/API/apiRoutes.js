@@ -1,20 +1,44 @@
 const db = require("../../models");
 const passport = require("../../config/passport");
-const multer = require('multer');
 const path = require('path');
 const bodyParser = require('body-parser');
 const Chatkit = require('@pusher/chatkit-server');
 
-// SET STORAGE
-const storage = multer.diskStorage({
-    destination: function (req, file, callback) {
-        callback(null, './client/public/uploads');
-    },
-    filename: function (req, file, callback) {
-        callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
+const multer = require('multer');
+var cloudinary = require("cloudinary");
+
+const cloudinaryStorage = require("multer-storage-cloudinary");
+
+
+// ============ CLOUD STORAGE ============
+cloudinary.config(process.env.CLOUDINARY_URL);
+
+const cloudStorage = cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: "profile_images",
+    allowedFormats: ["jpg", "png"],
+    transformation: [{ width: 500, height: 500, crop: "limit", format: "jpg" }]
 });
-const upload = multer({ storage: storage }).single('userPhoto');
+
+const parser = multer({ storage: cloudStorage });
+// ============ END CLOUD STORAGE ============
+
+// ============ LOCAL STORAGE ============
+// const storage = multer.diskStorage({
+//     destination: function (req, file, callback) {
+//         callback(null, './client/public/uploads');
+//     },
+//     filename: function (req, file, callback) {
+//         callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//     }
+// });
+
+// const upload = multer({ storage: storage }).single('userPhoto');
+// ============ END LOCAL STORAGE ============
+
+
+
+const upload = multer({ storage: cloudStorage }).single('userPhoto');
 
 module.exports = function (app) {
     //GET route for getting all of my user information
@@ -29,12 +53,12 @@ module.exports = function (app) {
             });
     });
     //Get resource data
-    app.get("/api/data/resources/:tablename", function(req, res){
+    app.get("/api/data/resources/:tablename", function (req, res) {
         db.Resources.findAll({
-            where:{
+            where: {
                 resource_department: req.params.tablename
             }
-        }).then(function(dbResouces){
+        }).then(function (dbResouces) {
             res.json(dbResouces)
         })
     })
@@ -70,59 +94,50 @@ module.exports = function (app) {
         res.redirect("/");
     });
 
-    app.post('/api/upload', function (req, res) {
-        // console.log(req.body.username)
 
-        upload(req, res, function (err) {
-            if (err) {
-                return res.end("Error uploading file.");
-            } else {
+    // ============ UPLOAD ROUTE ============
+    app.post('/api/upload', parser.single('userPhoto'), function (req, res) {
 
-                // console.log(req.file.filename);
-                console.log("USERNAME***************\n", req.body.username)
-                console.log("UPLOAD***************\n", req.file.filename)
-                //---DB UPDATE USER---
+        console.log("req.body.username: ", req.body.username)
+        console.log("req.file: ", req.file.url) // to see what is returned to you
+        const image = {};
+        image.url = req.file.url;
+        image.id = req.file.public_id;
 
-                //---DB UPDATE USER---
-                res.end("File is uploaded");
-                const profileImg = process.env.NODE_ENV === 'production'
-                    ? 'https://community-chicago.herokuapp.com/uploads/' + req.file.filename
-                    : 'http://localhost:3000/uploads/' + req.file.filename;
+        // console.log(req.file.filename);
+        // console.log("USERNAME***************\n", req.body.username)
+        // console.log("UPLOAD***************\n", req.file.filename)
+        //---DB UPDATE USER---
 
+        //---DB UPDATE USER---
+        res.end("File is uploaded");
 
-                db.User.update({
-                    profileImg
-                },
-                    {
-                        where: {
-                            username: req.body.username
-                        }
-                    })
-                    // TODO ============= Update ChatKit ============
-                    .then(() => {
-                        const chatkit = new Chatkit.default({
-                            instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
-                            key: process.env.REACT_APP_SECRET_KEY,
-                        });
+        db.User.update({
+            profileImg: image.url
+        },
+            {
+                where: {
+                    username: req.body.username
+                }
+            })
+            // ============= Update ChatKit ============
+            .then(() => {
+                const chatkit = new Chatkit.default({
+                    instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
+                    key: process.env.REACT_APP_SECRET_KEY,
+                });
 
-                        const avatarURL = process.env.NODE_ENV === 'production'
-                            ? 'https://community-chicago.herokuapp.com//uploads/' + req.file.filename
-                            : 'http://localhost:3000/uploads/' + req.file.filename;
-
-                        chatkit.updateUser({
-                            id: req.body.username,
-                            avatarURL
-                        })
-                            .then(() => {
-                                console.log('User updated successfully');
-                            }).catch((err) => {
-                                console.log(err);
-                            });
-                    })
-            }
-
-
-        });
+                chatkit.updateUser({
+                    id: req.body.username,
+                    avatarURL: image.url
+                })
+                    .then((response) => {
+                        console.log('CHAT User updated successfully\n', response);
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+            })
     });
+    // ============ END UPLOAD ROUTE ============
 
 }
