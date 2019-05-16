@@ -10,6 +10,7 @@ import axios from "axios";
 import Carousel from "../../components/Carousel/carousel";
 import Navbar from "../../components/Navbar";
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
+import Logout from "../../components/Logout";
 
 
 class Home extends Component {
@@ -47,12 +48,7 @@ class Home extends Component {
         })
    
     }
-    handleLogout() {
-        axios.get("/api/logout")
-            .then((res) => {
-                window.location.assign("/")
-            })
-    }
+
     render() {
         if(this.state.loggedIn)
         {
@@ -82,17 +78,7 @@ class Home extends Component {
                             </p>
                         </Col>
                     </Row>
-                    <Row className="row justify-content-center">
-                        <Col size='sm-4'>
-                            <div className="text-center text-light pt-3">
-                            <FormattedMessage id="homepage.notyou1"
-                                    defaultMessage="Not you?" />
-                            {" "}<a href="#" onClick={this.handleLogout}>
-                            <FormattedMessage id="homepage.notyou2"
-                                    defaultMessage="Logout Now!" />
-                            {" "}<i class="fas fa-user-minus"></i></a></div>
-                        </Col>
-                    </Row>
+                    <Logout />
                     
                 </Container>
                 <Navbar />
