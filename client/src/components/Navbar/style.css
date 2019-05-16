@@ -4,6 +4,7 @@
     background-color:rgba(16, 23, 29, 0.89);
     color: white;
     z-index: 3;
+    margin-top: 5px;
 }
 
 .nav-link{
