@@ -14,6 +14,8 @@ class LoginPage extends Component {
         username: '',
         password: '',
         rememberMe: false,
+        fields: {},
+        errors: {}
     }
 
     componentDidMount() {
@@ -39,12 +41,50 @@ class LoginPage extends Component {
     }
     handleFormSubmit = event => {
         event.preventDefault();
-        axios.post("/auth/local", {
-            username: this.state.username,
-            password: this.state.password
-        }).then((res) => {
-            window.location.assign("/Home")
-        })
+        if (this.validateForm() ) {
+            axios.post("/auth/local", {
+                username: this.state.username,
+                password: this.state.password
+            }).then((res) => {
+                window.location.assign("/Home")
+            })
+
+        }
+
+    }
+
+    // =============== FORM VALIDATION ==================
+    // TUTORIAL: https://www.skptricks.com/2018/06/simple-form-validation-in-reactjs-example.html
+    validateForm() {
+
+        let username = this.state.username;
+        let password = this.state.password;
+        let errors = {};
+        let formIsValid = true;
+
+        if (!username) {
+            formIsValid = false;
+            errors["username"] = "*Please enter your username.";
+        }
+
+        if (!password) {
+            formIsValid = false;
+            errors["password"] = "*Please enter your password.";
+        }
+
+        // if (typeof password] !== "undefined") {
+        //     if (!fields["password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
+        //         formIsValid = false;
+        //         errors["password"] = "*Please enter secure and strong password.";
+        //     }
+        // }
+
+        this.setState({
+            errors: errors
+        });
+        return formIsValid;
+
+
     }
 
     render() {
@@ -75,8 +115,10 @@ class LoginPage extends Component {
                                             name="username"
                                             onChange={this.handleInput}
                                             value={this.state.username}
-                                            placeholder={placeholder} />}
+                                            placeholder={placeholder}
+                                            required />}
                                     </FormattedMessage>
+                                    <div className="errorMsg">{this.state.errors.username}</div>
 
                                 </div>
                                 <div className="form-group">
@@ -89,18 +131,20 @@ class LoginPage extends Component {
                                             name="password"
                                             onChange={this.handleInput}
                                             value={this.state.password}
-                                            placeholder={ placeholder } />}
+                                            placeholder={placeholder}
+                                            required />}
                                     </FormattedMessage>
+                                    <div className="errorMsg">{this.state.errors.password}</div>
 
                                 </div>
 
                                 <div className="form-group form-check">
-                                    <input type="checkbox" className="form-check-input" id="rememberme" />
+                                    {/* <input type="checkbox" className="form-check-input" id="rememberme" />
                                     <label className="form-check-label text-light">
                                         <FormattedMessage id="loginpage.remember"
                                             defaultMessage="Remember Me"
                                             description="Remember Me" />
-                                    </label>
+                                    </label> */}
                                     <button type="submit" className="btn btn-primary float-right" onClick={this.handleFormSubmit}>
                                         <FormattedMessage id="loginpage.loginBtn"
                                             defaultMessage="Login"
