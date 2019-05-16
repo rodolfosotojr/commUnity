@@ -29,6 +29,7 @@ Refugee communities that have resettled in Chicago, as well as local families wi
     * [Multer](https://www.npmjs.com/package/multer), [multer-storage-cloudinary](https://www.npmjs.com/package/multer-storage-cloudinary) and [Cloudinary](https://www.npmjs.com/package/cloudinary) to create the upload API route.
     * [@pusher/chatkit-client](https://www.npmjs.com/package/@pusher/chatkit-client) and [@pusher/chatkit-server](https://www.npmjs.com/package/@pusher/chatkit-server) to handle the Chat component.
     * [Mapbox](https://www.npmjs.com/package/mapbox) Interface to mapbox services.
+    * [React-INTL](https://www.npmjs.com/package/react-intl) Internationalize React apps. This library provides React components and an API to format dates, numbers, and strings, including pluralization and handling translations.
     * [Express](https://www.npmjs.com/package/express) Fast, unopinionated, minimalist web framework for node.
     * [Express-Session](https://www.npmjs.com/package/express-session) Simple session middleware for Express.
     * [DotEnv](https://www.npmjs.com/package/dotenv) Loads environment variables from .env file.
