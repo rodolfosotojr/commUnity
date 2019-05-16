@@ -80,7 +80,7 @@ class MapBox extends Component {
     render() {
         const {viewport} = this.state;
         return (
-          <div style={{height:`${this.props.height}`, width:`${this.props.width}`}}>
+          <div style={{height:`${this.props.height}`, width:`${this.props.width}`, margin:`${this.props.margin}`}}>
             <MapGL
                 {...viewport}
                 width="100%"

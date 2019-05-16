@@ -8,6 +8,7 @@ import Col from "../../components/Col";
 import './Services.css';
 import Axios from "axios"
 import placeholder from "./servicePlaceholder.png"
+import MapBox from "../../components/MapBox";
 
 
 
@@ -16,7 +17,8 @@ class Services extends React.Component {
         resources: [],
         department: "",
         categories: [{ name: "Legal", display: true, icon: "fas fa-gavel fa-2x" }, { name: "Healthcare", display: true, icon: "fas fa-user-md fa-2x"  }, { name: "Education", display: true, icon:"fas fa-graduation-cap fa-2x" }, { name: "Jobs", display: true, icon:"far fa-building fa-2x" }, { name: "Language", display: true, icon:"fas fa-book-reader fa-2x" }, { name: "Community", display: true, icon:"fas fa-users fa-2x" }],
-        renderButton: false
+        renderButton: false,
+        displayMap: false
     }
 
 
@@ -35,7 +37,7 @@ class Services extends React.Component {
                     }
                     return category
                 })
-                this.setState({ resources: response.data, department: name, categories: newArray, renderButton: true })
+                this.setState({ resources: response.data, department: name, categories: newArray, renderButton: true, displayMap: true })
                 console.log(name)
                 console.log(response.data);
 
@@ -50,7 +52,7 @@ class Services extends React.Component {
             category.display = true
             return category
         })
-        this.setState({ categories: displayArr, resources: [], renderButton:false })
+        this.setState({ categories: displayArr, resources: [], renderButton:false, displayMap:false })
 
     }
 
@@ -67,10 +69,24 @@ class Services extends React.Component {
                             <Col size="md-12 text-center">
                                 <h1 className="resourcesTitle">Resources</h1>
                             </Col>
-                            
-                        {this.state.renderButton ? 
+
+                            <Col size="md-12 text-center">
+                            {this.state.renderButton ? 
                             <button className="backBtn glow-button" onClick={this.reset}> Return </button>
                         : "" }
+                            </Col>
+                            
+
+                        {this.state.displayMap ?
+                            <div className="map">
+                            
+                            <Col size="md-12">
+                            <MapBox tableName={"Education"} height={"400px"} width={"400px"} margin={"5px"} />
+                            </Col>
+                            </div>
+                            
+
+                            : ""}
                             
                         </div>
                         <div className="icons row mt-2">
@@ -87,6 +103,7 @@ class Services extends React.Component {
 
                         </div>
                         <div>
+                            
                             <div className="row justify-content-center">
                         
                                 {this.state.resources.map(resource => {
