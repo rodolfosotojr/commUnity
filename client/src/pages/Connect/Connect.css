@@ -11,3 +11,62 @@
     z-index:1;
 
 }
+
+.card-body{
+    background-color:transparent!important;
+color: white;
+/* border-top: solid;
+border-width: thin; */
+
+}
+
+.card-body-footer{
+    background-color:rgba(16, 23, 29, 0.89)!important;
+    text-align: center;
+    height: 35px;
+    
+}
+
+.card{
+    background-color:rgba(16, 23, 29, 0.692) !important;
+    margin-top: 80px;
+}
+
+.card-img-top{
+    padding: 10px;
+    margin:0 auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border-bottom: solid;
+    border-bottom-color: white;
+    border-bottom-width: 2px;
+    
+}
+
+a{
+    color:rgb(187, 185, 185);
+}
+
+a:hover{
+    color:white;
+}
+
+.chatbtn{
+background-color: transparent;
+border-style: none;
+color:rgb(187, 185, 185);
+border-left: solid;
+border-color: rgb(187, 185, 185);
+border-width: thin;
+text-align: center;
+}
+
+.chatbtn:hover{
+color:white;
+}
+
+.emailLink{
+    text-align: center;
+}

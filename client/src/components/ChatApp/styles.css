@@ -82,3 +82,7 @@
     /* color: rgba(255, 255, 255, 0.5); */
     font-size: 10px;
 }
+
+/* .bg-primary{
+    background-image: linear-gradient(to right, rgb(102, 228, 211),rgb(218, 136, 81), rgb(182, 86, 158), rgb(16, 23, 29))!important;
+} */

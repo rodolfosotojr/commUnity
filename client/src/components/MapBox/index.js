@@ -80,11 +80,12 @@ class MapBox extends Component {
     render() {
         const {viewport} = this.state;
         return (
-          <div style={{height:`${this.props.height}`, width:`${this.props.width}`, margin:`${this.props.margin}`}}>
+          <div style={{height:`${this.props.height}`, width:`${this.props.width}`, padding:`${this.props.padding}`}}>
             <MapGL
                 {...viewport}
                 width="100%"
                 height="100%"
+                margin="5px"
                 mapStyle="mapbox://styles/mapbox/dark-v9"
                 onViewportChange={this.updateViewport}
                 mapboxApiAccessToken={TOKEN} >

@@ -15,7 +15,6 @@ function Connect(props) {
                 <Container>
                     <Row>
                         <Col size="md-12">
-                            <h1>Volunteer profiles go here!</h1>
                             <h2>Hi, {props.globalUsername}!</h2>
                         </Col>
                     </Row>
