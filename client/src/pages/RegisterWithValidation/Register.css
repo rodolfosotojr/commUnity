@@ -1,26 +1,24 @@
-.login-bg {
+
+.homeLogo{
+    width:100px;
+    height:100px;
+   
+}
+
+.register-bg {
     background-image: linear-gradient(to top, rgb(53, 73, 92), rgb(16, 23, 29), rgb(16, 23, 29));
-    height: 100vh;
+    /* height: 100vh; */
+
     z-index: 1;
 }
 
-.overlay {
-    min-height: 667px;
-    background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), rgb(255, 255, 255));
-    z-index: 2;
+.form-control{
+    margin:5px;
 }
 
-img {
-    max-width: 200px;
-    max-height: 200px;
-}
-
-h1, h2, p {
-    text-align: center;
-}
-
-h2 {
-    font-weight: 100;
+img{
+    margin: auto;    
+    display: block;
 }
 
 /* ================= Validation ================ */
