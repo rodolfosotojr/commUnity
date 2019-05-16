@@ -4,23 +4,31 @@ A community building app targeting refugee communities within Chicago and connec
 ## Overview
 Human interaction is vital to thriving communities. Our App helps refugee communities that have left their homes, to resettle in Chicago by rebuilding their communities and connecting them with local families. Personal interaction is key to their success in adopting Chicago as a home, and our APP helps make that happen.
 
+## Target audience:
+Refugee communities that have resettled in Chicago, as well as local families willing to volunteer their time and resources. 
+
+## Screenshots:
 ![Wireframe](./wireframe.png)
 
 ![Screenshots](./readme/mobile-screens-1.jpg)
 
-## Target audience:
-Refugee communities that have resettled in Chicago, as well as local families willing to volunteer their time and resources. 
-
 ## Technologies, APIS, and Frameworks used:
-* [ReactJS](https://reactjs.org/) A JavaScript library for building user interfaces
-* [Express](https://www.npmjs.com/package/express) Fast, unopinionated, minimalist web framework for node.
-* [Node.js](https://nodejs.org/en/) A JavaScript runtime built on Chrome's V8 JavaScript engine.
-* [MySQL](https://www.mysql.com/downloads/) is an Oracle-backed open source relational database management system (RDBMS) based on Structured Query Language (SQL).
-* [Bootstrap](https://getbootstrap.com/) An open source toolkit for developing with HTML, CSS, and JS. 
-* Other Node packages:
+* Front and Back End technologies:
+    * [MySQL](https://www.mysql.com/downloads/) is an Oracle-backed open source relational database management system (RDBMS) based on Structured Query Language (SQL).
+    * [Express](http://expressjs.com/) Fast, unopinionated, minimalist web framework for node.
+    * [ReactJS](https://reactjs.org/) A JavaScript library for building user interfaces
+    * [Node.js](https://nodejs.org/en/) A JavaScript runtime built on Chrome's V8 JavaScript engine.
+    * [Bootstrap](https://getbootstrap.com/) An open source toolkit for developing with HTML, CSS, and JS. 
+
+* APIs
+    * [Cloudinary](https://cloudinary.com/) Online storage.
+    * [Mapbox](https://www.mapbox.com/) Interface to mapbox services.
+    * [ChatKit](https://pusher.com/chatkit) In-App Messaging.
+
+* Node packages:
     * [Multer](https://www.npmjs.com/package/multer), [multer-storage-cloudinary](https://www.npmjs.com/package/multer-storage-cloudinary) and [Cloudinary](https://www.npmjs.com/package/cloudinary) to create the upload API route.
     * [@pusher/chatkit-client](https://www.npmjs.com/package/@pusher/chatkit-client) and [@pusher/chatkit-server](https://www.npmjs.com/package/@pusher/chatkit-server) to handle the Chat component.
-    * Mapbox](https://www.npmjs.com/package/mapbox) Interface to mapbox services
+    * [Mapbox](https://www.npmjs.com/package/mapbox) Interface to mapbox services.
     * [Express](https://www.npmjs.com/package/express) Fast, unopinionated, minimalist web framework for node.
     * [Express-Session](https://www.npmjs.com/package/express-session) Simple session middleware for Express.
     * [DotEnv](https://www.npmjs.com/package/dotenv) Loads environment variables from .env file.
@@ -29,7 +37,7 @@ Refugee communities that have resettled in Chicago, as well as local families wi
     * [BCrypt-NodeJS](https://www.npmjs.com/package/bcrypt-nodejs) A native JS bcrypt library for NodeJS.
     * [Body-Parser](https://www.npmjs.com/package/body-parser) Node.js body parsing middleware.
     * [MySQL2](https://www.npmjs.com/package/mysql2) MySQL client for Node.js with focus on performance. 
-    * [Sequelize](https://www.npmjs.com/package/sequelize) A promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite and 
+    * [Sequelize](https://www.npmjs.com/package/sequelize) A promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite and Microsoft SQL Server
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
