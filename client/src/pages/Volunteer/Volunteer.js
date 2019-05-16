@@ -22,8 +22,37 @@ class Volunteer extends React.Component {
     renderButton: false,
     displayMap: false,
     greeting: true,
-    chatroom: true
+    chatroom: true,
+    firstname: "Volunteer"
   }
+
+  componentDidMount() {
+    // ============= GET COOKIE DATA ===============
+    console.log("GLOBAL: ", this.props.globalUsername);
+    Axios.post("/auth/local/protected").then(res => {
+        console.log("AUTH RESPONSE: ", res.data.username)
+        if (res.status === 200) {
+            this.setState({
+                firstname: res.data.firstname
+            });
+        } 
+
+    })
+    .then(() => {
+        if(this.state.userType==="volunteer"){
+            window.location.assign("/Volunteer")
+        }
+    })
+    .catch(err =>{
+        console.log(err)
+        this.setState({
+            loggedIn:false
+        })
+        window.location.assign("/");
+    })
+
+}
+
 
 
   handleInputChange = event => {
@@ -81,7 +110,7 @@ class Volunteer extends React.Component {
       
               {this.state.greeting ?
               <div>
-                <h1 class="VolWelcome">Welcome, Volunteer!</h1>
+                <h1 class="VolWelcome">Welcome, {this.state.firstname}!</h1>
               <h4 className="VolText text-center">While you wait to get connected, check out these amazing organizations <br></br>
               helping refugee settlements across the city!</h4>
               </div>
@@ -101,7 +130,7 @@ class Volunteer extends React.Component {
               <div className="map">
 
                 <Col size="md-12">
-                  <MapBox tableName={"Education"} height={"400px"} width={"400px"} margin={"5px"} />
+                  <MapBox tableName={"Education"} height={"320px"} width={"100vw"} padding={"15px"} />
                 </Col>
               </div>
 

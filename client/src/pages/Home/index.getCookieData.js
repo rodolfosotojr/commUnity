@@ -10,14 +10,15 @@ import axios from "axios";
 import Carousel from "../../components/Carousel/carousel";
 import Navbar from "../../components/Navbar";
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
+import Logout from "../../components/Logout";
 
 
 class Home extends Component {
     state = {
         loggedIn: false,
         username: undefined,
-        roomId: undefined,
-        userType: undefined,
+        firstname: undefined,
+        userType: ""
     }
 
     componentDidMount() {
@@ -28,15 +29,19 @@ class Home extends Component {
                 this.setState({
                     loggedIn: true,
                     username: res.data.username,
-                    roomId: res.data.roomId,
+                    firstname: res.data.firstname,
                     userType: res.data.userType
                 });
                 this.props.globalUpdateUsername(this.state.username);
-                this.props.globalUpdateVolRmId(this.state.roomId);
-                this.props.globalUpdateUserType(this.state.userType);
             } 
 
-        }).catch(err =>{
+        })
+        .then(() => {
+            if(this.state.userType==="volunteer"){
+                window.location.assign("/Volunteer")
+            }
+        })
+        .catch(err =>{
             console.log(err)
             this.setState({
                 loggedIn:false
@@ -45,12 +50,7 @@ class Home extends Component {
         })
    
     }
-    handleLogout() {
-        axios.get("/api/logout")
-            .then((res) => {
-                window.location.assign("/")
-            })
-    }
+
     render() {
         if(this.state.loggedIn)
         {
@@ -69,7 +69,7 @@ class Home extends Component {
                             <h2>
                                 <FormattedMessage id="homepage.home-welcome"
                                         defaultMessage="Welcoming You Home, { name }!"
-                                        values = {{ name: this.state.username}} />
+                                        values = {{ name: this.state.firstname}} />
                             </h2>
                             <p>
                             <FormattedHTMLMessage id="homepage.happymsg"
@@ -80,17 +80,7 @@ class Home extends Component {
                             </p>
                         </Col>
                     </Row>
-                    <Row className="row justify-content-center">
-                        <Col size='sm-4'>
-                            <div className="text-center text-light pt-3">
-                            <FormattedMessage id="homepage.notyou1"
-                                    defaultMessage="Not you?" />
-                            {" "}<a href="#" onClick={this.handleLogout}>
-                            <FormattedMessage id="homepage.notyou2"
-                                    defaultMessage="Logout Now!" />
-                            {" "}<i class="fas fa-user-minus"></i></a></div>
-                        </Col>
-                    </Row>
+                    <Logout />
                     
                 </Container>
                 <Navbar />

@@ -17,6 +17,7 @@ class Home extends Component {
     state = {
         loggedIn: false,
         username: undefined,
+        firstname: undefined,
         userType: ""
     }
 
@@ -28,6 +29,7 @@ class Home extends Component {
                 this.setState({
                     loggedIn: true,
                     username: res.data.username,
+                    firstname: res.data.firstname,
                     userType: res.data.userType
                 });
                 this.props.globalUpdateUsername(this.state.username);
@@ -67,7 +69,7 @@ class Home extends Component {
                             <h2>
                                 <FormattedMessage id="homepage.home-welcome"
                                         defaultMessage="Welcoming You Home, { name }!"
-                                        values = {{ name: this.state.username}} />
+                                        values = {{ name: this.state.firstname}} />
                             </h2>
                             <p>
                             <FormattedHTMLMessage id="homepage.happymsg"
