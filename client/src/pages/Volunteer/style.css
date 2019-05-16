@@ -1,7 +1,8 @@
 .volunteerComponent {
-    background: url(./banner3.jpg) no-repeat center center fixed;
-    background-size: cover;
-    min-height: 667px;
+  background-image: linear-gradient(to top, rgb(53, 73, 92), rgb(16, 23, 29), rgb(16, 23, 29));
+  z-index: 1;
+  overflow: auto;
+  height: 100vh;
 }
 
 /* .overlay {
@@ -11,16 +12,20 @@
 } */
 
 .iconCard {
-    /* display: inline-block; */
-    vertical-align: middle;
-    text-align: center;
-    background-color: rgba(252, 252, 252, 0.267);
-    box-sizing: border-box;
-    width: 120px;
-    height: 120px;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 15px;
+  margin: 5px;
+  background: url(./banner3.jpg) no-repeat center center fixed;
+  border-style: none;
+  border-left: solid;
+  /* border-left-color: rgb(201, 78, 201); */
+  border-left-color: rgb(247, 160, 89);
+  transition: all 0.3s ease-in-out;
+}
+
+.iconDivVol{
+  text-align: left;
+  background: url(./banner3.jpg) no-repeat center center fixed; 
+  padding-bottom: 2px;
+  padding-top: 2px;
 }
 
 h1 {
@@ -28,6 +33,16 @@ h1 {
     color: black;
 }
 
+.VolText{
+color: white;
+font-family: 'Catamaran', sans-serif;
+font-size: 20px;
+}
+
+.VolWelcome{
+color:white;
+font-family: 'Catamaran', sans-serif;
+}
 
 
 .cardTitle{
@@ -46,15 +61,22 @@ h1 {
     transition: box-shadow .3s;
     display:block;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    transition: all 0.3s ease-in-out;
+    color:white;
+    transition: box-shadow .3s;
+    font-family: 'Catamaran', sans-serif;
+    
   
   }
 
-  .chatRoomText{
-      margin-top: 100px;
-      color: rgb(53, 53, 53);
-
+  .glow-button:hover {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 2px 8px white;
   }
+
+ 
 
 .backBtn{
   border-radius: 4px;
@@ -114,6 +136,6 @@ h1 {
     background-color: rgba(54, 54, 54, 0.144);
     color: white;
     transform: rotateY(180deg);
-   
+    border-left-color: rgb(247, 140, 68);
   }
 

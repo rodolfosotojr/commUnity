@@ -154,7 +154,7 @@ export class ChatApp extends Component {
       <div className="chat-bg">
         {/* <div className="row justify-content-center chat-bg"> */}
         <div className="d-flex justify-content-center ">
-          <div className="col-lg-6">
+          <div className="col-lg-6 mt-3">
 
             <div className="col-md-12 bg-primary py-2">
               {/* <NewRoomForm createRoom={this.createRoom} />

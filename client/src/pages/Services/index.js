@@ -81,7 +81,7 @@ class Services extends React.Component {
                             <div className="map">
                             
                             <Col size="md-12">
-                            <MapBox tableName={"Education"} height={"400px"} width={"400px"} margin={"5px"} />
+                            <MapBox tableName={"Education"} height={"400px"} width={"100vw"} padding={"15px"} />
                             </Col>
                             </div>
                             
@@ -95,10 +95,18 @@ class Services extends React.Component {
                                     category.display ?
                                         <Col size="md-12">
                                             <button className=" btnIcon glow-button btn-lg btn-block" onClick={this.handleInputChange} name={category.name}>
-                                               
-                                                <div className="iconDiv"> <i className={category.icon}></i> {category.name}</div>
+                                    
+                                                <div className="iconDiv">
+                                                <div className="row">
+                                                <div className="col-sm-1">
+                                                <i className={category.icon}></i>
+                                                </div>
+                                                <div className="col-sm-11 my-auto">  {category.name}
+                                                </div>
+                                                </div>
+                                                </div>
                                             </button>
-                                        </Col> : "")
+                                         </Col>: "")
                             })}
 
                         </div>
