@@ -18,7 +18,8 @@ class Services extends React.Component {
         department: "",
         categories: [{ name: "Legal", display: true, icon: "fas fa-gavel fa-2x" }, { name: "Healthcare", display: true, icon: "fas fa-user-md fa-2x"  }, { name: "Education", display: true, icon:"fas fa-graduation-cap fa-2x" }, { name: "Jobs", display: true, icon:"far fa-building fa-2x" }, { name: "Language", display: true, icon:"fas fa-book-reader fa-2x" }, { name: "Community", display: true, icon:"fas fa-users fa-2x" }],
         renderButton: false,
-        displayMap: false
+        displayMap: false,
+        currentCategory: ""
     }
 
 
@@ -37,7 +38,7 @@ class Services extends React.Component {
                     }
                     return category
                 })
-                this.setState({ resources: response.data, department: name, categories: newArray, renderButton: true, displayMap: true })
+                this.setState({ resources: response.data, department: name, categories: newArray, renderButton: true, displayMap: true, currentCategory: name })
                 console.log(name)
                 console.log(response.data);
 
@@ -81,7 +82,7 @@ class Services extends React.Component {
                             <div className="map">
                             
                             <Col size="md-12">
-                            <MapBox tableName={"Education"} height={"400px"} width={"100vw"} padding={"15px"} />
+                            <MapBox tableName={this.state.currentCategory} height={"320px"} width={"100vw"} padding={"15px"} />
                             </Col>
                             </div>
                             
