@@ -113,16 +113,13 @@ class Register extends Component {
 
   // ================ Form Validation ==================
   // https://www.skptricks.com/2018/06/simple-form-validation-in-reactjs-example.html
-  validateForm() {
+  validateStep1() {
 
     const firstName = this.state.firstName;
     const lastName = this.state.lastName;
     const email = this.state.email;
     const city = this.state.city;
     const state = this.state.state;
-    const username = this.state.username;
-    const password = this.state.password;
-    const userType = this.state.userType;
 
     const errors = {};
     let formIsValid = true;
@@ -161,6 +158,22 @@ class Register extends Component {
       errors["state"] = "*Please enter a State.";
     }
 
+    this.setState({
+      errors: errors
+    });
+    return step1IsValid;
+
+
+  }
+
+  validateStep2() {
+
+    const username = this.state.username;
+    const password = this.state.password;
+
+    const errors = {};
+    let formIsValid = true;
+
     if (!username) {
       formIsValid = false;
       errors["username"] = "*Please enter your username.";
@@ -174,10 +187,26 @@ class Register extends Component {
     this.setState({
       errors: errors
     });
-    return formIsValid;
-
-
+    return step2IsValid;
   }
+
+  // validateStep3() {
+
+  //   const userType = this.state.userType;
+
+  //   const errors = {};
+  //   let formIsValid = true;
+
+  //   if (!password) {
+  //     formIsValid = false;
+  //     errors["password"] = "*Please enter your password.";
+  //   }
+
+  //   this.setState({
+  //     errors: errors
+  //   });
+  //   return formIsValid;
+  // }
 
   render() {
     return (
