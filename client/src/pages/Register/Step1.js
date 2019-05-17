@@ -17,6 +17,7 @@ function Step1(props) {
           placeholder={placeholder}
           value={props.firstName}
           onChange={props.handleInputChange}
+          required
         />}
       </FormattedMessage>
 
