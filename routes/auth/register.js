@@ -14,7 +14,6 @@ router.route("/").post(function (req, res) {
   const password = hashedPW;
   const userType = req.body.userType;
 
-  // console.log(username, userType);
   var hashedPW = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10), null)
   db.User.findOne({
     where: {

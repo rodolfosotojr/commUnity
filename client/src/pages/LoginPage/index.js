@@ -39,6 +39,7 @@ class LoginPage extends Component {
             rememberMe: event.target.checked
         })
     }
+    
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.validateForm() ) {
@@ -71,13 +72,6 @@ class LoginPage extends Component {
             formIsValid = false;
             errors["password"] = "*Please enter your password.";
         }
-
-        // if (typeof password] !== "undefined") {
-        //     if (!fields["password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
-        //         formIsValid = false;
-        //         errors["password"] = "*Please enter secure and strong password.";
-        //     }
-        // }
 
         this.setState({
             errors: errors
