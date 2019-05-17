@@ -49,7 +49,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={LoginPage} />
             <Route exact path="/map" render={
-              (props) => <MapBox tableName={"Education"} height={"400px"} width={"400px"} {...props}/> } />
+              (props) => <MapBox tableName={"Legal"} height={"400px"} width={"400px"} {...props}/> } />
             <Route exact path="/Home" render={
               (props) => <Home globalUsername={this.state.globalUsername} globalUpdateUsername={this.globalUpdateUsername} {...props} />
             } />

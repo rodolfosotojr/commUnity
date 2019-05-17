@@ -3,7 +3,6 @@ import MapGL, {Marker, Popup, NavigationControl, FullscreenControl} from 'react-
 import MapMarker from '../MapMarker';
 import MapMarkerInfo from '../MapMarkerInfo';
 import axios from 'axios';
-
 const TOKEN = process.env.REACT_APP_MAP_BOX_TOKEN;
 
 const fullScreenStyle = {
@@ -12,7 +11,6 @@ const fullScreenStyle = {
   left: 0,
   padding: '10px'
 };
-
  const navigationControlsStyle = {
   position: 'absolute',
   top: 0,
@@ -63,9 +61,7 @@ class MapBox extends Component {
         );
       }
     renderPopup() {
-        const {popupInfo} = this.state;
-        console.log("clicked")
-        
+        const {popupInfo} = this.state;        
         return popupInfo && (
           <Popup tipSize={5}
             anchor="top"
