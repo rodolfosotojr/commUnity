@@ -35,16 +35,33 @@ class SlideView extends React.Component {
     }
 
     render() {
+        const settings = {
+            dots: true,
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            pauseOnHover: true,
+            responsive: [
+                {
+                    breakpoint: 600,
+                    settings: {
+                        dots: true,
+                        infinite: true,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 3000,
+                        pauseOnHover: true,
+                    }
+                }
+            ]
+          };
 
     return (
         <Wrapper>
-            <Slider
-                speed={500}
-                slidesToShow={1}
-                slidesToScroll={1}
-                infinite={true}
-                dots={true}
-                arrows={false}
+            <Slider {...settings}
             >
                 {this.state.volunteers.map(data => (
                     <Col size="md-12">
