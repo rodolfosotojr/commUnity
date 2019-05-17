@@ -14,13 +14,7 @@ function Connect(props) {
 
                 <Container>
                     <Row>
-                        <Col size="md-12">
-                            <h2>Hi, {props.globalUsername}!</h2>
-                        </Col>
-                    </Row>
-
-                    <Row>
-                        <SlideView gblUser={props.globalUsername} globalRoomId={props.globalRoomId}/>
+                        <SlideView gblUser={props.globalUsername} globalRoomId={props.globalRoomId} />
                     </Row>
                 </Container>
 

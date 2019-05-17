@@ -68,7 +68,6 @@ class SlideView extends React.Component {
                         <ProfileCard
                             firstName={data.firstname}
                             lastName={data.lastname}
-                            city={data.city}
                             email={data.email}
                             profileImg={data.profileImg}
                             roomId={data.roomId}
