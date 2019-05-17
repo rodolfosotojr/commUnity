@@ -15,7 +15,8 @@ class UploadImage extends Component {
 
     state = {
         file: null,
-        redirect: false
+        redirect: false,
+        errors: {}
     }
 
     handleFileChange = (event) => {
@@ -26,17 +27,19 @@ class UploadImage extends Component {
     }
 
     handleFileUpload = (event) => {
-        console.log(this.state.file)
-        const formData = new FormData();
-        formData.append(
-            'userPhoto',
-            this.state.file,
-            this.state.file.name,
-        );
-        formData.append("username", this.props.globalUsername)
-        axios.post('/api/upload', formData)
-            // API.uploadImage(formData)
-            .then(() => this.props.history.push("/"))
+        // console.log(this.state.file)
+        if (this.validateForm() ) {
+            const formData = new FormData();
+            formData.append(
+                'userPhoto',
+                this.state.file,
+                this.state.file.name,
+            );
+            formData.append("username", this.props.globalUsername)
+            axios.post('/api/upload', formData)
+                // API.uploadImage(formData)
+                .then(() => this.props.history.push("/"))
+        }
     }
 
     setRedirect = () => {
@@ -48,6 +51,27 @@ class UploadImage extends Component {
         if (this.state.redirect) {
             return <Redirect to='/' />
         }
+    }
+
+        // =============== FORM VALIDATION ==================
+    // TUTORIAL: https://www.skptricks.com/2018/06/simple-form-validation-in-reactjs-example.html
+    validateForm() {
+
+        const file = this.state.file;
+        let errors = {};
+        let formIsValid = true;
+
+        if (!file) {
+            formIsValid = false;
+            errors["file"] = "*Please enter an image to upload.";
+        }
+
+        this.setState({
+            errors: errors
+        });
+        return formIsValid;
+
+
     }
 
     render() {
@@ -71,7 +95,7 @@ class UploadImage extends Component {
                                     <FormattedMessage id="upload.selectfile" defaultMessage="Select File" />
                                 </label>
                                 <input className="ml-2" type="file" name="userPhoto" onChange={this.handleFileChange} />
-
+                                <div className="errorMsg">{this.state.errors.file}</div>
 
                             </form>
 

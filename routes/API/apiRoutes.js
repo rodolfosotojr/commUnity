@@ -16,7 +16,7 @@ cloudinary.config(process.env.CLOUDINARY_URL);
 const cloudStorage = cloudinaryStorage({
     cloudinary: cloudinary,
     folder: "profile_images",
-    allowedFormats: ["jpg", "png"],
+    allowedFormats: ["jpg", "png", "gif"],
     transformation: [{ width: 500, height: 500, crop: "limit", format: "jpg" }]
 });
 
