@@ -68,13 +68,12 @@ class Home extends Component {
                             <h1 className="homeHeader">Comm<span className="font-weight-bold">Unity</span></h1>
                             <h2>
                                 <FormattedMessage id="homepage.home-welcome"
-                                        defaultMessage="Welcoming You Home, { name }!"
+                                        defaultMessage="Welcome Home, { name }!"
                                         values = {{ name: this.state.firstname}} />
                             </h2>
                             <p>
                             <FormattedHTMLMessage id="homepage.happymsg"
-                                    defaultMessage="We're so happy to have you!<br />
-                                    Let's Get Started!<br />
+                                    defaultMessage="Let's Get Started!<br />
                                     Click on services to navigate to nearby service centers.
                                     Or, click on connect to meet local families!" />
                             </p>

@@ -12,6 +12,7 @@ const cardStyle = {
     width: "18rem",
     backgroundColor: "#e1dfdf",
     fontFamily: "Karma, serif",
+    minHeight: "550px"
 };
 
 const pictureStyle = {
