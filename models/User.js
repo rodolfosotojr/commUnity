@@ -43,6 +43,11 @@ module.exports = (sequelize, DataTypes) => {
         roomId: {
             type: DataTypes.STRING,
         },
+        Bio: {
+            type: DataTypes.STRING(300),
+            allowNull: false,
+            
+        },
         profileImg: {
             type: DataTypes.STRING,
 			defaultValue: 'https://community-chicago.herokuapp.com/uploads/imgDefault.jpg',

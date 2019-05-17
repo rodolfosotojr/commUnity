@@ -27,8 +27,10 @@ class Register extends Component {
       city: "",
       username: "",
       password: "",
-      userType: ""
+      userType: "",
+      Bio:""
     }
+
 
   };
 
@@ -53,6 +55,7 @@ class Register extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
+    console.log(this.state)
     this.props.globalUpdateUsername(this.state.username);
     axios.post("/auth/register", {
       "firstname": this.state.firstName,
@@ -62,7 +65,8 @@ class Register extends Component {
       "city": this.state.city,
       "username": this.state.username,
       "password": this.state.password,
-      "userType": this.state.userType
+      "userType": this.state.userType,
+      "Bio": this.state.Bio
     })
       .then(() => this.props.history.push("/UploadImage"))
     // .then( 
@@ -148,6 +152,7 @@ class Register extends Component {
                     handleInputChange={this.handleInputChange}
                     userType={this.state.userType}
                     handleDropdown={this.handleDropdown}
+                    Bio={this.state.Bio}
                   // onClick={this.handleFormSubmit}
 
                   />

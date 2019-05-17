@@ -72,6 +72,7 @@ class SlideView extends React.Component {
                             email={data.email}
                             profileImg={data.profileImg}
                             roomId={data.roomId}
+                            Bio={data.Bio}
                             globalRoomId={this.props.globalRoomId}
                         />
                     </Col>

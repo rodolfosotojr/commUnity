@@ -31,7 +31,7 @@ router.route("/").post(function (req, res) {
     if (user) {
       res.redirect("/")
     }
-
+console.log(req.body)
     db.User.create({
       firstname: req.body.firstname,
       lastname: req.body.lastname,
@@ -40,7 +40,8 @@ router.route("/").post(function (req, res) {
       email: req.body.email,
       username: req.body.username,
       password: hashedPW,
-      userType: req.body.userType
+      userType: req.body.userType,
+      Bio: req.body.Bio
     })
       .then(() => {
         const chatkit = new Chatkit.default({

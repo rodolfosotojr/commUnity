@@ -54,6 +54,20 @@ function Step3(props) {
         </FormattedMessage>
       </select>
 
+      <FormattedMessage id="step3.Bio" defaultMessage="Add Short Bio (limit 300 characters)">
+        {placeholder =>
+          <Input
+            className="bio"
+            id="Bio"
+            name="Bio"
+            type="text"
+            placeholder={placeholder}
+            value={props.Bio}
+            onChange={props.handleInputChange}
+          />
+        }
+      </FormattedMessage>
+
       <button className="btn btn-primary float-right mt-2">
         <FormattedMessage id="step3.submit" defaultMessage="Submit" />
       </button>
