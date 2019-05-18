@@ -1,4 +1,4 @@
-# [comm**Unity** Web App](http://community-chicago.herokuapp.com)
+# [comm**Unity** Web App](https://community-chicago.herokuapp.com)
 A community building app targeting refugee communities within Chicago and connecting them with local families to help facilitate a smoother transition. 
 
 ## Overview
