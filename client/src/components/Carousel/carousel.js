@@ -43,12 +43,12 @@ function Carousel() {
             </div>
 
             {/* Left and right controls  */}
-            {/* <a className="carousel-control-prev" href="#myCarousel" data-slide="prev">
+            <a className="carousel-control-prev" href="#myCarousel" data-slide="prev">
                 <span className="carousel-control-prev-icon"></span>
             </a>
             <a className="carousel-control-next" href="#myCarousel" data-slide="next">
                 <span className="carousel-control-next-icon"></span>
-            </a> */}
+            </a>
             </div>
         </div>
 
