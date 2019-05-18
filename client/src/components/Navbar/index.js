@@ -39,12 +39,11 @@ class Navbar extends Component {
                 </NavLink>
               </li>
               <li className="nav-item">
+              {" "}
                 <a className="nav-link" href="#" onClick={this.handleLogout}>
-                  <FormattedMessage id="navbar.logout" defaultMessage="Logout" />
+                <i class="fas fa-sign-out-alt"></i>
                 </a>
               </li>
-
-
             </ul>
           </div>
         </nav>

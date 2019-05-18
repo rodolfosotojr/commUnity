@@ -21,7 +21,9 @@ class Logout extends Component {
                 {" "}<a href="#" onClick={this.handleLogout}>
                 <FormattedMessage id="homepage.notyou2"
                         defaultMessage="Logout Now!" />
-                {" "}<i class="fas fa-user-minus"></i></a></div>
+                {" "}
+                <i class="fas fa-sign-out-alt"></i>
+                </a></div>
             </Col>
         </Row>
             
