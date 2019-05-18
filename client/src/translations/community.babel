@@ -256,6 +256,95 @@
                 </children>
             </folder_node>
             <folder_node>
+                <name>navbar</name>
+                <children>
+                    <concept_node>
+                        <name>connect</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ar-EG</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>es-MX</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                    <concept_node>
+                        <name>home</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ar-EG</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>es-MX</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                    <concept_node>
+                        <name>logout</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ar-EG</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>es-MX</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                    <concept_node>
+                        <name>services</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ar-EG</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>es-MX</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                </children>
+            </folder_node>
+            <folder_node>
                 <name>register</name>
                 <children>
                     <concept_node>
@@ -275,6 +364,95 @@
                             </translation>
                             <translation>
                                 <language>ar-EG</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                    <concept_node>
+                        <name>next</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ar-EG</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>es-MX</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                    <concept_node>
+                        <name>prev</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ar-EG</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>es-MX</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                </children>
+            </folder_node>
+            <folder_node>
+                <name>services</name>
+                <children>
+                    <concept_node>
+                        <name>resources</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ar-EG</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>es-MX</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                    <concept_node>
+                        <name>return</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ar-EG</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>es-MX</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -442,6 +620,27 @@
                 <name>step3</name>
                 <children>
                     <concept_node>
+                        <name>Bio</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ar-EG</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>es-MX</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                    <concept_node>
                         <name>option0</name>
                         <definition_loaded>false</definition_loaded>
                         <description></description>
@@ -521,6 +720,27 @@
                             </translation>
                             <translation>
                                 <language>ar-EG</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                    <concept_node>
+                        <name>submit</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ar-EG</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>es-MX</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>

@@ -17,7 +17,7 @@ function Step1(props) {
           placeholder={placeholder}
           value={props.firstName}
           onChange={props.handleInputChange}
-          required
+          required="required"
         />}
       </FormattedMessage>
 
@@ -31,6 +31,7 @@ function Step1(props) {
             placeholder={placeholder}
             value={props.lastName}
             onChange={props.handleInputChange}
+            required="required"
           />
         }
       </FormattedMessage>
@@ -46,6 +47,7 @@ function Step1(props) {
             placeholder={placeholder}
             value={props.email}
             onChange={props.handleInputChange}
+            required="required"
           />
         }
       </FormattedMessage>
@@ -61,6 +63,7 @@ function Step1(props) {
             placeholder={placeholder}
             value={props.city}
             onChange={props.handleInputChange}
+            required="required"
           />
         }
       </FormattedMessage>
@@ -74,6 +77,7 @@ function Step1(props) {
             placeholder={placeholder}
             value={props.state}
             onChange={props.handleInputChange}
+            required="required"
           />
         }
       </FormattedMessage>

@@ -18,6 +18,7 @@ function Step2(props) {
             placeholder={placeholder}
             value={props.username}
             onChange={props.handleInputChange}
+            required="required"
           />
         }
       </FormattedMessage>
@@ -32,6 +33,7 @@ function Step2(props) {
             placeholder={placeholder}
             value={props.password}
             onChange={props.handleInputChange}
+            required="required"
           />
         }
       </FormattedMessage>

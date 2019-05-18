@@ -98,7 +98,9 @@ class Register extends Component {
         <button
           className="btn btn-secondary"
           type="button" onClick={this._prev}>
-          Previous
+            <i class="fas fa-arrow-circle-left"></i>
+            <FormattedMessage id="register.prev" defaultMessage=" Previous" />
+          
         </button>
       )
     }
@@ -112,7 +114,8 @@ class Register extends Component {
         <button
           className="btn btn-primary float-right"
           type="button" onClick={this._next}>
-          Next
+            <FormattedMessage id="register.next" defaultMessage="Next " />
+          <i class="fas fa-arrow-circle-right"></i>
         </button>
       )
     }
