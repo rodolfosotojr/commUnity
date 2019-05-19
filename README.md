@@ -13,10 +13,10 @@ Refugee communities that have resettled in Chicago, as well as local families wi
 ![Screenshots](./readme/mobile-screens-1.jpg)
 
 ## Project Members
-* [Purnia Siddiqui](https://github.com/Purnia) Project Leader, Front End, Back End Developer | [GitHub](https://github.com/Purnia) | [LinkedIn]()
-* [Orlando Carnate](https://github.com/orlandocarnate) Front End, Back End Developer | [GitHub](https://github.com/orlandocarnate) | [LinkedIn]() 
-* [Rodolfo Soto Jr.](https://github.com/rodolfosotojr) Front End, Back End Developer | [GitHub](https://github.com/rodolfosotojr) | [LinkedIn]()
-* [Cuauhtemoc Rodriguez](https://github.com/Cuauhtemoc) Front End, Back End Developer | [GitHub](https://github.com/Cuauhtemoc) | [LinkedIn]()
+* [Purnia Siddiqui](https://github.com/Purnia) Project Leader, Front End, Back End Developer | [GitHub](https://github.com/Purnia) | [LinkedIn](https://www.linkedin.com/in/purniasiddiqui)
+* [Orlando Carnate](https://github.com/orlandocarnate) Front End, Back End Developer | [GitHub](https://github.com/orlandocarnate) | [LinkedIn](https://www.linkedin.com/in/orlando-carnate) 
+* [Rodolfo Soto Jr.](https://github.com/rodolfosotojr) Front End, Back End Developer | [GitHub](https://github.com/rodolfosotojr) | [LinkedIn](https://www.linkedin.com/in/rodolfo-soto-jr-46b671174)
+* [Cuauhtemoc Rodriguez](https://github.com/Cuauhtemoc) Front End, Back End Developer | [GitHub](https://github.com/Cuauhtemoc)
 
 ## Technologies, APIS, and Frameworks used:
 * Front and Back End technologies:
